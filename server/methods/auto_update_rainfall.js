@@ -86,8 +86,8 @@ Meteor.setInterval(function sample() {
 							for (i= 0; i<10; i++) {
 
 								dateToAdd.setDate(dateToAdd.getDate() + 1);
-								//console.log(dateToAdd)
-								//console.log('60 days before +1 ' + date)						
+								console.log(dateToAdd)
+								console.log('60 days before +1 ' + date)						
 								let dateWunderground = dateToAdd.toISOString().slice(0,10).replace(/-/g,"");
 								let dateMongo  = dateToAdd.toISOString().slice(0,10).replace(/-/g,"-");
 								//console.log('kausa r call' + i)

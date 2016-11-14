@@ -1,0 +1,19 @@
+<template name = "CropYield">
+	 
+	<h4> Crop Yield </h4>
+	<table border ="1">
+		<tr>
+			<th> Crop Type </th>
+			<th> Yield</th>			 
+			<th> Edit</th>
+			<th> Delete</th>			 
+		</tr>
+			{{#each cropYields}}
+		<tr>
+			{{> CropYieldData}}
+		</tr>
+			{{/each}}
+	</table>
+	<button id ="add-crop-yield-button">Add Crop Yield</button>
+	<button id ="exit-crop-yield-button">Done</button>
+</template>

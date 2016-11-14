@@ -1,0 +1,7 @@
+/media/nelson/7C02AD1202ACD286/MIT-UPLB/MITCourses/0.WebApplicationDevelopment/project/planting-guide
+
+installs
+flow router 
+blaze layout
+meteor add kadira:blaze-layout
+

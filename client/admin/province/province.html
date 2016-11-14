@@ -1,0 +1,18 @@
+<template name = "Province">
+	<h4>Province</h4>
+	{{> AddProvince}}
+	<table border ="1">
+		<tr>
+			<th> Province </th>
+			<th> Edit</th>
+			<th> Delete</th>
+			<th> City </th>			
+		</tr>
+			{{#each provinces}}
+		<tr>
+			{{> ProvinceItem}}
+		</tr>
+			{{/each}}
+	</table>
+	<button id ="add-province-button">Add Province</button>
+</template>

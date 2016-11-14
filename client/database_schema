@@ -1,0 +1,79 @@
+https://docs.mongodb.com/v3.2/tutorial/geospatial-tutorial/
+https://docs.mongodb.com/v3.2/reference/operator/aggregation/lookup/
+https://github.com/aldeed/meteor-simple-schema
+
+
+// locations collection === done
+{
+	_id: <id>,
+	project_name:"",
+	institution:"",
+	coords: {
+		lat: <lat>,
+		lng: <lng>,
+		type: "Point"
+	},
+	city: "",
+	province: "",
+}
+
+// crop yield collection
+{
+	_id: <id>,
+  location_id <id from location>
+	crop_type:"",	
+	average_yield: "",
+}
+
+//duration yield collection
+{
+	_id: <id>,
+	location_id: <id from location>,
+	_id:<id from crop>, == > no nid 
+  location_data
+	week_no :"",
+
+	starting_date:"",
+	end_date:"",
+	Amount of Rainfall:"",	
+}	
+
+//amount of precipitation
+{
+  _id : <id>,
+  location_id: location_id,
+  date:date,
+  amount_rainfall:amount_rainfall
+}
+
+
+
+
+
+BookSchema = new SimpleSchema({
+  title: {
+    type: String,
+    label: "Title",
+    max: 200
+  },
+  author: {
+    type: String,
+    label: "Author"
+  },
+  copies: {
+    type: Number,
+    label: "Number of copies",
+    min: 0
+  },
+  lastCheckedOut: {
+    type: Date,
+    label: "Last date this book was checked out",
+    optional: true
+  },
+  summary: {
+    type: String,
+    label: "Brief summary",
+    optional: true,
+    max: 1000
+  }
+});

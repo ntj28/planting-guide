@@ -1,0 +1,22 @@
+<template name="DurationYields">
+	<h4> Crop Duration Yield </h4>
+	<table border ="1">
+		<tr>
+			<th> Province </th>
+			<th> City </th>
+			<th> Week No.</th>
+			<th> Starting Date</th>
+			<th> Ending Date</th>
+			<th> Yield</th>			 
+			<th> Edit</th>
+			<th> Delete</th>			 
+		</tr>
+			{{#each durationYields}}
+		<tr>
+			{{> DurationYieldItem}}
+		</tr>
+			{{/each}}
+	</table>
+	<button id ="add-duration-yield-button">Add Crop Yield Duration</button>
+	<button id ="exit-duration-yield-button">Done</button>
+</template>

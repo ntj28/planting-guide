@@ -1,0 +1,18 @@
+<template name = "City">
+	<h4>City</h4>
+	{{> AddCity}}
+	<table border ="1">
+		<tr>
+			<th> City </th>
+			<th> Edit</th>
+			<th> Delete</th>					
+		</tr>
+			{{#each city}}
+		<tr>
+			{{> CityItem}}
+		</tr>
+			{{/each}}
+	</table>
+	<button id ="add-city-button">Add City</button>
+	<button id ="done-button">Done</button>
+</template>

@@ -1,0 +1,25 @@
+<template name="AddLocation">
+    Project Name <input type ="text" id ="projectName"> <br/>
+    Institution <input type ="text" id ="insttitution"> <br/>
+    Latitude <input type="text" id ="latitude"><br/>
+    Longitude <input type ="text" id ="longitude"><br/>
+    Province
+      <select id = "provinceSelection">
+	    {{#each dataProvince}}
+			  {{> provinceItem}}
+		{{/each}}
+		</select> <br/>
+    <!--Province <input type ="text" id ="province"><br/>-->
+    <!--City <input type ="text" id ="city"><br/>-->
+    City 
+    <select id = "citySelection">
+	    {{#each dataCity}}
+			  {{> cityItem}}
+		{{/each}}
+	</select> <br/>
+    
+	   
+	
+    <button id ="addLocationButton">Save</button>
+    <button id ="Cancel">Cancel</button>
+</template>

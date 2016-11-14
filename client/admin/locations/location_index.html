@@ -1,0 +1,25 @@
+<template name = "Locations">
+	 
+	<h4>Locations</h4>
+	<table border ="1">
+		<tr>
+			<th> Project Name </th>
+			<th> Institution</th>
+			<th> Latitude </th>
+			<th> Longitude </th>
+			<th> City </th>
+			<th> Province </th>
+			<th> Edit</th>
+			<th> Delete</th>
+			<th> Crop Yield </th>
+			<th> Yields </th>
+		</tr>
+			{{#each locations}}
+		<tr>
+			{{> Location}}
+		</tr>
+			{{/each}}
+	</table>
+	<button id ="add-location-button">Add Location</button>
+
+</template>

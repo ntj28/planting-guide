@@ -7,6 +7,9 @@ import { Meteor } from 'meteor/meteor'
 
 
 Template. DailyRainfall.rendered = () =>{
+
+	
+
 	const awsID = FlowRouter.getParam('awsID')
 	var date = new Date()
 	var cityNoSpace
@@ -63,13 +66,16 @@ Template. DailyRainfall.rendered = () =>{
 				thirtyDaysCumulative.push(result)
 
 			})
-
+			
 			console.log("data thirty" +thirtyDaysCumulative)
 
 			//getting the accumulated rainfall for thirty days 
 			thirtyDaysAccumulatedRainfall = parseFloat(result.thirtyDaysAccumulatedRainfall)
+			//modifying the content of the  p tag
 			
-			console.log("thirty accumulated" +thirtyDaysAccumulatedRainfall)
+			 //console.log("thirty accumulated" + result)
+			$('#rice-english').text( "Total Accumulated Rainfall for 30 days " + thirtyDaysAccumulatedRainfall.toFixed(2)  );
+			
 		 
 			//retrieving the twenty days cumulative data
 			Meteor.call('twenty-rainfall-data',awsID,dateMongo, function(err,resultTwenty){
@@ -80,6 +86,8 @@ Template. DailyRainfall.rendered = () =>{
 				})
 
 				console.log("data twenty" +twentyDaysCumulative)
+				twentyDaysAccumulatedRainfall = parseFloat(resultTwenty.twentyDaysAccumulatedRainfall)
+				$('#corn-english').text( "Total Accumulated Rainfall for 20 days " + twentyDaysAccumulatedRainfall.toFixed(2)  );
 
 				
 				 
@@ -374,11 +382,13 @@ Template.DailyRainfall.helpers ({
 			console.log("20 :" +twentyDaysAccumulatedRainfall)
 		})
 
-		 
+		const cityField = $('#city') 
 
 		console.log (thirtyDaysAccumulatedRainfall)
 
 		
+
+
 		sample1 = "nelson h .tejara"
 		return sample1
 

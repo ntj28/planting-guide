@@ -16,6 +16,9 @@ import './map.html';
 
 let map;
 
+
+
+
 Template.map.rendered = () => {
     // create the map
     map = L.map('map', {});
@@ -31,10 +34,11 @@ Template.map.rendered = () => {
 
     // add the layer to the map
     tileLayer.addTo(map);
-};
 
-Meteor.autorun(() => {
+
+    //place the marker
     let markerData = location.find();
+    
 
     console.log(markerData.count(), map)
 
@@ -48,7 +52,35 @@ Meteor.autorun(() => {
             //listen for cick events in the market and oepn the popup once clock is detect
             marker.on('click', ( ) =>{
                 popup.openPopup();
-                FlowRouter.go(`/chart/${item._id}`)
+                FlowRouter.go(`/chart/${item.awsID}`)
+                //console.log(`location Id :${item._id}` )
+            })
+
+            marker.addTo(map);
+        });
+    }
+       
+
+   
+};
+
+Meteor.autorun(() => {
+    let markerData = location.find();
+    //console.log("autorun called")
+
+    console.log(markerData.count(), map)
+
+    if (typeof map !== 'undefined' && markerData.count() > 0) {
+        // get location data from the mongo db and add it to the map
+        markerData.forEach((item) => {
+            let marker = L.marker(item.mapLocation.coords);
+
+            let popup = marker.bindPopup(`Location Name: ${item.city}`)
+
+            //listen for cick events in the market and oepn the popup once clock is detect
+            marker.on('click', ( ) =>{
+                popup.openPopup();
+                FlowRouter.go(`/chart/${item.awsID}`)
                 //console.log(`location Id :${item._id}` )
             })
 
@@ -75,7 +107,7 @@ Template.map.helpers ({
 
             let popup = marker.bindPopup(`Location Name: ${item.city}`)
 
-            //listen for cick events in the market and oepn the popup once clock is detect
+            //listen for cick events in the market and oepn the popup once click is detect
             marker.on('click', ( ) =>{
                 popup.openPopup();
                 FlowRouter.go(`/chart/${item._id}`)

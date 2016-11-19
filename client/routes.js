@@ -105,10 +105,73 @@ FlowRouter.route ('/edit_city/:city_id/:province_id', {
 })
 
 //chart
-FlowRouter.route ('/chart/:location_id', {
+FlowRouter.route ('/chart/:awsID', {
 	action: function(params, queryParams) {
 		BlazeLayout.render("mainLayout", {main: "DailyRainfall"})
 	}
 })
+
+
+//rainfall
+FlowRouter.route ('/rainfall/:awsID', {
+	action: function(params, queryParams) {
+		BlazeLayout.render("mainLayout", {main: "Rainfall"})
+	}
+})
+//edit rainfall
+FlowRouter.route('/editRainfall/:rainfallID/:awsID',{
+	action: function(params,queryParams,queryParams2) {
+		BlazeLayout.render("mainLayout", {main:"editRainfall"})
+	}
+})
+
+
+//thresholds
+FlowRouter.route('/threshold',{
+	action: function(params,queryParams) {
+		BlazeLayout.render("mainLayout", {main:"Thresholds"})
+	}
+})
+
+//add threshold
+FlowRouter.route('/addThreshold', {
+	action: function(params,queryParams) {
+		BlazeLayout.render("mainLayout", {main:"AddThreshold"})
+	}
+})
+
+
+//edit thresholds
+FlowRouter.route ('/editThreshold/:threshold_id', {
+	action: function(params,queryParams){
+		BlazeLayout.render("mainLayout", {main:"EditThreshold"})
+	}
+})
+
+//crops
+FlowRouter.route('/crop', {
+	action: function(params,queryParams) {
+		BlazeLayout.render("mainLayout", {main:"Crops"})
+	}
+})
+
+//add crops
+FlowRouter.route('/addCrop', {
+	action: function(params,queryParams){
+		BlazeLayout.render("mainLayout", {main:"AddCrop"})
+
+	}
+	
+})
+
+//edit crops
+FlowRouter.route('/editCrop/:crop_id',{
+	action: function(params,queryParams){
+		BlazeLayout.render("mainLayout",{main:"EditCrop"})
+	}
+})
+
+
+
 
 

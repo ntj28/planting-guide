@@ -3,7 +3,7 @@ import { location } from '../../lib/collections/locations.js'
 
 Meteor.methods({
 
-    'add-location': function(projectName, institution, latitude, longitude, city, province) {
+    'add-location': function(projectName, institution, latitude, longitude, city, province,awsID) {
         location.insert({
             projectName: projectName,
             institution: institution,
@@ -15,6 +15,7 @@ Meteor.methods({
             longitude:longitude,
             city: city,
             province: province,
+            awsID:awsID,
         })
 
     },
@@ -25,7 +26,7 @@ Meteor.methods({
         })
     },
 
-    'update-location' : function(_id, projectName,institution,latitude,longitude,city,province) {
+    'update-location' : function(_id, projectName,institution,latitude,longitude,city,province,awsID) {
         location.update (
             {_id},//filters to be updaated
             {
@@ -39,7 +40,8 @@ Meteor.methods({
                     latitude:latitude,
                     longitude:longitude,
                     city: city,
-                    province: province
+                    province: province,
+                    awsID:awsID
 
                 }
             },

@@ -3,8 +3,8 @@ Meteor.methods ({
     //http://api.wunderground.com/api//history_20161115/q/pws:ICALABAR18.json
     
     // Construct the API URL
-    securityKey = ""
-    const apiUrl = 'http://api.wunderground.com/api/securityKey/history_' + date +'/q/pws:' + awsID +'.json';
+    securityKey = "60d1fb8794e7bb72"
+    const apiUrl = 'http://api.wunderground.com/api/60d1fb8794e7bb72/history_' + date +'/q/pws:' + awsID +'.json';
     //const apiUrl = 'http://api.wunderground.com/api/60d1fb8794e7bb72/history_' + date +'/q/' + province + '/' + city + '.json';
     console.log('trial', apiUrl);
     // query the API

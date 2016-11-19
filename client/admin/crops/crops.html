@@ -1,0 +1,17 @@
+<template name = "Crops">
+	<h4>Crops</h4>
+	{{> AddCrop}}
+	<table border ="1">
+		<tr>
+			<th> Crops </th>
+			<th> Edit</th>
+			<th> Delete</th>					
+		</tr>
+			{{#each cropData}}
+		<tr>
+			{{> cropItem}}
+		</tr>
+			{{/each}}
+	</table>
+	<button id ="add-crop-button">Add Crop</button>
+</template>

@@ -45,11 +45,9 @@ Template.AddDurationYield.events({
 		const endDate = endDateField.val()
 		const yieldField = $("#yield")
 		const yields = yieldField.val()
-		const cityField = $('#citySelection')
-        const city = cityField.val()               
-        const province = $('#provinceSelection').find('option:selected').text()
+		
 
-		Meteor.call('add-duration-yields',locationID,province,city,weekNo,startDate,endDate,yields)
+		Meteor.call('add-duration-yields',locationID,weekNo,startDate,endDate,yields)
 		console.log("added")
 		locationField.val = " "
 		weekNoField.val = " "

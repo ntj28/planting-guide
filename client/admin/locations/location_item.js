@@ -6,6 +6,7 @@ Template.Location.events({
 
 	'click #delete-location-button' :  function (e) {
 		Meteor.call('delete-location', this._id)
+		Meteor.call('delete-rainfall-data',this._id)
 	},
 
 	'click #update-crop-yield' : function(e){
@@ -14,5 +15,9 @@ Template.Location.events({
 
 	'click #update-duration-yield' : function(e){
 		FlowRouter.go(`/duration_yield/${this._id}`)
+	},
+
+	'click #view-rainfall' : function(e){
+		FlowRouter.go(`/rainfall/${this.awsID}`)
 	}
 })

@@ -25,9 +25,11 @@ Template.EditLocation.events ({
         const city = cityField.val()
         const provinceField = $('#province')
         const province = provinceField.val()
+        const awsField = $('#awsID')
+        const awsID  = awsField.val() 
 
         //calling the meteor method to save
-        Meteor.call('update-location',locationId, projectName, insttitution, latitude, longitude, city, province)
+        Meteor.call('update-location',locationId, projectName, insttitution, latitude, longitude, city, province,awsID)
             //log the  console to see if it has been saved
         console.log('added')
             //clearing the entries

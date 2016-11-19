@@ -1,0 +1,16 @@
+<template name = "Rainfall">
+	<h4> Amount of Rainfall Data </h4>
+	
+	<table border ="1">
+		<tr>
+			<th> Date  </th>
+			<th> Amount of Rainfall</th>			 
+			<th> Edit</th>						 
+		</tr>
+			{{#each rainfall_data}}
+		<tr>
+			{{> RainfallItem}}
+		</tr>
+			{{/each}}
+	</table>
+</template>

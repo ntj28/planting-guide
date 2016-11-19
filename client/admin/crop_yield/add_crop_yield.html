@@ -1,6 +1,12 @@
 <template name ="AddCropYield">
-	Crop Type <input type="text" id="cropType"><br/>
-	Crop Yield <input type="text" id="cropYield"><br/>
+	<label for ="Crop Type">Crop Type </label>
+	<select id = "cropSelection">
+	    {{#each cropData}}
+			  {{> cropItems}}
+		{{/each}}
+	</select> <br/>	
+	<label for ="Crop Yield">Crop Yield </label>
+	<input type="text" id="cropYield"><br/>
 	<button id ="AddCropYieldButton">Save</button>
 	<button id ="Cancel">Cancel</button>
 </template>

@@ -1,23 +1,26 @@
 <template name ="AddDurationYield">
 	 
-	Province
-      <select id = "provinceSelection">
+	<label for ="Province">Province</label>
+    <!--  <select id = "provinceSelection">
 	    {{#each dataProvince}}
 			  {{> provinceItemLocation}}
 		{{/each}}
 		</select> <br/>
-    <!--Province <input type ="text" id ="province"><br/>-->
-    <!--City <input type ="text" id ="city"><br/>-->
-    City 
+   
+    <label for ="City">>City </label>
     <select id = "citySelection">
 	    {{#each dataCity}}
 			  {{> cityItemLocation}}
 		{{/each}}
-	</select> <br/>
-	Week No. <input type="text" id="weekNo"><br/>
-	Starting Date <input type="text" id="startDate"><br/>
-	Ending Date <input type="text" id="endDate"><br/>
-	Yield <input type="text" id="yield"><br/>
+	</select> <br/> -->
+	<label for ="Week No.">Week No.</label>
+	<input type="text" id="weekNo"><br/>
+	<label for ="Starting Date">Starting Date</label> 
+	<input type="text" id="startDate"><br/>
+	<label for ="Ending Date">Ending Date</label> 
+	<input type="text" id="endDate"><br/>
+	<label for ="Yield">Yield </label>
+	<input type="text" id="yield"><br/>
 	<button id="add-yield-button">Save</button>
 	<button id ="Cancel">Cancel</button>
 </template>

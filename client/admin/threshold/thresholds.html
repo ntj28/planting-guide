@@ -1,0 +1,20 @@
+<template name = "Thresholds">
+	<h4>Thresholds</h4>
+	
+	<table border ="1">
+		<tr>
+			<th> Crops </th>
+			<th> Days </th>
+			<th> Thresholds </th>
+			<th> Edit</th>
+			<th> Delete</th>
+			 		
+		</tr>
+			{{#each thresholdData}}
+		<tr>
+			{{> ThresholdItem}}
+		</tr>
+			{{/each}}
+	</table>
+	<button id ="add-threshold-button">Add Threshold</button>
+</template>

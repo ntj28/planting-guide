@@ -1,9 +1,17 @@
 <template name="EditLocation">
-	Project Name <input type ="text" id ="projectName" value ="{{data.projectName}}"> <br/>
-    Institution <input type ="text" id ="insttitution" value ="{{data.institution}}"> <br/>
-    Latitude <input type="text" id ="latitude" value ="{{data.latitude}}"><br/>
-    Longitude <input type ="text" id ="longitude" value ="{{data.longitude}}"><br/>
-    City <input type ="text" id ="city" value ="{{data.city}}"><br/>
-    Province <input type ="text" id ="province" value ="{{data.province}}"><br/>
+	<label for ="Project Name">Project Name</label> 
+	<input type ="text" id ="projectName" value ="{{data.projectName}}"> <br/>
+    <label for ="Institution">Institution</label> 
+    <input type ="text" id ="insttitution" value ="{{data.institution}}"> <br/>
+    <label for ="Latitude">Latitude </label>
+    <input type="text" id ="latitude" value ="{{data.latitude}}"><br/>
+    <label for ="Longitude">Longitude</label>
+    <input type ="text" id ="longitude" value ="{{data.longitude}}"><br/>
+    <label for ="City">City </label>
+    <input type ="text" id ="city" value ="{{data.city}}"><br/>
+    <label for ="Province">Province</label>
+    <input type ="text" id ="province" value ="{{data.province}}"><br/>
+    <label for ="AWS ID" >AWS ID </label>
+    <input type ="text" id ="awsID" value ="{{data.awsID}}"><br/>
     <button id ="editLocationButton">Save</button>
 </template>

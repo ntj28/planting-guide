@@ -24,12 +24,9 @@ Template.EditDurationYield.events ({
         const endDate = endDateField.val()
         const yieldField = $("#yield")
         const yields = yieldField.val()
-        const cityField = $('#city')
-        const city = cityField.val()               
-        const provinceField = $('#province')
-        const province = provinceField.val() 
+        
 
-        Meteor.call('update-duration-yield',durationYieldID,locationID,province,city,weekNo,startDate,endDate,yields)
+        Meteor.call('update-duration-yield',durationYieldID,locationID,weekNo,startDate,endDate,yields)
                 
         
         console.log("added")

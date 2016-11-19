@@ -1,25 +1,27 @@
 <template name="AddLocation">
-    Project Name <input type ="text" id ="projectName"> <br/>
-    Institution <input type ="text" id ="insttitution"> <br/>
-    Latitude <input type="text" id ="latitude"><br/>
-    Longitude <input type ="text" id ="longitude"><br/>
-    Province
-      <select id = "provinceSelection">
+    <label for ="Project Name">Project Name </label> 
+    <input type ="text" id ="projectName"> <br/>
+    <label for ="Institution">Institution </label>
+    <input type ="text" id ="insttitution"> <br/>
+    <label for ="Latitude">Latitude</label> 
+    <input type="text" id ="latitude"><br/>
+    <label for ="Longitude">Longitude</label> 
+    <input type ="text" id ="longitude"><br/>
+    <label for ="Province">Province</label>
+    <select id = "provinceSelection">
 	    {{#each dataProvince}}
 			  {{> provinceItem}}
 		{{/each}}
-		</select> <br/>
-    <!--Province <input type ="text" id ="province"><br/>-->
-    <!--City <input type ="text" id ="city"><br/>-->
-    City 
+	</select> <br/>
+    
+    <label for="city"> City </label>
     <select id = "citySelection">
 	    {{#each dataCity}}
 			  {{> cityItem}}
 		{{/each}}
 	</select> <br/>
-    
-	   
-	
+    <label for ="AWS ID">AWS ID </label>
+    <input type ="text" id ="awsID"><br/>
     <button id ="addLocationButton">Save</button>
     <button id ="Cancel">Cancel</button>
 </template>

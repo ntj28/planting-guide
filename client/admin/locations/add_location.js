@@ -11,12 +11,7 @@ Template.AddLocation.helpers ({
     dataCity: function() {
         const dataCity  = cityCollection.find({}).fetch()         
         return dataCity
-    }
-
-
-
-
-     
+    }     
 })
 
 
@@ -49,11 +44,13 @@ Template.AddLocation.events({
         const longitudeField = $('#longitude')
         const longitude = longitudeField.val()
         const cityField = $('#citySelection')
-        const city = cityField.val()               
+        const city = cityField.val() 
+        const awsField = $('#awsID')
+        const awsID  = awsField.val()               
         const province = $('#provinceSelection').find('option:selected').text() 
 
         //calling the meteor method to save
-        Meteor.call('add-location', projectName, insttitution, latitude, longitude, city, province)
+        Meteor.call('add-location', projectName, insttitution, latitude, longitude, city, province,awsID)
             //log the  console to see if it has been saved
         console.log('added')
             //clearing the entries

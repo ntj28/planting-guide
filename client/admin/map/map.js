@@ -52,7 +52,7 @@ Template.map.rendered = () => {
             //listen for cick events in the market and oepn the popup once clock is detect
             marker.on('click', ( ) =>{
                 popup.openPopup();
-                FlowRouter.go(`/chart/${item.awsID}`)
+                FlowRouter.go(`/date/${item.awsID}`)
                 //console.log(`location Id :${item._id}` )
             })
 
@@ -80,7 +80,7 @@ Meteor.autorun(() => {
             //listen for cick events in the market and oepn the popup once clock is detect
             marker.on('click', ( ) =>{
                 popup.openPopup();
-                FlowRouter.go(`/chart/${item.awsID}`)
+                FlowRouter.go(`/date/${item.awsID}`)
                 //console.log(`location Id :${item._id}` )
             })
 
@@ -110,7 +110,7 @@ Template.map.helpers ({
             //listen for cick events in the market and oepn the popup once click is detect
             marker.on('click', ( ) =>{
                 popup.openPopup();
-                FlowRouter.go(`/chart/${item._id}`)
+                FlowRouter.go(`/date/${item._id}`)
             })
 
             marker.addTo(map);

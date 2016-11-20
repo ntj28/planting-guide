@@ -4,7 +4,7 @@ import { amountRainfallCollection } from '../../lib/collections/amount_rainfall.
 
 Meteor.methods ({
 
-	'thirty-rainfall-data' : function(awsID,dateMongo)  {
+	'thirty-rainfall-data' : function(awsID,dateMongo,numberOfEntries)  {
 
 		let thirtyDaysCumulative =[]
 		let dateSixtyDays = new Date()
@@ -15,7 +15,7 @@ Meteor.methods ({
 		let startThirty = new Date (dateMongo)
 		let totalSixty = 0
 		let thirtyDaysAccumulatedRainfall =0
-		for (i =0 ; i<30 ; i++){
+		for (i =0 ; i<numberOfEntries ; i++){
 
 			 startSixty.setDate(startSixty.getDate() + 1);
 			 

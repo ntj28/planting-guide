@@ -104,10 +104,17 @@ FlowRouter.route ('/edit_city/:city_id/:province_id', {
 	}
 })
 
+//enter date
+FlowRouter.route('/date/:awsID', {
+	action: function(params,queryParams){
+		BlazeLayout.render("mainLayout", {main:"EnterDate"})
+	}
+})
+
 //chart
-FlowRouter.route ('/chart/:awsID', {
-	action: function(params, queryParams) {
-		BlazeLayout.render("mainLayout", {main: "DailyRainfall"})
+FlowRouter.route ('/chart/:awsID/:date', {
+	action: function(params, queryParams,queryParams2) {
+		BlazeLayout.render("mainLayout", {main: "ChartRainfall"})
 	}
 })
 

@@ -6,21 +6,39 @@ import { Meteor } from 'meteor/meteor'
 
 
 
-Template. DailyRainfall.rendered = () =>{
+Template. ChartRainfall.rendered = () =>{
 
 	
 
 	const awsID = FlowRouter.getParam('awsID')
-	var date = new Date()
-	var cityNoSpace
-	var provinceNoSpace
+	const dateEntered = FlowRouter.getParam('date')	
+
+	//date fro simulation 
+	let dateEntry = new Date(dateEntered)
+	dateEntry.setDate(dateEntry.getDate() -30)
+	let dateMongo  = dateEntry.toISOString().slice(0,10).replace(/-/g,"-");
+	
+	//current date
+	let date  = new Date()
+	let dateCurrent = date.toISOString().slice(0,10).replace(/-/g,"-"); 
+	//entered date
+	let dateEntred = new Date(dateEntered)
+	dateEntred.setDate(dateEntred.getDate())
+	let dateEnteredFormatted =dateEntred.toISOString().slice(0,10).replace(/-/g,"-"); 
+
+
+
 
 	
 
-	//get the current date and subtract it with 30 days to present the  chart
-	let dateCurrent = new Date()
-	dateCurrent.setDate(dateCurrent.getDate() -30)
-	let dateMongo  = dateCurrent.toISOString().slice(0,10).replace(/-/g,"-");
+
+
+	//var cityNoSpace
+	//var provinceNoSpace
+
+	
+
+	
 	//console.log(dateMongo)
 
 	//daily rainfall
@@ -57,10 +75,12 @@ Template. DailyRainfall.rendered = () =>{
 	   		tenDaysData.push(0) 
 	   })
 
+	   console.log("no. data daily" +dailyRainfall.length)
 	   console.log("data daily" +dailyRainfall)
 
+
 	   //retrieving the thirty days cumulative data
-		Meteor.call('thirty-rainfall-data',awsID,dateMongo, function(err,result){
+		Meteor.call('thirty-rainfall-data',awsID,dateMongo,dailyRainfall.length, function(err,result){
 
 			result.thirtyDaysCumulative.forEach((result) =>{
 				thirtyDaysCumulative.push(result)
@@ -78,7 +98,7 @@ Template. DailyRainfall.rendered = () =>{
 			
 		 
 			//retrieving the twenty days cumulative data
-			Meteor.call('twenty-rainfall-data',awsID,dateMongo, function(err,resultTwenty){
+			Meteor.call('twenty-rainfall-data',awsID,dateMongo,dailyRainfall.length, function(err,resultTwenty){
 
 				resultTwenty.twentyDaysCumulative.forEach((twentyData) =>{
 					twentyDaysCumulative.push(twentyData)
@@ -104,7 +124,10 @@ Template. DailyRainfall.rendered = () =>{
 				}) 
 
 				resultTen.dateLabel.forEach((tenDataLabel) =>{
-					labelDate.push(tenDataLabel)
+					if(dateCurrent <= dateEnteredFormatted ){
+						labelDate.push(tenDataLabel)
+					}
+					
 					//tenDaysLabel.push(tenDataLabel)
 
 				})
@@ -112,6 +135,8 @@ Template. DailyRainfall.rendered = () =>{
 				//retreiving the total accumulated rainfall for ten days
 				tendaysForecastAccumulatedRain = parseFloat(resultTen.totalTenDaysForecast)
 
+
+				
 
 				//console.log('sample'+tenDaysData)
 
@@ -128,11 +153,9 @@ Template. DailyRainfall.rendered = () =>{
 				//console.log(color)
 
 				//sample =  '#660000'
+				console.log("date TOday " + dateCurrent + "date Entered " +dateEnteredFormatted)
 
-				
-					
-
-					
+				if(dateCurrent <= dateEnteredFormatted ){					
 					//creating the chart
 					var barChartData = {
 
@@ -184,6 +207,53 @@ Template. DailyRainfall.rendered = () =>{
 			                   yAxisID: 'y-axis-1'
 			            }]
 			        };
+			    }
+
+
+			    else {
+
+			    	var barChartData = {
+
+						
+			            labels: labelDate,
+			            datasets: [{
+			                type: 'bar',
+			                  label: "Daily Rainfall",
+			                    data: dailyRainfall,
+			                    fill: false,			                    			                    
+			                    backgroundColor:'#660000',			                   
+			                    borderColor: '#660000',
+			                    hoverBackgroundColor: '#660000',
+			                    hoverBorderColor: '#660000',
+			                    yAxisID: 'y-axis-1'
+			            }, {
+			                label: "Twenty Days Cumulative Rainfall",
+			                    type:'line',
+			                    data: twentyDaysCumulative,
+			                    fill: false,
+			                    borderColor: '#0000FF',
+			                    backgroundColor: '#0000FF',
+			                    pointBorderColor: '#0000FF',
+			                    pointBackgroundColor: '#0000FF',
+			                    pointHoverBackgroundColor: '#0000FF',
+			                    pointHoverBorderColor: '#0000FF',
+			                    yAxisID: 'y-axis-2'
+			            },{
+			                label: "Thirty Days Cumulative Rainfall",
+			                    type:'line',
+			                    data: thirtyDaysCumulative,
+			                    fill: false,
+			                    borderColor: '#00CC66',
+			                    backgroundColor: '#00CC66',
+			                    pointBorderColor: '#00CC66',
+			                    pointBackgroundColor: '#00CC66',
+			                    pointHoverBackgroundColor: '#00CC66',
+			                    pointHoverBorderColor: '#00CC66',
+			                    yAxisID: 'y-axis-2'
+			            }]
+			        };
+
+			    }
 
 			        //updating the  datasets for ten days forecast
 			        //let numberDataDaily = dailyRainfall.length
@@ -357,7 +427,7 @@ Template. DailyRainfall.rendered = () =>{
 
 //setInterval(Meteor.call('sample'),1000)
 //console.log("hello" + sample[0])
-Template.DailyRainfall.helpers ({
+Template.ChartRainfall.helpers ({
 
 
 

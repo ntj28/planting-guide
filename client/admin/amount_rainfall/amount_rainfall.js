@@ -5,6 +5,20 @@ import { ReactiveVar } from 'meteor/reactive-var';
 
 
 import './amount_rainfall.html';
+
+Template.upload.onCreated( () => {
+
+  var currentUser = Meteor.userId();
+        if(currentUser){
+            // logged-in
+        } else {
+            // not logged-in
+            FlowRouter.go('/')
+
+        }
+});
+
+
  
 //papa - parse
 Template.upload.onCreated( () => {
@@ -55,6 +69,18 @@ Template.upload.events({
 });
 
 
+
+Template.Rainfall.onCreated( () => {
+
+  var currentUser = Meteor.userId();
+        if(currentUser){
+            // logged-in
+        } else {
+            // not logged-in
+            FlowRouter.go('/')
+
+        }
+});
 
 
 Template.Rainfall.helpers ({

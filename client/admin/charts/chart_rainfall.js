@@ -5,7 +5,17 @@ import { tenDaysForecast  } from '../../../lib/collections/forecast_ten_days.js'
 import { amountRainfallCollection  } from '../../../lib/collections/amount_rainfall.js'
 import { Meteor } from 'meteor/meteor'
 
+Template.ChartRainfall.onCreated( () => {
 
+  var currentUser = Meteor.userId();
+        if(currentUser){
+            // logged-in
+        } else {
+            // not logged-in
+            FlowRouter.go('/')
+
+        }
+});
 
 
 Template.ChartRainfall.rendered = () =>{

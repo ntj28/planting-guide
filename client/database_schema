@@ -77,3 +77,6 @@ BookSchema = new SimpleSchema({
     max: 1000
   }
 });
+
+meteor add cfs:standard-packages
+meteor add cfs:filesystem

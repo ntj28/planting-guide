@@ -1,5 +1,17 @@
 import { location } from '../../../lib/collections/locations.js'
 
+Template.EditLocation.onCreated( () => {
+
+  var currentUser = Meteor.userId();
+        if(currentUser){
+            // logged-in
+        } else {
+            // not logged-in
+            FlowRouter.go('/')
+
+        }
+});
+
 Template.EditLocation.helpers({
 	data:()=> {
 		const _id = FlowRouter.getParam('location_id')

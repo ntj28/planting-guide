@@ -1,5 +1,18 @@
 import { amountRainfallCollection } from '../../../lib/collections/amount_rainfall.js'
 
+Template.editRainfall.onCreated( () => {
+
+  var currentUser = Meteor.userId();
+        if(currentUser){
+            // logged-in
+        } else {
+            // not logged-in
+            FlowRouter.go('/')
+
+        }
+});
+
+
 Template.editRainfall.helpers({
 	data:()=> {
 		const _id = FlowRouter.getParam('rainfallID')

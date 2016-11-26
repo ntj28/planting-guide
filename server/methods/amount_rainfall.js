@@ -9,12 +9,14 @@ Meteor.methods ({
 		})
 	} ,
 
-	'update-rainfall-data' : function(_id,amount_rainfall) {
+	'update-rainfall-data' : function(awsID,date,amount_rainfall) {
         amountRainfallCollection.update (
-            {_id},//filters to be updaated
+            {awsID,date},//filters to be updaated
             {
                 $set: {
-                    
+                         
+                    awsID : awsID,
+                    date: date,
                     amount_rainfall :  amount_rainfall
                                        
                 }

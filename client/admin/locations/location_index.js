@@ -1,5 +1,17 @@
 import { location } from '../../../lib/collections/locations.js'
 
+Template.Locations.onCreated( () => {
+
+  var currentUser = Meteor.userId();
+        if(currentUser){
+            // logged-in
+        } else {
+            // not logged-in
+            FlowRouter.go('/')
+
+        }
+});
+
 Template.Locations.helpers ({
 	locations: function() {
 		const locations  = location.find({}).fetch()

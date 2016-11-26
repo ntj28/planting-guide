@@ -105,15 +105,15 @@ FlowRouter.route ('/edit_city/:city_id/:province_id', {
 })
 
 //enter date
-FlowRouter.route('/date/:awsID', {
-	action: function(params,queryParams){
+FlowRouter.route('/date/:awsID/:locationID', {
+	action: function(params,queryParams,queryParams2){
 		BlazeLayout.render("mainLayout", {main:"EnterDate"})
 	}
 })
 
 //chart
-FlowRouter.route ('/chart/:awsID/:date', {
-	action: function(params, queryParams,queryParams2) {
+FlowRouter.route ('/chart/:awsID/:date/:locationID', {
+	action: function(params, queryParams,queryParams2,queryParams3) {
 		BlazeLayout.render("mainLayout", {main: "ChartRainfall"})
 	}
 })
@@ -178,6 +178,34 @@ FlowRouter.route('/editCrop/:crop_id',{
 	}
 })
 
+//set up week no.
+FlowRouter.route('/setUpWeek', {
+	action: function(params,queryParams){
+		BlazeLayout.render("mainLayout", {main:"weekNumber"})
+	}
+})
+
+//edit week no
+FlowRouter.route('/editWeek/:date_id', {
+	action: function(params,queryParams) {
+		BlazeLayout.render("mainLayout", {main: "editWeekNumber"})
+	}
+})
+
+
+//register user
+FlowRouter.route('/register', {
+	action: function(params,queryParams) {
+		BlazeLayout.render("mainLayout", {main : "register"})
+	}
+})
+
+//login user
+FlowRouter.route('/login', {
+	action: function(params,queryParams){
+		BlazeLayout.render("mainLayout", {main: "login"})
+	}
+})
 
 
 

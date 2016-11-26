@@ -1,3 +1,15 @@
+Template.Location.onCreated( () => {
+
+  var currentUser = Meteor.userId();
+        if(currentUser){
+            // logged-in
+        } else {
+            // not logged-in
+            FlowRouter.go('/')
+
+        }
+});
+
 
 Template.Location.events({
 	'click #edit-location-button' : function(e) {

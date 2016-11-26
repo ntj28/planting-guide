@@ -1,5 +1,17 @@
 import { cropYields } from '../../../lib/collections/crop_yield.js'
 
+Template.EditCropYield.onCreated( () => {
+
+  var currentUser = Meteor.userId();
+        if(currentUser){
+            // logged-in
+        } else {
+            // not logged-in
+            FlowRouter.go('/')
+
+        }
+});
+
 Template.EditCropYield.helpers({
 	data:()=> {
 		const _id = FlowRouter.getParam('crop_id')

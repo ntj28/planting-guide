@@ -29,4 +29,8 @@ Meteor.methods ({
         )
 
     },
+
+    'sample': function(){
+        console.log("saml")
+    },
 })

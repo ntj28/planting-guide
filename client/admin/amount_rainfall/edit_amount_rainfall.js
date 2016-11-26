@@ -16,10 +16,12 @@ Template.editRainfall.events ({
 		const awsID = FlowRouter.getParam('awsID')     
         const amountRainfallField = $('#amountRainfall')
         const amountRainfall = amountRainfallField.val()
+        const dateField = $('#date')
+        const date = dateField.val()
          
 
         //calling the meteor method to save
-        Meteor.call('update-rainfall-data',rainfallID,amountRainfall)
+        Meteor.call('update-rainfall-data',awsID,date,amountRainfall)
             //log the  console to see if it has been saved
         //console.log('added')
             //clearing the entries

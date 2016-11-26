@@ -1,3 +1,15 @@
+Template.CropYieldData.onCreated( () => {
+
+  var currentUser = Meteor.userId();
+        if(currentUser){
+            // logged-in
+        } else {
+            // not logged-in
+            FlowRouter.go('/')
+
+        }
+});
+
 Template.CropYieldData.events({
 	'click #edit-crop-yield-button' : function(e) {
 		const _id = FlowRouter.getParam('location_id')		 

@@ -4,11 +4,11 @@ import { amountRainfallCollection } from '../../lib/collections/amount_rainfall.
 
 Meteor.methods ({
 
-	'daily-rainfall-data' : function(awsID,dateMongo)  {
+	'daily-rainfall-data' : function(awsID,dateMongo,dateEnteredOriginal)  {
 
 		let label = []
 		let dataDaily = []
-		let amountRain  = amountRainfallCollection.find({$and:[{awsID:awsID},{date:{$gte:dateMongo}}]})//.sort( { '$date': 1 })//.fetch()
+		let amountRain  = amountRainfallCollection.find({$and:[{awsID:awsID},{date:{$gte:dateMongo,$lte:dateEnteredOriginal}}]})//.sort( { '$date': 1 })//.fetch()
 		amountRain.forEach((item)=>{
 			//const date = `${item.date}`
 			label.push(`${item.date}`)

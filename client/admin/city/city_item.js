@@ -1,3 +1,15 @@
+Template.CityItem.onCreated( () => {
+
+  var currentUser = Meteor.userId();
+        if(currentUser){
+            // logged-in
+        } else {
+            // not logged-in
+            FlowRouter.go('/')
+
+        }
+});
+
 Template.CityItem.events({
 	'click #edit-city-button' : function(e) {
 		const _id = FlowRouter.getParam('province_id')		 

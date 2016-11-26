@@ -1,5 +1,17 @@
 import { province } from '../../../lib/collections/province.js'
 
+Template.EditProvince.onCreated( () => {
+
+  var currentUser = Meteor.userId();
+        if(currentUser){
+            // logged-in
+        } else {
+            // not logged-in
+            FlowRouter.go('/')
+
+        }
+});
+
 Template.EditProvince.helpers({
 	data:()=> {
 		const _id = FlowRouter.getParam('province_id')

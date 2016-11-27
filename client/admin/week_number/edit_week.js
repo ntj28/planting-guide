@@ -1,5 +1,17 @@
 import { weekNoCollection  } from '../../../lib/collections/week_no.js'
 
+Template.editWeekNumber.onCreated( () => {
+
+  var currentUser = Meteor.userId();
+        if(currentUser){
+            // logged-in
+        } else {
+            // not logged-in
+            FlowRouter.go('/')
+
+        }
+});
+
 Template.editWeekNumber.helpers({
 	data:()=> {
 		const _id = FlowRouter.getParam('date_id')

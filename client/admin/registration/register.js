@@ -1,3 +1,15 @@
+Template.register.onCreated( () => {
+
+  var currentUser = Meteor.userId();
+        if(currentUser){
+            // logged-in
+        } else {
+            // not logged-in
+            FlowRouter.go('/')
+
+        }
+});
+
 Template.register.events({
     'submit form': function(event){
         event.preventDefault();

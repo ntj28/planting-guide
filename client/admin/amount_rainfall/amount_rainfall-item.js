@@ -3,6 +3,7 @@ Template.RainfallItem.onCreated( () => {
   var currentUser = Meteor.userId();
         if(currentUser){
             // logged-in
+            //Meteor.subscribe('tasks')
         } else {
             // not logged-in
             FlowRouter.go('/')

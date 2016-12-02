@@ -5,6 +5,7 @@ Template.EditThreshold.onCreated( () => {
   var currentUser = Meteor.userId();
         if(currentUser){
             // logged-in
+            Meteor.subscribe('thresholds')
         } else {
             // not logged-in
             FlowRouter.go('/')

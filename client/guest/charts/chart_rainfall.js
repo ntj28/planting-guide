@@ -6,7 +6,9 @@ import { amountRainfallCollection  } from '../../../lib/collections/amount_rainf
 import { Meteor } from 'meteor/meteor'
 
 Template.ChartRainfall.onCreated( () => {
-
+	Meteor.subscribe('thresholds')
+	Meteor.subscribe('WeekNo')
+	Meteor.subscribe('durationYield')
   
 });  
 

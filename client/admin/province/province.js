@@ -5,6 +5,7 @@ Template.Province.onCreated( () => {
   var currentUser = Meteor.userId();
         if(currentUser){
             // logged-in
+            Meteor.subscribe('province')
         } else {
             // not logged-in
             FlowRouter.go('/')

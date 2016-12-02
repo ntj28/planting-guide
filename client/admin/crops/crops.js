@@ -5,6 +5,7 @@ Template.Crops.onCreated( () => {
   var currentUser = Meteor.userId();
         if(currentUser){
             // logged-in
+            Meteor.subscribe('crops')
         } else {
             // not logged-in
             FlowRouter.go('/')

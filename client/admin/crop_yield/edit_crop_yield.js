@@ -5,6 +5,8 @@ Template.EditCropYield.onCreated( () => {
   var currentUser = Meteor.userId();
         if(currentUser){
             // logged-in
+            Meteor.subscribe('cropYields')
+            
         } else {
             // not logged-in
             FlowRouter.go('/')

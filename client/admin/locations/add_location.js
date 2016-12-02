@@ -7,6 +7,8 @@ Template.AddLocation.onCreated( () => {
   var currentUser = Meteor.userId();
         if(currentUser){
             // logged-in
+             Meteor.subscribe('province')
+             Meteor.subscribe('cities')
         } else {
             // not logged-in
             FlowRouter.go('/')

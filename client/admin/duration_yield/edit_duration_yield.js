@@ -1,6 +1,22 @@
 import { durationYields } from '../../../lib/collections/duration_yield.js'
 import { cropsCollection } from '../../../lib/collections/crops.js'
 
+Template.EditDurationYield.onCreated( () => {
+
+  var currentUser = Meteor.userId();
+        if(currentUser){
+            // logged-in
+            Meteor.subscribe('crops')
+            Meteor.subscribe('durationYield')
+        } else {
+            // not logged-in
+            FlowRouter.go('/')
+
+        }
+});
+
+
+
 Template.EditDurationYield.helpers({
 	data:()=> {
 		const _id = FlowRouter.getParam('yield_id')

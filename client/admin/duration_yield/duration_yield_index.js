@@ -1,5 +1,18 @@
 import { durationYields } from '../../../lib/collections/duration_yield.js'
 
+Template.DurationYields.onCreated( () => {
+
+  var currentUser = Meteor.userId();
+        if(currentUser){
+            // logged-in
+            Meteor.subscribe('durationYield')
+        } else {
+            // not logged-in
+            FlowRouter.go('/')
+
+        }
+});
+
 Template.DurationYields.helpers ({
 	durationYields: function() {
 		const _id = FlowRouter.getParam('location_id')

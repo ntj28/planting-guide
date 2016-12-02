@@ -2,6 +2,21 @@ import { location } from '../../../lib/collections/locations.js'
 import { province } from '../../../lib/collections/province.js'
 import { cityCollection } from '../../../lib/collections/city.js'
 import { cropsCollection } from '../../../lib/collections/crops.js'
+
+Template.AddDurationYield.onCreated( () => {
+
+  var currentUser = Meteor.userId();
+        if(currentUser){
+            // logged-in
+            Meteor.subscribe('crops')
+        } else {
+            // not logged-in
+            FlowRouter.go('/')
+
+        }
+});
+
+
 Template.AddDurationYield.helpers ({
 
 	cropData: function() {
@@ -40,6 +55,19 @@ Template.AddDurationYield.events({
 	}
 
 })
+
+Template.uploadYield.onCreated( () => {
+
+  var currentUser = Meteor.userId();
+        if(currentUser){
+            // logged-in
+             
+        } else {
+            // not logged-in
+            FlowRouter.go('/')
+
+        }
+});
 
 
 //papa - parse

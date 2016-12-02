@@ -5,6 +5,7 @@ Template.City.onCreated( () => {
   var currentUser = Meteor.userId();
         if(currentUser){
             // logged-in
+            Meteor.subscribe('cities')
         } else {
             // not logged-in
             FlowRouter.go('/')

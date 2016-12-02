@@ -16,6 +16,11 @@ import './map.html';
 
 let map;
 
+Template.map.onCreated( () => {
+
+   Meteor.subscribe('locations')
+});
+
 
 
 

@@ -1,0 +1,18 @@
+<template name = "Varieties">
+	<h4>Crop Varieties</h4>
+	{{> AddVariety}}
+	<table border ="1">
+		<tr>
+			<th> Variety </th>
+			<th> Edit</th>
+			<th> Delete</th>					
+		</tr>
+			{{#each variety}}
+		<tr>
+			{{> varietyItem}}
+		</tr>
+			{{/each}}
+	</table>
+	<button id ="add-variety-button">Add Variety</button>
+	<button id ="done-button">Done</button>
+</template>

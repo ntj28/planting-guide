@@ -1,9 +1,10 @@
 import { durationYields } from '../../lib/collections/duration_yield.js'
 
-Meteor.methods ({	'add-duration-yields' : function (locationID,cropType,weekNo,yields) {
+Meteor.methods ({	'add-duration-yields' : function (locationID,cropType,cropVariety,weekNo,yields) {
 		durationYields.insert ({
             cropType:cropType,			
             locationID:locationID,
+            cropVariety:cropVariety,
 			weekNo : weekNo,			 
 			yield:yields
 
@@ -15,13 +16,14 @@ Meteor.methods ({	'add-duration-yields' : function (locationID,cropType,weekNo,y
         })
     },
 
-    'update-duration-yield' : function(locationID,cropType,weekNo,yields) {
+    'update-duration-yield' : function(locationID,cropType,cropVariety,weekNo,yields) {
          durationYields.update (
             {weekNo:weekNo},//filters to be updaated
             {
                 $set: {
 
                     cropType:cropType,
+                    cropVariety:cropVariety,
                     locationID: locationID,
                     weekNo : weekNo,            
                     yield:yields

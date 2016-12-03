@@ -4,6 +4,12 @@
 	    {{#each cropData}}
 			  {{> cropItemsEdit}}
 		{{/each}}
+	</select> <br/>
+	<label for ="Crop Variety">Crop Variety </label>
+	<select id = "cropVarietySelection">
+	    {{#each cropVarietyData}}
+			  {{> cropVarietyItemsEdit}}
+		{{/each}}
 	</select> <br/>		
 	<label for ="Week No.">Week No. </label> 
 	<input type="text" id="weekNo" value ="{{data.weekNo}}"><br/>	
@@ -12,6 +18,10 @@
 	<button id="update-duration-yield-button">Save</button>
 </template>
 
- <template name="cropItemsEdit">
-	 <option value="{{crop}}">{{crop}}</option>
+<template name="cropItemsEdit">
+	 <option value="{{_id}}">{{crop}}</option>
+</template>
+
+<template name="cropVarietyItemsEdit">
+	 <option value="{{variety}}">{{variety}}</option>
 </template>

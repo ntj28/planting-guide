@@ -207,6 +207,27 @@ FlowRouter.route('/login', {
 	}
 })
 
+//crop varieties
+FlowRouter.route ('/cropVariety/:crop_id', {
+	action: function(params,queryParams) {
+		BlazeLayout.render("mainLayout", {main: "Varieties"})
+	}
+})
+
+
+//add crop varieties
+FlowRouter.route ('/addCropVariety/:crop_id', {
+	action: function(params,queryParams) {
+		BlazeLayout.render("mainLayout", {main: "AddVariety"})
+	}
+})
+
+//edit crop variety
+FlowRouter.route ('/editCropVariety/:variety_id/:crop_id', {
+	action: function(params,queryParams) {
+		BlazeLayout.render("mainLayout", {main: "EditCropVariety"})
+	}
+})
 
 
 

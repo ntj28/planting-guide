@@ -2,6 +2,7 @@ import { location } from '../../../lib/collections/locations.js'
 import { province } from '../../../lib/collections/province.js'
 import { cityCollection } from '../../../lib/collections/city.js'
 import { cropsCollection } from '../../../lib/collections/crops.js'
+import { cropVarietiesCollection  } from '../../../lib/collections/crop_varieties.js'
 
 Template.AddDurationYield.onCreated( () => {
 
@@ -9,6 +10,7 @@ Template.AddDurationYield.onCreated( () => {
         if(currentUser){
             // logged-in
             Meteor.subscribe('crops')
+            Meteor.subscribe('cropVarieties')
         } else {
             // not logged-in
             FlowRouter.go('/')
@@ -22,10 +24,32 @@ Template.AddDurationYield.helpers ({
 	cropData: function() {
         const cropData  = cropsCollection.find({}).fetch()         
         return cropData
-    }  
+    },
+    
+    cropVarietyData: function() {
+        const cropVarietyData  = cropVarietiesCollection.find({}).fetch()         
+        return cropVarietyData
+    }    
 })
 
 Template.AddDurationYield.events({
+
+  'change #cropSelection' : function(e){
+        //get the value of  the  province field
+        const cropField = $('#cropSelection') 
+        const cropID =  cropField.val()    
+
+        //gets the variety field and empty its options
+        const varietyField = $('#cropVarietySelection')
+        varietyField.empty()
+        //retrieves the list of city as specified by what province is selected
+        const dataVariety  = cropVarietiesCollection.find({cropID: cropID}).fetch() 
+        //adds options to the select tag
+        dataVariety.forEach((item) => {
+            varietyField.append("<option>" + item.variety + "</option>");
+        });   
+
+    },
 	
 	'click #add-yield-button' : function (e) {
 		//getting the entries
@@ -33,12 +57,13 @@ Template.AddDurationYield.events({
 		const weekNoField = $("#weekNo")
 		const weekNo = weekNoField.val()		
 		const yieldField = $("#yield")
-		const yields = yieldField.val()
-    const cropField = $('#cropSelection')
-    const cropType = cropField.val()
+		const yields = yieldField.val()    
+    const cropType = $('#cropSelection').find('option:selected').text()
+    const cropVarietyField = $('#cropVarietySelection')
+    const cropVariety = cropVarietyField.val()
 		
 
-		Meteor.call('add-duration-yields',locationID,cropType,weekNo,yields)
+		Meteor.call('add-duration-yields',locationID,cropType,cropVariety,weekNo,yields)
 		console.log("added")
 		 
 		weekNoField.val = " "		
@@ -87,8 +112,9 @@ Template.uploadYield.events({
     template.uploading.set( true );
     const locationID = FlowRouter.getParam('location_id')
     const fileName =  $('#upload').val()
-    const cropField = $('#cropSelection')
-    const cropType = cropField.val()
+    const cropType = $('#cropSelection').find('option:selected').text()
+    const cropVarietyField = $('#cropVarietySelection')
+    const cropVariety = cropVarietyField.val()
     
     var extension = fileName.substring(fileName.lastIndexOf('.') + 1).toLowerCase();
 
@@ -97,7 +123,7 @@ Template.uploadYield.events({
         Papa.parse( event.target.files[0], {
           header: false,
           complete( results, file ) {
-            Meteor.call( 'parseUploadYield', results.data,locationID,cropType, ( error, response ) => {
+            Meteor.call( 'parseUploadYield', results.data,locationID,cropType,cropVariety, ( error, response ) => {
               if ( error ) {
                 console.log( error.reason );
               } else {

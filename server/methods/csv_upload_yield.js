@@ -6,7 +6,7 @@ import { amountRainfallCollection } from '../../lib/collections/amount_rainfall.
 Meteor.methods({
 
 
-	'parseUploadYield' : function(data,locationID,cropType){
+	'parseUploadYield' : function(data,locationID,cropType,cropVariety){
 
 		//console.log(data)
 	     
@@ -27,7 +27,7 @@ Meteor.methods({
 	    		//console.log(data[i])
 	    		weekNo = 1
 	    		data[i].forEach((yieldData) => {
-	    			Meteor.call('update-duration-yield',locationID,cropType,weekNo,yieldData)
+	    			Meteor.call('update-duration-yield',locationID,cropType,cropVariety,weekNo,yieldData)
 	    			weekNo ++
 	    		})
 	    		//let date  = new Date(data[i][0])

@@ -7,6 +7,11 @@
 			  {{> cropItemsDuration}}
 		{{/each}}
 	</select> <br/>	
+	<select id = "cropVarietySelection">
+	    {{#each cropVarietyData}}
+			  {{> cropVarietyItemsDuration}}
+		{{/each}}
+	</select> <br/>
 	<label for ="Week No.">Week No.</label>
 	<input type="text" id="weekNo"><br/>	
 	<label for ="Yield">Yield </label>
@@ -26,5 +31,10 @@
 </template>
 
  <template name="cropItemsDuration">
-	 <option value="{{crop}}">{{crop}}</option>
+	 <option value="{{_id}}">{{crop}}</option>
+</template>
+
+
+<template name="cropVarietyItemsDuration">
+	 <option value="{{variety}}">{{variety}}</option>
 </template>

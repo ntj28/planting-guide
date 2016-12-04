@@ -1,15 +1,11 @@
 <template name = "EditDurationYield">
 	<label for ="Crop Type">Crop Type </label>
 	<select id = "cropSelection">
-	    {{#each cropData}}
-			  {{> cropItemsEdit}}
-		{{/each}}
+	    <option> sample </option> 
 	</select> <br/>
 	<label for ="Crop Variety">Crop Variety </label>
 	<select id = "cropVarietySelection">
-	    {{#each cropVarietyData}}
-			  {{> cropVarietyItemsEdit}}
-		{{/each}}
+	   <option> sample </option> 
 	</select> <br/>		
 	<label for ="Week No.">Week No. </label> 
 	<input type="text" id="weekNo" value ="{{data.weekNo}}"><br/>	
@@ -18,10 +14,4 @@
 	<button id="update-duration-yield-button">Save</button>
 </template>
 
-<template name="cropItemsEdit">
-	 <option value="{{_id}}">{{crop}}</option>
-</template>
 
-<template name="cropVarietyItemsEdit">
-	 <option value="{{variety}}">{{variety}}</option>
-</template>

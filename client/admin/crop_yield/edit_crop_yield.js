@@ -2,6 +2,8 @@ import { cropYields } from '../../../lib/collections/crop_yield.js'
 import { cropsCollection } from '../../../lib/collections/crops.js'
 import { cropVarietiesCollection  } from '../../../lib/collections/crop_varieties.js'
 
+
+
 Template.EditCropYield.onCreated( () => {
 
   var currentUser = Meteor.userId();
@@ -10,7 +12,7 @@ Template.EditCropYield.onCreated( () => {
             Meteor.subscribe('cropYields')
             Meteor.subscribe('crops')
             Meteor.subscribe('cropVarieties')
-            
+            console.log("called on created")
         } else {
             // not logged-in
             FlowRouter.go('/')
@@ -18,47 +20,98 @@ Template.EditCropYield.onCreated( () => {
         }
 });
 
+Template.EditCropYield.onRendered(()=>{
+
+  const cropVarietyData  = cropVarietiesCollection.find({}).fetch() 
+  console.log("on rendered function"+cropVarietyData.length)
+     
+         
+
+})
+
+Meteor.autorun(() => {
+
+    const _id = FlowRouter.getParam('crop_id')
+    const data = cropYields.findOne({_id})
+
+    //populate the  cropType select
+    const cropData  = cropsCollection.find({}).fetch()
+    const cropField = $('#cropSelections')
+    cropField.empty()
+    cropData.forEach((item) => {
+        if ((data && data.cropType) == item.crop) {
+            cropField.append("<option selected='selected' value =" + item._id +">" + item.crop + "</option>");
+        } else {
+            cropField.append("<option value =" + item._id +">" + item.crop + "</option>");
+        } 
+    }); 
+
+    //populate the crop variety
+    const varietyField = $('#cropVarietySelections')
+    varietyField.empty()
+    const cropID =  cropField.val()
+    const dataVariety  = cropVarietiesCollection.find({cropID: cropID}).fetch()
+
+    //adds options to the select tag
+    
+    dataVariety.forEach((item) => {
+        if ((data && data.cropVariety) == item.variety) {
+            varietyField.append("<option selected='selected' value =" + item.variety +">" + item.variety + "</option>");
+        } else {
+            varietyField.append("<option value =" + item.variety +">" + item.variety + "</option>");
+        } 
+
+          
+    });
+
+    //  const cropVarietyData  = cropVarietiesCollection.find({}).fetch() 
+  //console.log("on rendered function"+cropVarietyData.length)
+    
+});
+
+
+
+
 Template.EditCropYield.helpers({
 	data:()=> {
 		const _id = FlowRouter.getParam('crop_id')
 		const data = cropYields.findOne({_id})
-		return data
-	},
-    cropData: function() {
-        const cropData  = cropsCollection.find({}).fetch()         
-        return cropData
-    },
-    cropVarietyData: function() {
-        const cropVarietyData  = cropVarietiesCollection.find({}).fetch()         
-        return cropVarietyData
-    } 
+
+        return data
+	}     
+
 })
 
 
 Template.EditCropYield.events ({
-    'change #cropSelection' : function(e){
-        //get the value of  the  province field
-        const cropField = $('#cropSelection') 
-        const cropID =  cropField.val()    
 
+ 
+
+   
+    'change #cropSelections' : function(e){
+        var length = $('#cropSelection').children('option').length;
+        console.log("length is " +length )
+        //get the value of  the  province field
+        const cropField = $('#cropSelections') 
+        const cropID =  cropField.val()        
         //gets the variety field and empty its options
-        const varietyField = $('#cropVarietySelection')
+        const varietyField = $('#cropVarietySelections')
         varietyField.empty()
         //retrieves the list of varieties as specified by what crop is selected        
         const dataVariety  = cropVarietiesCollection.find({cropID: cropID}).fetch() 
         //adds options to the select tag
         dataVariety.forEach((item) => {
             varietyField.append("<option>" + item.variety + "</option>");
-        });   
+        }); 
+
 
     },
 	'click #EditCropYieldButton ' : function(e) {
 		//getting the  fields as well as the data
 		const cropYieldID = FlowRouter.getParam('crop_id')
-        const cropTypeField = $('#cropType')
-        const cropType = cropTypeField.val()
-        const cropVarityField = $('#cropVariety')
-        const cropVariety =  cropVarityField.val()
+        const cropType = $('#cropSelections').find('option:selected').text()
+        const cropVarietyField = $('#cropVarietySelections')
+        const cropVariety = cropVarietyField.val()
         const cropYieldField = $('#cropYield')
         const cropYield =  cropYieldField.val()
         const _id = FlowRouter.getParam('location_id')
@@ -69,8 +122,7 @@ Template.EditCropYield.events ({
             //log the  console to see if it has been saved
         console.log('added')
             //clearing the entries
-        cropTypeField.val = ''
-        cropYieldField.val = ''         
+             
             //redirects to main page for 
         FlowRouter.go(`/crop_yield/${_id}`)
 	}

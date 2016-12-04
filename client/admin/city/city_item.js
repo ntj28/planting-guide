@@ -17,7 +17,12 @@ Template.CityItem.events({
 	},
 
 	'click #delete-city-button' :  function (e) {
+		//delete from city collection
 		Meteor.call('delete-city', this._id)
+
+		//delete from locations collection 
+		Meteor.call('delete-location-city', this.city)
+
 	}
 	
 	 

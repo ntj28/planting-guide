@@ -30,6 +30,17 @@ Template.EditCropVariety.events ({
         const cropID = FlowRouter.getParam('crop_id')       
         const varietyField = $('#variety')
         const variety = varietyField.val()
+
+        //retrieve the old variety name
+        const data = cropVarietiesCollection.findOne({_id:varietyID})
+        varietyOld = (data && data.variety)
+
+        
+        //update the  crop yield entries
+        Meteor.call ('update-variety-history',varietyOld,variety)
+
+        //update the  weekly yield entries
+        Meteor.call ('update-crop-variety',varietyOld,variety)
          
 
         //calling the meteor method to save

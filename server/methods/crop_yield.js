@@ -32,4 +32,38 @@ Meteor.methods ({
         )
 
     },
+
+    'update-crop-type' : function(cropType, cropTypeNew) {
+        cropYields.update (
+            {cropType},//filters to be updaated
+            {
+                $set: {
+                         
+                    cropType:cropTypeNew,
+                                                            
+                }
+            },
+
+                { multi: true}
+            
+        )
+
+    },
+
+    'update-variety-history' : function(cropVariety, cropVarietyNew) {
+        cropYields.update (
+            {cropVariety},//filters to be updaated
+            {
+                $set: {
+                         
+                    cropVariety:cropVarietyNew,
+                                                            
+                }
+            },
+
+                { multi: true}
+            
+        )
+
+    },
 })

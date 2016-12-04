@@ -1,17 +1,18 @@
 <template name ="AddDurationYield">
 	 
-	{{> uploadYield}}
 	<label for ="Crop Type">Crop Type </label>
-	<select id = "cropSelection">
-	    {{#each cropData}}
-			  {{> cropItemsDuration}}
-		{{/each}}
-	</select> <br/>	
-	<select id = "cropVarietySelection">
-	    {{#each cropVarietyData}}
-			  {{> cropVarietyItemsDuration}}
+	<select id = "cropSelectionDurationYieldAdd">
+		{{#each dataCrop}}
+			  {{> cropItemAddDuration}}
+		{{/each}} 
+	</select> <br/>
+	<label for ="Crop Variety">Crop Variety </label>
+	<select id = "cropVarietySelectionDurationYieldAdd">
+		{{#each dataVariety}}
+			  {{> varietyItemAddDuration}}
 		{{/each}}
 	</select> <br/>
+	{{> uploadYield}}
 	<label for ="Week No.">Week No.</label>
 	<input type="text" id="weekNo"><br/>	
 	<label for ="Yield">Yield </label>
@@ -30,11 +31,4 @@
   {{/unless}}
 </template>
 
- <template name="cropItemsDuration">
-	 <option value="{{_id}}">{{crop}}</option>
-</template>
 
-
-<template name="cropVarietyItemsDuration">
-	 <option value="{{variety}}">{{variety}}</option>
-</template>

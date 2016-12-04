@@ -28,6 +28,25 @@ Meteor.methods ({
 
     },
 
+    'update-awsID' : function(awsID, awsIDNew) {
+        amountRainfallCollection.update (
+            {awsID},//filters to be updaated
+            {
+                $set: {
+                         
+                    awsID:awsIDNew,
+                                                            
+                }
+            },
+
+                { multi: true}
+            
+        )
+
+    },
+
+
+
 
 	'delete-rainfall-data': function(id){
         amountRainfallCollection.remove({

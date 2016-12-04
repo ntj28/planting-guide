@@ -23,10 +23,14 @@ Template.ChartRainfall.rendered = () =>{
 	// Create the chart
 	Highcharts.chart('container', { /*Highcharts options*/ });
 
+	//retrieving data from flow router
 	const awsID = FlowRouter.getParam('awsID')
 	const locationID = FlowRouter.getParam('locationID')
 	const dateEntered = FlowRouter.getParam('date')	
+	const crops = FlowRouter.getParam('cropTypes')
+	const variety = FlowRouter.getParam('cropVariety')	
 
+	console.log('crop'+crops)
 	//date fro simulation 
 	let dateEntry = new Date(dateEntered)
 	let dateEnteredOriginal = dateEntry.toISOString().slice(0,10).replace(/-/g,"-");
@@ -157,11 +161,74 @@ Template.ChartRainfall.rendered = () =>{
 				tendaysForecastAccumulatedRain = parseFloat(resultTen.totalTenDaysForecast)
 
 				//retrieving the week number from mongo collection
+				let weekData = weekNoCollection.findOne({date:dateEnteredFormatted})
+
+				//retrieve the data for the duration yield
+				console.log('crop' +crops + 'variety' +variety + 'location Id' + locationID )
+				let  durationYieldData = durationYields.findOne({weekNo:weekData.weekNo,cropType:crops, cropVariety :variety,locationID:locationID})
+				//console.log("duration length"+durationYieldData.length)
+				if ( durationYieldData != null ){
+
+
+
+					var comment
+					if (durationYieldData.yield > 0) {
+						comment = durationYieldData.yield + "% higher than the average."
+
+					} else {
+						comment = Math.abs(durationYieldData.yield) + "% lower than the average."
+
+					}
+
+					//retrieve the threshold
+					let thresholdsData = thresholdsCollection.findOne({cropType:crops, cropVariety :variety})
+					//check if its days is twenty or thirty
+					if(thresholdsData.days == 30) {
+						//thirty days cumulative					
+
+						if (thirtyDaysCumulative[lengthDailyData-1]==thresholdsData.rainfall){
+							var recommendation = "<p class= 'recommendation'></p>Your location is ready for planting of " + crops + " - " + variety +" (total rainfall for the past 30 days is  "+thirtyDaysCumulative[lengthDailyData-1] + "  mm).There is enough soil moisture.The  expected yield is " + comment ;
+						}
+
+						else {
+							var recommendation = "<p class= 'recommendation'></p>Your location is not yet ready for planting of " + crops + " - " + variety +" due to lack of soil moisture (total rainfall for the past 30 days is  "+thirtyDaysCumulative[lengthDailyData-1] + "  mm).The  expected yield is " + comment ;
+						}
+
+
+					}else {
+						//twenty days cumulative						
+						if (twentyDaysCumulative[lengthDailyData-1]==thresholdsData.rainfall){
+							var recommendation = "<p class= 'recommendation'></p>Your location is ready for planting of " + crops + " - " + variety +"(total rainfall for the past 30 days is  "+twentyDaysCumulative[lengthDailyData-1] + "  mm).There is enough soil moisture.The  expected yield is " + comment ;
+						}
+
+						else {
+							var recommendation = "<p class= 'recommendation'></p>Your location is not yet ready for planting of " + crops + " - " + variety +" due to lack of soil moisture (total rainfall for the past 30 days is  "+twentyDaysCumulative[lengthDailyData-1] + "  mm).The  expected yield is " + comment ;
+						}
+
+
+					}
+
+					var crop = "<p class= 'cropName'></p>";				
+					document.getElementById("crops").insertAdjacentHTML('beforebegin', crop);					
+					$('.cropName').text(crops.toUpperCase() +' - ' + variety);
+					document.getElementById("crops").insertAdjacentHTML('beforebegin', recommendation);
+
+
+				} else {
+					var crop = "<p class= 'crops'>No data found for simulation</p>";				
+					document.getElementById("crops").insertAdjacentHTML('beforebegin', crop);
+
+				}
+
+
+
+
+				//retrieving the week number from mongo collection
 				//const task = Tasks.findOne({_id})
 				
 				
 				
-				let thresholdsData =thresholdsCollection.find({}).fetch()				
+				/*let thresholdsData =thresholdsCollection.find({}).fetch()				
 				thresholdsData.forEach((item) =>{
 
 					//retrieving the week number from mongo collection
@@ -169,13 +236,13 @@ Template.ChartRainfall.rendered = () =>{
 					//console.log("week no. is " + weekData.weekNo)
 
 					//retrieve the  yield for each crop in threshold
-					let  durationYieldData = durationYields.findOne({weekNo:weekData.weekNo,cropType:item.crop})
+					let  durationYieldData = durationYields.findOne({weekNo:weekData.weekNo,cropType:item.cropType})
 					 
 					var crop = "<p class= 'crops'></p>";
 					
 					
 					document.getElementById("crops").insertAdjacentHTML('beforebegin', crop);					
-					$('.crops').text(item.crop.toUpperCase());
+					$('.crops').text(item.cropType.toUpperCase() +'(' + item.cropVariety + ')' );
 					
 					
 					if (item.days == 30){
@@ -215,7 +282,8 @@ Template.ChartRainfall.rendered = () =>{
 
 					//console.log("crops" + item.crop)
 					
-				})
+				}) */
+
 
 				
 				

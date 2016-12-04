@@ -22,7 +22,18 @@ Template.cropItem.events({
 	},
 
 	'click #delete-crop-button' :  function (e) {
+		//delete from crops collection
 		Meteor.call('delete-crop', this._id)
+
+		//delete from crop yield collection
+		Meteor.call('delete-crop-yield-cropType', this.crop)
+
+		//delete from duration yield
+		Meteor.call('delete-duration-yield-cropType', this.crop)
+
+		//delete from threshold collection
+		Meteor.call('delete-thresholds-cropType', this.crop)
+
 		 
 	}
 

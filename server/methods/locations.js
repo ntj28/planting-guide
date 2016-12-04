@@ -51,4 +51,41 @@ Meteor.methods({
         )
 
     },
+
+    'update-city-location' : function(city, cityNew) {
+        location.update (
+            {city},//filters to be updaated
+            {
+                $set: {
+                         
+                    city:cityNew,
+                                                            
+                }
+            },
+
+                { multi: true}
+            
+        )
+
+    },
+
+    'update-province-location' : function(province, provinceNew) {
+        location.update (
+            {province},//filters to be updaated
+            {
+                $set: {
+                         
+                    province:provinceNew,
+                                                            
+                }
+            },
+
+                { multi: true}
+            
+        )
+
+    },
+
+
+
 })

@@ -17,7 +17,19 @@ Template.varietyItem.events({
 	},
 
 	'click #delete-variety-button' :  function (e) {
+		//delete from varieties collection
 		Meteor.call('delete-variety', this._id)
+
+		//delete from duration yield
+		Meteor.call('delete-duration-yield-variety', this.variety)
+
+		//delete from crop yield collection
+		Meteor.call('delete-crop-yield-cropVariety', this.variety)
+
+		//delete from thresholds
+		Meteor.call('delete-thresholds-cropVariety', this.variety)
+
+
 	}
 	 
 })

@@ -19,6 +19,13 @@ Template.RainfallItem.events({
 		//console.log(id)	
 		//kulang p
 		FlowRouter.go(`/editRainfall/${id}/${awsID}`)
+	},
+	'click #delete-rainfall-button' : function (e) {
+		//const id = FlowRouter.getParam('location_id')	
+		Meteor.call('delete-rainfall-data', this._id)
+		//console.log(id)	
+		//kulang p
+		
 	}
 
 })

@@ -40,6 +40,9 @@ Template.EditCrop.events ({
         //update the weekly yield entries
         Meteor.call ('update-crop-name',cropOld,crop)
 
+        //update the thresholds entries
+        Meteor.call ('update-crop-type-threshold',cropOld,crop)
+
 
         //update the  crops collection
         Meteor.call ('update-crop',cropID,crop)

@@ -45,12 +45,15 @@ Meteor.methods ({
 
     },
 
-
-
-
 	'delete-rainfall-data': function(id){
         amountRainfallCollection.remove({
             _id:id
+        })
+    },
+
+    'delete-rainfall-awsID': function(awsID){
+        amountRainfallCollection.remove({
+            awsID:awsID
         })
     },
 

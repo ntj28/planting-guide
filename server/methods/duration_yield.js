@@ -16,6 +16,19 @@ Meteor.methods ({	'add-duration-yields' : function (locationID,cropType,cropVari
         })
     },
 
+    'delete-duration-yield-variety': function(cropVariety){
+        durationYields.remove({
+            cropVariety:cropVariety
+        })
+    },
+
+    'delete-duration-yield-cropType': function(cropType){
+        durationYields.remove({
+            cropType:cropType
+        })
+    },
+
+
     'update-duration-yield' : function(locationID,cropType,cropVariety,weekNo,yields) {
          durationYields.update (
             {weekNo},//filters to be updaated

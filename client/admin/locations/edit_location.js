@@ -89,6 +89,21 @@ Template.EditLocation.events ({
 	'click #editLocationButton ' : function(e) {
 		//getting the  fields as well as the data
 		const locationId = FlowRouter.getParam('location_id')
+        //retrieve the old AWSID         
+        const data = location.findOne({_id:locationId})
+        //get the new AWSID
+        const awsField = $('#awsID')
+        const awsID  = awsField.val() 
+
+        
+        //update the old AWSID of amount of rainfall to ensure data integrity
+        AWSIDold = (data && data.awsID)
+        console.log("old"+AWSIDold)
+        console.log("new " + awsID)
+        Meteor.call('update-awsID',AWSIDold,awsID)
+
+
+        //update the locations collection
         const projectNameField = $('#projectName')
         const projectName = projectNameField.val()
         const institutionField = $('#insttitution')
@@ -104,8 +119,7 @@ Template.EditLocation.events ({
         //const city = cityField.val()
         //const provinceField = $('#province')
         //const province = provinceField.val()
-        const awsField = $('#awsID')
-        const awsID  = awsField.val() 
+        
 
         //calling the meteor method to save
         Meteor.call('update-location',locationId, projectName, insttitution, latitude, longitude, city, province,awsID)

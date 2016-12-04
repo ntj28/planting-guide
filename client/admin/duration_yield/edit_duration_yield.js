@@ -17,7 +17,42 @@ Template.EditDurationYield.onCreated( () => {
         }
 });
 
+Meteor.autorun(() => {
 
+    const _id = FlowRouter.getParam('yield_id')
+    const data = durationYields.findOne({_id})
+
+    //populate the  cropType select
+    const cropData  = cropsCollection.find({}).fetch()
+    const cropField = $('#cropSelection')
+    cropField.empty()
+    cropData.forEach((item) => {
+        if ((data && data.cropType) == item.crop) {
+            cropField.append("<option selected='selected' value =" + item._id +">" + item.crop + "</option>");
+        } else {
+            cropField.append("<option value =" + item._id +">" + item.crop + "</option>");
+        } 
+    }); 
+
+    //populate the crop variety
+    const varietyField = $('#cropVarietySelection')
+    varietyField.empty()
+    const cropID =  cropField.val()
+    const dataVariety  = cropVarietiesCollection.find({cropID: cropID}).fetch()
+
+    //adds options to the select tag
+    
+    dataVariety.forEach((item) => {
+        if ((data && data.cropVariety) == item.variety) {
+            varietyField.append("<option selected='selected' value =" + item.variety +">" + item.variety + "</option>");
+        } else {
+            varietyField.append("<option value =" + item.variety +">" + item.variety + "</option>");
+        } 
+
+          
+    });
+    
+}); 
 
 Template.EditDurationYield.helpers({
 	data:()=> {
@@ -35,6 +70,8 @@ Template.EditDurationYield.helpers({
         return cropVarietyData
     }   
 })
+
+
 
 
 Template.EditDurationYield.events ({
@@ -61,7 +98,7 @@ Template.EditDurationYield.events ({
         const locationID = FlowRouter.getParam('location_id')
         const durationYieldID = FlowRouter.getParam('yield_id')                
         const weekNoField = $("#weekNo")
-        const weekNo = weekNoField.val()               
+        const weekNo = parseInt(weekNoField.val())               
         const yieldField = $("#yield")
         const yields = yieldField.val()
         const cropType = $('#cropSelection').find('option:selected').text()
@@ -69,7 +106,7 @@ Template.EditDurationYield.events ({
         const cropVariety = cropVarietyField.val()
         
 
-        Meteor.call('update-duration-yield',durationYieldID,locationID,cropType,cropVariety,weekNo,yields)           
+        Meteor.call('update-duration-yield',locationID,cropType,cropVariety,weekNo,yields)           
         
  
         

@@ -1,6 +1,16 @@
 <template name ="AddThreshold">
-	<label for ="crop">Crop</label>
-	<input id ="crop" type ="text"> <br/>
+	<label for ="Crop Type">Crop Type </label>
+	<select id = "cropSelectionThresholdAdd">
+		{{#each dataCrop}}
+			  {{> cropItemAddThreshold}}
+		{{/each}}  
+	</select> <br/>
+	<label for ="Crop Variety">Crop Variety </label>
+	<select id = "cropVarietySelectionThresholdAdd">
+		{{#each dataVariety}}
+			  {{> varietyItemAddThreshold}}
+		{{/each}}
+	</select> <br/>
 	<label for ="days">No. of Days </label>
 	<input id ="days" type ="text"><br/>
 	<label for = "rainfall">Amount of Rainfall </label>
@@ -8,3 +18,6 @@
 	<button id ="add-threshold">Save</button>
 	<button id ="cancel-threshold">Cancel</button> 
 </template>
+
+
+ 

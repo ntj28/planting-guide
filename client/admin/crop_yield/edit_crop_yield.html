@@ -1,26 +1,13 @@
 <template name = "EditCropYield">
 	<label for ="Crop Type">Crop Type </label>
-	<select id = "cropSelection">
-	    {{#each cropData}}
-			  {{> cropItemsEditYield}}
-		{{/each}}
+	<select id = "cropSelections">
+		<option> sample </option>   
 	</select> <br/>
 	<label for ="Crop Variety">Crop Variety </label>
-	<select id = "cropVarietySelection">
-	    {{#each cropVarietyData}}
-			  {{> cropVarietyItemsEdiYield}}
-		{{/each}}
+	<select id = "cropVarietySelections">
+		<option> sample </option>
 	</select> <br/>
 	<label for ="Crop Yield">Crop Yield</label> 
 	<input type="text" id="cropYield" value="{{data.cropYield}}"><br/>
 	<button id ="EditCropYieldButton">Save</button>
-</template>
-
-
-<template name="cropItemsEditYield">
-	 <option value="{{_id}}">{{crop}}</option>
-</template>
-
-<template name="cropVarietyItemsEdiYield">
-	 <option value="{{variety}}">{{variety}}</option>
 </template>

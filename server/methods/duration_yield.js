@@ -36,6 +36,40 @@ Meteor.methods ({	'add-duration-yields' : function (locationID,cropType,cropVari
         )
 
     },
+
+    'update-crop-name' : function(cropType, cropTypeNew) {
+        durationYields.update (
+            {cropType},//filters to be updaated
+            {
+                $set: {
+                         
+                    cropType:cropTypeNew,
+                                                            
+                }
+            },
+
+                { multi: true}
+            
+        )
+
+    },
+
+    'update-crop-variety' : function(cropVariety, cropVarietyNew) {
+        durationYields.update (
+            {cropVariety},//filters to be updaated
+            {
+                $set: {
+                         
+                    cropVariety:cropVarietyNew,
+                                                            
+                }
+            },
+
+                { multi: true}
+            
+        )
+
+    },
 })
 
 

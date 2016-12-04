@@ -30,7 +30,7 @@ Template.editWeekNumber.events ({
         	const dateField = $('#date')
                 const date = dateField.val()
                 const weekField = $('#weekNo')
-                const week = weekField.val()
+                const week = parseInt(weekField.val())
                
                 Meteor.call ('update-week-no',_id,date,week)
                 console.log ("edited")

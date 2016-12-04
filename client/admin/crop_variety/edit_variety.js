@@ -41,7 +41,11 @@ Template.EditCropVariety.events ({
 
         //update the  weekly yield entries
         Meteor.call ('update-crop-variety',varietyOld,variety)
-         
+
+        //update the thresholds collection
+        Meteor.call ('update-variety-threshold',varietyOld,variety)
+
+                
 
         //calling the meteor method to save
         Meteor.call('update-variety',varietyID, variety)

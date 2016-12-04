@@ -18,29 +18,56 @@ Template.AddDurationYield.onCreated( () => {
         }
 });
 
-
 Template.AddDurationYield.helpers ({
-
-	cropData: function() {
-        const cropData  = cropsCollection.find({}).fetch()         
-        return cropData
+    dataCrop: function() {
+        const dataCrop  = cropsCollection.find({}).fetch()         
+        return dataCrop
     },
-    
-    cropVarietyData: function() {
-        const cropVarietyData  = cropVarietiesCollection.find({}).fetch()         
-        return cropVarietyData
-    }    
+
+    dataVariety: function() {
+        const dataVariety  = cropVarietiesCollection.find({}).fetch()         
+        return dataVariety
+    }     
 })
+
+
+/*Meteor.autorun(() => {    
+    //populate the  cropType select
+    const cropData  = cropsCollection.find({}).fetch()
+    const cropField = $('#cropSelectionDurationYieldAdd')
+    cropField.empty()
+    cropData.forEach((item) => {        
+            cropField.append("<option value =" + item._id +">" + item.crop + "</option>");        
+    }); 
+
+    //populate the crop variety
+    const varietyField = $('#cropVarietySelectionDurationYieldAdd')
+    varietyField.empty()
+    const cropID =  cropField.val()
+    const dataVariety  = cropVarietiesCollection.find({cropID: cropID}).fetch()
+
+    //adds options to the select tag
+    
+    dataVariety.forEach((item) => {       
+            varietyField.append("<option value =" + item.variety +">" + item.variety + "</option>");     
+        
+    });
+
+    //  const cropVarietyData  = cropVarietiesCollection.find({}).fetch() 
+  //console.log("on rendered function"+cropVarietyData.length)
+    
+}); */
+
 
 Template.AddDurationYield.events({
 
-  'change #cropSelection' : function(e){
+  'change #cropSelectionDurationYieldAdd' : function(e){
         //get the value of  the  province field
-        const cropField = $('#cropSelection') 
+        const cropField = $('#cropSelectionDurationYieldAdd') 
         const cropID =  cropField.val()    
 
         //gets the variety field and empty its options
-        const varietyField = $('#cropVarietySelection')
+        const varietyField = $('#cropVarietySelectionDurationYieldAdd')
         varietyField.empty()
         //retrieves the list of city as specified by what province is selected
         const dataVariety  = cropVarietiesCollection.find({cropID: cropID}).fetch() 
@@ -58,9 +85,9 @@ Template.AddDurationYield.events({
 		const weekNo = weekNoField.val()		
 		const yieldField = $("#yield")
 		const yields = yieldField.val()    
-    const cropType = $('#cropSelection').find('option:selected').text()
-    const cropVarietyField = $('#cropVarietySelection')
-    const cropVariety = cropVarietyField.val()
+    const cropType = $('#cropSelectionDurationYieldAdd').find('option:selected').text()
+    const cropVariety = $('#cropVarietySelectionDurationYieldAdd').find('option:selected').text()
+     
 		
 
 		Meteor.call('add-duration-yields',locationID,cropType,cropVariety,weekNo,yields)
@@ -112,9 +139,8 @@ Template.uploadYield.events({
     template.uploading.set( true );
     const locationID = FlowRouter.getParam('location_id')
     const fileName =  $('#upload').val()
-    const cropType = $('#cropSelection').find('option:selected').text()
-    const cropVarietyField = $('#cropVarietySelection')
-    const cropVariety = cropVarietyField.val()
+    const cropType = $('#cropSelectionDurationYieldAdd').find('option:selected').text()
+    const cropVariety = $('#cropVarietySelectionDurationYieldAdd').find('option:selected').text()
     
     var extension = fileName.substring(fileName.lastIndexOf('.') + 1).toLowerCase();
 

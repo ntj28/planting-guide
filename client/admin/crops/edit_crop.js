@@ -24,10 +24,24 @@ Template.EditCrop.helpers({
 
 Template.EditCrop.events ({
 	'click #update-crop ' : function(e) {
-		//getting the  fields as well as the data
         const cropID = FlowRouter.getParam('crop_id')
+        
+        //retrieve the old crop name
+        const data = cropsCollection.findOne({_id:cropID})
+        cropOld = (data && data.crop)
+
+		//getting the  fields as well as the data        
 		const cropField = $('#crop')
         const crop = cropField.val()
+
+        //update the historical crop yield entries
+        Meteor.call ('update-crop-type',cropOld,crop)
+
+        //update the weekly yield entries
+        Meteor.call ('update-crop-name',cropOld,crop)
+
+
+        //update the  crops collection
         Meteor.call ('update-crop',cropID,crop)
         console.log ("added")
         cropField.val = " "

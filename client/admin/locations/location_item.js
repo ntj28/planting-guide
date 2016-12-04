@@ -17,8 +17,10 @@ Template.Location.events({
 	},
 
 	'click #delete-location-button' :  function (e) {
+		//delete from locations collection
 		Meteor.call('delete-location', this._id)
-		Meteor.call('delete-rainfall-data',this._id)
+		//delete from amount of rainfall collection
+		Meteor.call('delete-rainfall-awsID',this.awsID)
 	},
 
 	'click #update-crop-yield' : function(e){

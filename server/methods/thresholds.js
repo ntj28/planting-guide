@@ -1,9 +1,10 @@
 import { thresholdsCollection  } from '../../lib/collections/thresholds.js'
 
 Meteor.methods ({
-	'add-thresholds' : function(crop,days,rainfall) {
+	'add-thresholds' : function(cropType,cropVariety,days,rainfall) {
 		thresholdsCollection.insert ({
-			crop: crop,
+			cropType: cropType,
+            cropVariety:cropVariety,
 			days:days,
 			rainfall:rainfall
 
@@ -16,12 +17,29 @@ Meteor.methods ({
         })
     },
 
-    'update-thresholds' : function(_id, crop,days,rainfall) {
+    'delete-thresholds-cropVariety': function(cropVariety){
+        thresholdsCollection.remove({
+            cropVariety:cropVariety
+        })
+    },
+
+    'delete-thresholds-cropType': function(cropType){
+        thresholdsCollection.remove({
+            cropType:cropType
+        })
+    },
+
+    
+    
+
+
+    'update-thresholds' : function(_id, cropType,cropVariety,days,rainfall) {
         thresholdsCollection.update (
             {_id},//filters to be updaated
             {
                 $set: {
-                    crop:crop,
+                    cropType: cropType,
+                    cropVariety:cropVariety,
                     days:days,
                     rainfall:rainfall
 
@@ -30,6 +48,40 @@ Meteor.methods ({
             },
 
                 {upsert : true}
+            
+        )
+
+    },
+
+    'update-crop-type-threshold' : function(cropType, cropTypeNew) {
+        thresholdsCollection.update (
+            {cropType},//filters to be updaated
+            {
+                $set: {
+                         
+                    cropType:cropTypeNew,
+                                                            
+                }
+            },
+
+                { multi: true}
+            
+        )
+
+    },
+
+    'update-variety-threshold' : function(cropVariety, cropVarietyNew) {
+        thresholdsCollection.update (
+            {cropVariety},//filters to be updaated
+            {
+                $set: {
+                         
+                    cropVariety:cropVarietyNew,
+                                                            
+                }
+            },
+
+                { multi: true}
             
         )
 

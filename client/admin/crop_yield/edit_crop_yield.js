@@ -12,7 +12,7 @@ Template.EditCropYield.onCreated( () => {
             Meteor.subscribe('cropYields')
             Meteor.subscribe('crops')
             Meteor.subscribe('cropVarieties')
-            console.log("called on created")
+            
         } else {
             // not logged-in
             FlowRouter.go('/')
@@ -109,9 +109,8 @@ Template.EditCropYield.events ({
 	'click #EditCropYieldButton ' : function(e) {
 		//getting the  fields as well as the data
 		const cropYieldID = FlowRouter.getParam('crop_id')
-        const cropType = $('#cropSelections').find('option:selected').text()
-        const cropVarietyField = $('#cropVarietySelections')
-        const cropVariety = cropVarietyField.val()
+        const cropType = $('#cropSelections').find('option:selected').text()         
+        const cropVariety = $('#cropVarietySelections').find('option:selected').text() 
         const cropYieldField = $('#cropYield')
         const cropYield =  cropYieldField.val()
         const _id = FlowRouter.getParam('location_id')

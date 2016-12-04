@@ -20,6 +20,18 @@ Meteor.methods({
 
     },
     
+    'delete-location-city': function(city){
+        location.remove({
+            city:city
+        })
+    },
+
+    'delete-location-province': function(province){
+        location.remove({
+            province:province
+        })
+    },
+
     'delete-location': function(id){
         location.remove({
             _id:id

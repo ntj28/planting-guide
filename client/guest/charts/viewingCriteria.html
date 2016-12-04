@@ -1,0 +1,17 @@
+<template name ="viewingCriteria">
+	<label for= "date">Date </label>
+	<input type = "date" id = "date"> <br/>
+	<label for ="Crop Type">Crop Type </label>
+	<select id = "cropSelectionView">
+		{{#each dataCrop}}
+			  {{> cropItemView}}
+		{{/each}}   
+	</select> <br/>
+	<label for ="Crop Variety">Crop Variety </label>
+	<select id = "cropVarietySelectionView">
+		{{#each dataVariety}}
+			  {{> varietyItemView}}
+		{{/each}}
+	</select> <br/>
+	<button id = "simulate-button">Simulate</button>
+</template>

@@ -27,10 +27,19 @@ Template.EditProvince.events ({
 		//getting the  fields as well as the data
 		const provinceID = FlowRouter.getParam('province_id')
         const provinceField = $('#province')
-        const province = provinceField.val()
+        const provinceEntry = provinceField.val()
+
+        //retrieve the old province name
+        const data = province.findOne({_id:provinceID})
+        provinceOld = (data && data.province)
+
+        //update the locations entries
+         Meteor.call('update-province-location',provinceOld,provinceEntry)
+
+
          
-        //calling the meteor method to save
-        Meteor.call('update-province',provinceID, province)
+        //calling the meteor method to save to province collections
+        Meteor.call('update-province',provinceID, provinceEntry)
             //log the  console to see if it has been saved
         console.log('added')
             //clearing the entries

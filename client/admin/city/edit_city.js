@@ -30,9 +30,16 @@ Template.EditCity.events ({
         const _id = FlowRouter.getParam('province_id')
         const cityField = $('#city')
         const city = cityField.val()
+
+        //retrieve the old city name
+        const data = cityCollection.findOne({_id:cityID})
+        cityOld = (data && data.city)
+
+        //update the  location entries
+        Meteor.call ('update-city-location',cityOld,city)
          
 
-        //calling the meteor method to save
+        //calling the meteor method to save to city COllection
         Meteor.call('update-city',cityID, city)
             //log the  console to see if it has been saved
         console.log('added')

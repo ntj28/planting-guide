@@ -1,4 +1,4 @@
-Template.cropItems.onCreated( () => {
+Template.cropItemAddCrop.onCreated( () => {
 
   var currentUser = Meteor.userId();
         if(currentUser){

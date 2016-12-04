@@ -12,13 +12,13 @@ FlowRouter.route('/location', {
         BlazeLayout.render("mainLayout", { main: "Locations" })
     }
 })
-
+//add location
 FlowRouter.route('/addLocation',{
 	action: function(params, queryParams){
 		BlazeLayout.render("mainLayout",{main: "AddLocation"})
 	}
 })
-
+//edit location
 FlowRouter.route ('/location/:location_id', {
 	action: function(params, queryParams){
 		BlazeLayout.render("mainLayout", { main:"EditLocation" })
@@ -32,13 +32,14 @@ FlowRouter.route('/crop_yield/:location_id', {
 	}
 })
 
-
+//add crop yield
 FlowRouter.route('/addCropYield/:location_id',{
 	action: function(params, queryParams){
 		BlazeLayout.render("mainLayout",{main: "AddCropYield"})
 	}
 })
 
+//edit crop yield
 FlowRouter.route ('/edit_crop_yield/:crop_id/:location_id', {
 	action: function (params, queryParams,queryParams2) {
 		BlazeLayout.render("mainLayout", {main: "EditCropYield"})
@@ -53,12 +54,14 @@ FlowRouter.route ('/duration_yield/:location_id', {
 	}
 })
 
+//add duration yield
 FlowRouter.route ('/addDurationYield/:location_id', {
 	action : function (params, queryParams){
 		BlazeLayout.render("mainLayout", {main: "AddDurationYield"})
 	}
 })
 
+//edit duration yield
 FlowRouter.route ('/edit_duration_yield/:yield_id/:location_id', {
 	action: function (params, queryParams,queryParams2) {
 		BlazeLayout.render("mainLayout", {main: "EditDurationYield"})
@@ -72,12 +75,14 @@ FlowRouter.route('/province', {
 	}
 })
 
+//add province
 FlowRouter.route ('/addProvince' , {
 	action : function (params, queryParams) {
 		BlazeLayout.render ("mainLayout",{main : "AddProvince"})
 	}
 })
 
+//edit province
 FlowRouter.route ('/editProvince/:province_id', {
 	action: function (params, queryParams) {
 		BlazeLayout.render ("mainLayout", {main: "EditProvince"})
@@ -91,29 +96,30 @@ FlowRouter.route ('/city/:province_id', {
 	}
 })
 
+//add city
 FlowRouter.route ('/addCity/:province_id', {
 	action : function (params, queryParams) {
 		BlazeLayout.render("mainLayout", {main: "AddCity"})
 	}
 })
 
-
+//edit city
 FlowRouter.route ('/edit_city/:city_id/:province_id', {
 	action: function (params, queryParams,queryParams2) {
 		BlazeLayout.render("mainLayout", {main: "EditCity"})
 	}
 })
 
-//enter date
+//viewing criteria
 FlowRouter.route('/date/:awsID/:locationID', {
 	action: function(params,queryParams,queryParams2){
-		BlazeLayout.render("mainLayout", {main:"EnterDate"})
+		BlazeLayout.render("mainLayout", {main:"viewingCriteria"})
 	}
 })
 
 //chart
-FlowRouter.route ('/chart/:awsID/:date/:locationID', {
-	action: function(params, queryParams,queryParams2,queryParams3) {
+FlowRouter.route ('/chart/:awsID/:date/:locationID/:cropTypes/:cropVariety', {
+	action: function(params, queryParams,queryParams2,queryParams3,queryParams4) {
 		BlazeLayout.render("mainLayout", {main: "ChartRainfall"})
 	}
 })

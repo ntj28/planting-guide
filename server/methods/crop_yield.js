@@ -16,6 +16,18 @@ Meteor.methods ({
         })
     },
 
+    'delete-crop-yield-cropVariety': function(cropVariety){
+        cropYields.remove({
+            cropVariety:cropVariety
+        })
+    },
+
+    'delete-crop-yield-cropType': function(cropType){
+        cropYields.remove({
+            cropType:cropType
+        })
+    },
+
     'update-crop-yield' : function(_id, cropType,cropVariety,cropYield) {
         cropYields.update (
             {_id},//filters to be updaated

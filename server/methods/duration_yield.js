@@ -31,7 +31,7 @@ Meteor.methods ({	'add-duration-yields' : function (locationID,cropType,cropVari
 
     'update-duration-yield' : function(locationID,cropType,cropVariety,weekNo,yields) {
          durationYields.update (
-            {weekNo},//filters to be updaated
+            {weekNo,cropType,cropVariety},//filters to be updaated
             {
                 $set: {
 

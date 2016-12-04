@@ -16,8 +16,10 @@ Template.ProvinceItem.events({
 	},
 
 	'click #delete-province-button' :  function (e) {
+		//delete from province collection
 		Meteor.call('delete-province', this._id)
-		Meteor.call('delete-city',this._id )
+		//delete from locations collection
+		Meteor.call('delete-location-province',this.province )
 	},
 
 	'click #view-city' : function(e){

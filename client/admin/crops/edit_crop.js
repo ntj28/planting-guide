@@ -45,9 +45,7 @@ Template.EditCrop.events ({
 
 
         //update the  crops collection
-        Meteor.call ('update-crop',cropID,crop)
-        console.log ("added")
-        cropField.val = " "
+        Meteor.call ('update-crop',cropID,crop)        
         FlowRouter.go ('/crop')
          
          

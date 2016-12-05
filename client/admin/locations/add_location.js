@@ -66,9 +66,9 @@ Template.AddLocation.events({
 
         //calling the meteor method to save
         Meteor.call('add-location', projectName, insttitution, latitude, longitude, city, province,awsID)
-            //log the  console to see if it has been saved
-        console.log('added')
-            //clearing the entries
+           
+        
+        //clearing the entries
         projectNameField.val = ''
         institutionField.val = ''
         latitudeField.val = ''

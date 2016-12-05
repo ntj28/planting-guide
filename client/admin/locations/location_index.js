@@ -15,8 +15,7 @@ Template.Locations.onCreated( () => {
 
 Template.Locations.helpers ({
 	locations: function() {
-		const locations  = location.find({}).fetch()
-		//console.log(locations)
+		const locations  = location.find({}).fetch()		
 		return locations
 	}
 	 

@@ -31,34 +31,6 @@ Template.AddDurationYield.helpers ({
 })
 
 
-/*Meteor.autorun(() => {    
-    //populate the  cropType select
-    const cropData  = cropsCollection.find({}).fetch()
-    const cropField = $('#cropSelectionDurationYieldAdd')
-    cropField.empty()
-    cropData.forEach((item) => {        
-            cropField.append("<option value =" + item._id +">" + item.crop + "</option>");        
-    }); 
-
-    //populate the crop variety
-    const varietyField = $('#cropVarietySelectionDurationYieldAdd')
-    varietyField.empty()
-    const cropID =  cropField.val()
-    const dataVariety  = cropVarietiesCollection.find({cropID: cropID}).fetch()
-
-    //adds options to the select tag
-    
-    dataVariety.forEach((item) => {       
-            varietyField.append("<option value =" + item.variety +">" + item.variety + "</option>");     
-        
-    });
-
-    //  const cropVarietyData  = cropVarietiesCollection.find({}).fetch() 
-  //console.log("on rendered function"+cropVarietyData.length)
-    
-}); */
-
-
 Template.AddDurationYield.events({
 
   'change #cropSelectionDurationYieldAdd' : function(e){
@@ -85,13 +57,13 @@ Template.AddDurationYield.events({
 		const weekNo = weekNoField.val()		
 		const yieldField = $("#yield")
 		const yields = yieldField.val()    
-    const cropType = $('#cropSelectionDurationYieldAdd').find('option:selected').text()
-    const cropVariety = $('#cropVarietySelectionDurationYieldAdd').find('option:selected').text()
+        const cropType = $('#cropSelectionDurationYieldAdd').find('option:selected').text()
+        const cropVariety = $('#cropVarietySelectionDurationYieldAdd').find('option:selected').text()
      
 		
 
 		Meteor.call('add-duration-yields',locationID,cropType,cropVariety,weekNo,yields)
-		console.log("added")
+		
 		 
 		weekNoField.val = " "		
 		yieldField.val = " "

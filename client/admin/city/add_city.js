@@ -15,10 +15,8 @@ Template.AddCity.events ({
 		const cityField = $('#city')
 		const city = cityField.val()
 		const provinceID = FlowRouter.getParam('province_id')
-		Meteor.call ('add-city',provinceID, city)
-		console.log ("added")
+		Meteor.call ('add-city',provinceID, city)		
 		cityField.val = " "
-
 		FlowRouter.go(`/city/${provinceID}`)
 
 	},

@@ -26,16 +26,12 @@ Template.CropYield.helpers ({
 
 Template.CropYield.events({
 	'click #add-crop-yield-button' : function (e) {
-		const id = FlowRouter.getParam('location_id')
-		console.log(id)	
-		//kulang p
+		const id = FlowRouter.getParam('location_id')	
 		 FlowRouter.go(`/addCropYield/${id}`)
 	},
 
 	'click #exit-crop-yield-button' : function (e) {
-		//const id = FlowRouter.getParam('location_id')
-		//console.log(id)	
-		//kulang p
+		
 		 FlowRouter.go(`/location`)
 	}
 

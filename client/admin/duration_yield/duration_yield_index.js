@@ -25,16 +25,11 @@ Template.DurationYields.helpers ({
 
 Template.DurationYields.events({
 	'click #add-duration-yield-button' : function (e) {
-		const id = FlowRouter.getParam('location_id')
-		console.log(id)	
-		//kulang p
+		const id = FlowRouter.getParam('location_id')		
 		FlowRouter.go(`/addDurationYield/${id}`)
 	},
 
-	'click #exit-duration-yield-button' : function (e) {
-		//const id = FlowRouter.getParam('location_id')
-		//console.log(id)	
-		//kulang p
+	'click #exit-duration-yield-button' : function (e) {		
 		 FlowRouter.go(`/location`)
 	}
 

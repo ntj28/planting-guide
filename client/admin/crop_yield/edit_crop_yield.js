@@ -22,10 +22,7 @@ Template.EditCropYield.onCreated( () => {
 
 Template.EditCropYield.onRendered(()=>{
 
-  const cropVarietyData  = cropVarietiesCollection.find({}).fetch() 
-  console.log("on rendered function"+cropVarietyData.length)
-     
-         
+  const cropVarietyData  = cropVarietiesCollection.find({}).fetch()          
 
 })
 
@@ -64,9 +61,7 @@ Meteor.autorun(() => {
           
     });
 
-    //  const cropVarietyData  = cropVarietiesCollection.find({}).fetch() 
-  //console.log("on rendered function"+cropVarietyData.length)
-    
+       
 });
 
 
@@ -88,9 +83,8 @@ Template.EditCropYield.events ({
  
 
    
-    'change #cropSelections' : function(e){
-        var length = $('#cropSelection').children('option').length;
-        console.log("length is " +length )
+    'change #cropSelections' : function(e){       
+        
         //get the value of  the  province field
         const cropField = $('#cropSelections') 
         const cropID =  cropField.val()        
@@ -114,15 +108,13 @@ Template.EditCropYield.events ({
         const cropYieldField = $('#cropYield')
         const cropYield =  cropYieldField.val()
         const _id = FlowRouter.getParam('location_id')
-		console.log(_id)
+		
 
         //calling the meteor method to save
         Meteor.call('update-crop-yield',cropYieldID, cropType,cropVariety,cropYield)
-            //log the  console to see if it has been saved
-        console.log('added')
-            //clearing the entries
+         
              
-            //redirects to main page for 
+        //redirects to main page for 
         FlowRouter.go(`/crop_yield/${_id}`)
 	}
 })

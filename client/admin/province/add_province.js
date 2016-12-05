@@ -14,8 +14,7 @@ Template.AddProvince.events ({
 	'click #SaveProvince ' : function (e) {
 		const ProvinceField = $('#province')
 		const province = ProvinceField.val()
-		Meteor.call ('add-province',province)
-		console.log ("added")
+		Meteor.call ('add-province',province)		
 		ProvinceField.val = " "
 		FlowRouter.go ('/province')
 

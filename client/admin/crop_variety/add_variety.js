@@ -15,10 +15,8 @@ Template.AddVariety.events ({
 		const varietyField = $('#variety')
 		const variety = varietyField.val()
 		const cropID = FlowRouter.getParam('crop_id')
-		Meteor.call ('add-variety',cropID, variety)
-		console.log ("added")
+		Meteor.call ('add-variety',cropID, variety)		
 		varietyField.val = " "
-
 		FlowRouter.go(`/cropVariety/${cropID}`)
 
 	},

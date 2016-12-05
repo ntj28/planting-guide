@@ -30,10 +30,7 @@ Template.City.events({
 		FlowRouter.go(`/addCity/${_id}`)
 	},
 
-	'click #done-button' : function (e) {
-		//const id = FlowRouter.getParam('location_id')
-		//console.log(id)	
-		//kulang p
+	'click #done-button' : function (e) {	
 		 FlowRouter.go(`/province`)
 	}
 })

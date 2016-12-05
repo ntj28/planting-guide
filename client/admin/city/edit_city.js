@@ -34,18 +34,12 @@ Template.EditCity.events ({
         //retrieve the old city name
         const data = cityCollection.findOne({_id:cityID})
         cityOld = (data && data.city)
-
         //update the  location entries
         Meteor.call ('update-city-location',cityOld,city)
-         
-
         //calling the meteor method to save to city COllection
-        Meteor.call('update-city',cityID, city)
-            //log the  console to see if it has been saved
-        console.log('added')
-            //clearing the entries
+        Meteor.call('update-city',cityID, city)  
         cityField.val = ''                
-            //redirects to main page for 
+        //redirects to main page for 
         FlowRouter.go(`/city/${_id}`)
 	}
 })

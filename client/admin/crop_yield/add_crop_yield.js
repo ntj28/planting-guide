@@ -27,36 +27,6 @@ Template.AddCropYield.helpers ({
     }     
 })
 
-/*Meteor.autorun(() => {    
-    //populate the  cropType select
-    const cropData  = cropsCollection.find({}).fetch()
-    const cropField = $('#cropSelectionCropYieldAdd')
-    cropField.empty()
-    cropData.forEach((item) => {        
-            cropField.append("<option value =" + item._id +">" + item.crop + "</option>");        
-    }); 
-
-    //populate the crop variety
-    const varietyField = $('#cropVarietySelectionCropYieldAdd')
-    varietyField.empty()
-    const cropID =  cropField.val()
-    const dataVariety  = cropVarietiesCollection.find({cropID: cropID}).fetch()
-
-    //adds options to the select tag
-    
-    dataVariety.forEach((item) => { 
-
-            varietyField.append("<option value =" + item.variety +">" + item.variety + "</option>");     
-        
-    });
-    console.log("autorun heere")  
-
-    //  const cropVarietyData  = cropVarietiesCollection.find({}).fetch() 
-  //console.log("on rendered function"+cropVarietyData.length)
-    
-}); */
-
-
 
 Template.AddCropYield.events({
 
@@ -81,8 +51,7 @@ Template.AddCropYield.events({
 
 	'click #AddCropYieldButton' : function (e) {
 		//getting the  name fields and thier values
-		const locationID = FlowRouter.getParam('location_id')
-		console.log(locationID)       
+		const locationID = FlowRouter.getParam('location_id')		      
         const cropType = $('#cropSelectionCropYieldAdd').find('option:selected').text()
         const cropYieldField = $('#cropYield')
         const cropYield = cropYieldField.val()        
@@ -90,8 +59,7 @@ Template.AddCropYield.events({
         
          
         //saving the  data
-		Meteor.call ('add-crop-yield',locationID,cropType,cropVariety,cropYield)
-		console.log('added')
+		Meteor.call ('add-crop-yield',locationID,cropType,cropVariety,cropYield)		
 		FlowRouter.go(`/crop_yield/${locationID}`)
 		//clearing the  fields
 		cropYieldField.val =' '

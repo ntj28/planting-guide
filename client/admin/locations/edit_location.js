@@ -59,9 +59,7 @@ Meteor.autorun(() => {
 
           
     });
-
-    //  const cropVarietyData  = cropVarietiesCollection.find({}).fetch() 
-    //console.log("on rendered function"+cropVarietyData.length)
+ 
     
 });
 
@@ -69,12 +67,11 @@ Meteor.autorun(() => {
 Template.EditLocation.events ({
 
     'change #provinceSelections' : function(e){
-        //var length = $('#cropSelection').children('option').length;
-        //console.log("length is " +length )
+        
         //get the value of  the  province field
         const provinceField = $('#provinceSelections') 
         const provinceID =  provinceField.val()
-        //console.log("id is " +provinceID )        
+               
         //gets the variety field and empty its options
         const cityField = $('#citySelections')
         cityField.empty()
@@ -98,8 +95,7 @@ Template.EditLocation.events ({
         
         //update the old AWSID of amount of rainfall to ensure data integrity
         AWSIDold = (data && data.awsID)
-        console.log("old"+AWSIDold)
-        console.log("new " + awsID)
+        
         Meteor.call('update-awsID',AWSIDold,awsID)
 
 
@@ -112,19 +108,14 @@ Template.EditLocation.events ({
         const latitude = latitudeField.val()
         const longitudeField = $('#longitude')
         const longitude = longitudeField.val()
-        const province = $('#provinceSelections').find('option:selected').text()
-        //const cityField = $('#citySelections')
+        const province = $('#provinceSelections').find('option:selected').text()        
         const city = $('#citySelections').find('option:selected').text()
-        //const cityField = $('#city')
-        //const city = cityField.val()
-        //const provinceField = $('#province')
-        //const province = provinceField.val()
+       
         
 
         //calling the meteor method to save
         Meteor.call('update-location',locationId, projectName, insttitution, latitude, longitude, city, province,awsID)
-        //log the  console to see if it has been saved
-        console.log('added')
+             
         //clearing the entries
         projectNameField.val = ''
         institutionField.val = ''

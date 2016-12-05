@@ -35,14 +35,11 @@ Template.editRainfall.events ({
          
 
         //calling the meteor method to save
-        Meteor.call('update-rainfall-data',awsID,date,amountRainfall)
-            //log the  console to see if it has been saved
-        //console.log('added')
-            //clearing the entries
+        Meteor.call('update-rainfall-data',awsID,date,amountRainfall)       
         amountRainfallField.val = ''
         
-        console.log(awsID)               
-            //redirects to main page for 
+                     
+        //redirects to main page for 
         FlowRouter.go(`/rainfall/${awsID}`)
 	}
 })

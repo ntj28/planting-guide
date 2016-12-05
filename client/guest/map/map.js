@@ -21,14 +21,6 @@ let activeLocation;
 let initMap = () => {
     let modal = $('#myModal');
 
-    // let plantingCurrentDateBtnOnClick = function () {
-    //     FlowRouter.go(`/date/${this.awsID}/${this._id}`);
-    // };
-
-    let plantingEnteredDateBtnOnClick = function () {
-        FlowRouter.go(`/date/${this.awsID}/${this._id}`);
-    };
-
     Meteor.call('get-all-location', (err, result) => {
         // get location data from the mongo db and add it to the map
         result.forEach((item) => {
@@ -57,15 +49,17 @@ let initMap = () => {
     });
 
      modal.on('show.bs.modal', () => {
-        // modal
-        //     // .find('.planting-current-date-btn')
-        //     // .on('click.plantingCurrentDate', $.proxy(plantingCurrentDateBtnOnClick, activeLocation))
-        //     // ;
 
-        modal
-            .find('.planting-date-btn')
-            .on('click.plantingEnteredDate', $.proxy(plantingEnteredDateBtnOnClick, activeLocation))
-            ;
+        $('#crop-form').on('submit', function(e) {
+            // prevent the form from submitting automatically
+            e.preventDefault();
+
+            let date = $(this).find('#date');
+            let type = $(this).find('#cropSelectionView');
+            let variety = $(this).find('#cropVarietySelectionView');
+
+            FlowRouter.go(`/chart/${activeLocation.awsID}/${date.val()}/${activeLocation._id}/${type.val()}/${variety.val()}`)
+        });
 
         let dataProcessing = new Promise((resolve, reject) => {
             Meteor.call('get-crop-yields-by-location', activeLocation._id, (err, cropYields) => {
@@ -106,15 +100,7 @@ let initMap = () => {
     });
 
     modal.on('hide.bs.modal', () => {
-        // modal
-        //     .find('.planting-current-date-btn')
-        //     .off('click.plantingCurrentDate')
-        //     ;
-
-        modal
-            .find('.planting-date-btn')
-            .off('click.plantingEnteredDate')
-            ;
+        $('#crop-form').off('submit');
 
         // remove the active location
         activeLocation = null;

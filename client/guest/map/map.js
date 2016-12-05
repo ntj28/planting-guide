@@ -41,32 +41,33 @@ Template.map.rendered = () => {
     tileLayer.addTo(map);
 
 
-    //place the marker
-    let markerData = location.find();
-    
+    // //place the marker
+    // let markerData = location.find();
 
-    console.log(markerData.count(), map)
 
-    if (typeof map !== 'undefined' && markerData.count() > 0) {
-        // get location data from the mongo db and add it to the map
-        markerData.forEach((item) => {
-            let marker = L.marker(item.mapLocation.coords);
+    // console.log(markerData.count(), map)
 
-            let popup = marker.bindPopup(`Location Name: ${item.city}`)
+    // if (typeof map !== 'undefined' && markerData.count() > 0) {
+    //     // get location data from the mongo db and add it to the map
+    //     markerData.forEach((item) => {
+    //         let marker = L.marker(item.mapLocation.coords);
 
-            //listen for cick events in the market and oepn the popup once clock is detect
-            marker.on('click', ( ) =>{
-                popup.openPopup();
-                FlowRouter.go(`/date/${item.awsID}/${item._id}`)
-                //console.log(`location Id :${item._id}` )
-            })
+    //         // let popup = marker.bindPopup(`Location Name: ${item.city}`)
 
-            marker.addTo(map);
-        });
-    }
-       
+    //         //listen for cick events in the market and oepn the popup once clock is detect
+    //         marker.on('click', ( ) =>{
+    //             $('#myModal').modal('show');
+    //             // popup.openPopup();
+    //             // FlowRouter.go(`/date/${item.awsID}/${item._id}`)
+    //             //console.log(`location Id :${item._id}` )
+    //         })
 
-   
+    //         marker.addTo(map);
+    //     });
+    // }
+
+
+
 };
 
 
@@ -77,25 +78,48 @@ Meteor.autorun(() => {
 
     console.log(markerData.count(), map)
 
+    let plantingCurrentDateBtnOnClick = function () {
+        FlowRouter.go(`/date/${this.awsID}/${this._id}`);
+    };
+
+    let plantingEnteredDateBtnOnClick = function () {
+        FlowRouter.go(`/date/${this.awsID}/${this._id}`);
+    };
+
     if (typeof map !== 'undefined' && markerData.count() > 0) {
         // get location data from the mongo db and add it to the map
         markerData.forEach((item) => {
             let marker = L.marker(item.mapLocation.coords);
+            let modal = $('#myModal');
 
-            let popup = marker.bindPopup(`Location Name: ${item.city}`)
 
             //listen for cick events in the market and oepn the popup once clock is detect
             marker.on('click', ( ) =>{
-                popup.openPopup();
-                FlowRouter.go(`/date/${item.awsID}/${item._id}`)
-                //console.log(`location Id :${item._id}` )
-            })
+                let province = item.province;
+                let provinceFirstChar = province.charAt(0).toUpperCase();
+
+                modal.find('.modal-title').text(provinceFirstChar + item.province.substr(1));
+
+                setTimeout(() => {
+                    modal.modal('show');
+                }, 0);
+            });
+
+            modal.on('show.bs.modal', () => {
+                modal.find('.planting-current-date-btn').on('click.plantingCurrentDate', $.proxy(plantingCurrentDateBtnOnClick, item));
+                modal.find('.planting-date-btn').on('click.plantingEnteredDate', $.proxy(plantingEnteredDateBtnOnClick, item));
+            });
+
+            modal.on('hide.bs.modal', () => {
+                modal.find('.planting-current-date-btn').off('click.plantingCurrentDate');
+                modal.find('.planting-date-btn').off('click.plantingEnteredDate');
+            });
 
             marker.addTo(map);
         });
     }
-       
-    
+
+
 });
 
 
@@ -125,5 +149,5 @@ Template.map.helpers ({
     }
 }
 
-     
+
 })

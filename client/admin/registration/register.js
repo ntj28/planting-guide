@@ -15,7 +15,8 @@ Template.register.events({
         event.preventDefault();
         var username = $('[name=username]').val();
         var password = $('[name=password]').val();
-       
+        
+        username = username.replace(/\s/g, "");
 
         Accounts.createUser({
 		    username: username,

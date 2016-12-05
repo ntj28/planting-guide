@@ -52,6 +52,22 @@ Meteor.autorun(() => {
           
     });
 
+    //for the twenty and thirty days cumulative
+    const daysField = $('#daysEdit')
+    daysField.empty()
+    //console.log(data && data.days)
+    if ((data && data.days) == '20') {
+        daysField.append("<option value ='20' selected ='selected'>20</option>")
+        daysField.append("<option value ='30' >30</option>")
+    } else {
+        daysField.append("<option value ='20'>20</option>")
+        daysField.append("<option value ='30' selected ='selected'>30</option>")
+
+    }
+
+
+
+
     //  const cropVarietyData  = cropVarietiesCollection.find({}).fetch() 
   //console.log("on rendered function"+cropVarietyData.length)
     
@@ -93,15 +109,13 @@ Template.EditThreshold.events ({
         const _id = FlowRouter.getParam('threshold_id')
 		const cropField = $('#crop')
         const cropType = $('#cropSelectionThreshold').find('option:selected').text()         
-        const cropVariety = $('#cropVarietySelectionThreshold').find('option:selected').text()
-        const daysField = $('#days')
-        const days = daysField.val()
+        const cropVariety = $('#cropVarietySelectionThreshold').find('option:selected').text()        
+        const days =  $('#daysEdit').find('option:selected').text()
         const amountRainfallField = $('#amountRainfall')
         const amountRainfall = amountRainfallField.val()
         
         Meteor.call ('update-thresholds',_id,cropType,cropVariety,days,amountRainfall)
         console.log ("added")        
-        daysField.val = " "
         amountRainfallField.val = " "
 
         FlowRouter.go ('/threshold')        

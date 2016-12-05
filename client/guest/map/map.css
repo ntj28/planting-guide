@@ -3,4 +3,11 @@
 	background-image: url('https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.0.1/images/');
 }
 
+#mini-map {
+	height: 350px;
+}
+
+#historical-yield, #crop-dropdown{
+	margin-top:10px;
+}
 

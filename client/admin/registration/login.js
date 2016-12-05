@@ -3,6 +3,7 @@ Template.login.events({
         event.preventDefault();
         var username = $('[name=username]').val();
         var password = $('[name=password]').val();
+        username = username.replace(/\s/g, "");
         Meteor.loginWithPassword(username, password, function(error){
 		   if(error){
 		        console.log(error.reason);

@@ -1,6 +1,9 @@
 <template name = "City">
-	<h4>City</h4>
-	{{> AddCity}}
+<div class="container">
+	   <h2>City</h2>
+       
+       <div class="panel-body">
+		{{> AddCity}}
 	<table border ="1">
 		<tr>
 			<th> City </th>
@@ -13,6 +16,8 @@
 		</tr>
 			{{/each}}
 	</table>
-	<button id ="add-city-button">Add City</button>
-	<button id ="done-button">Done</button>
+<!--	<button id ="add-city-button">Add City</button>-->
+	<button id ="done-button">Back</button>
+       </div>
+</div>
 </template>

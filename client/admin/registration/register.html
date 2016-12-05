@@ -1,13 +1,29 @@
 <template name="register">
-    <h2>Register</h2>
-    <form class="register">
-        <p>Username: <input type="text" name="username"></p>
-        <p>Password: <input type="password" name="password"></p>
-        <p><input type="submit" value="Register"></p>
-    </form>
-
-    {{> navigation}}
+      <div class="container">
+        <div class="row>">
+        
+        <div class="col-md-4 col-md-offset-4"> <a href="#" data-toggle="modal" button type ="button" class="btn btn-primary" data-target="#login-modal">Login</a> </div>
+        <div class="col-md-4 <col-md-offset-0></col-md-offset-0>"> <a href="#" data-toggle="modal" button type ="button" class="btn btn-primary" data-target="#login-modal">Register</a> </div>
+        </div>
+     </div>  
+    <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog">
+		    <div class="loginmodal-container">
+			<h1>Register</h1><br> 
     
+            <h2>Register</h2>
+                <form class="register">
+                    <p>Username: <input type="text" name="username"></p>
+                    <p>Password: <input type="password" name="password"></p>
+                    <p><input type="submit" value="Register"></p>
+                </form>
+		    </div>
+        </div>
+    </div> 
+    {{> navigation}}
 </template>
+               
+                	  
+
 
 

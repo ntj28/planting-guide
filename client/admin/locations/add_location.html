@@ -1,12 +1,34 @@
 <template name="AddLocation">
-    <label for ="Project Name">Project Name </label> 
-    <input type ="text" id ="projectName"> <br/>
-    <label for ="Institution">Institution </label>
-    <input type ="text" id ="insttitution"> <br/>
-    <label for ="Latitude">Latitude</label> 
-    <input type="text" id ="latitude"><br/>
-    <label for ="Longitude">Longitude</label> 
-    <input type ="text" id ="longitude"><br/>
+   <div class="container">
+       <h2>Add location</h2>
+       <div class="panel-heading">Locations</div>
+       <div class="panel-body">
+   <form>
+    <div class="form-group">
+      <label for="email">Project Name:</label>
+        <input type="text" class="form-control" id="projectName" placeholder="Project Name">
+    </div>    
+    
+    <div class="form-group">
+      <label for="email">Institution:</label>
+        <input type="text" class="form-control" id="insttitution" placeholder="Institution Name">
+    </div> 
+
+    <div class="form-group">
+      <label for="email">Latitude:</label>
+        <input type="text" class="form-control" id="latitude" placeholder="Latitude">
+    </div>
+
+    <div class="form-group">
+      <label for="email">Latitude:</label>
+        <input type="text" class="form-control" id="latitude" placeholder="Latitude">
+    </div>
+
+    <div class="form-group">
+      <label for="email">Longitude:</label>
+        <input type="text" class="form-control" id="longitude" placeholder="Longitude">
+    </div> 
+
     <label for ="Province">Province</label>
     <select id = "provinceSelection">
 	    {{#each dataProvince}}
@@ -24,4 +46,7 @@
     <input type ="text" id ="awsID"><br/>
     <button id ="addLocationButton">Save</button>
     <button id ="Cancel">Cancel</button>
+   </form>
+       </div>
+       </div>
 </template>

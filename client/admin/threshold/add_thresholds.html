@@ -1,25 +1,32 @@
 <template name ="AddThreshold">
-	<label for ="Crop Type">Crop Type </label>
-	<select id = "cropSelectionThresholdAdd">
-		{{#each dataCrop}}
-			  {{> cropItemAddThreshold}}
-		{{/each}}  
-	</select> <br/>
-	<label for ="Crop Variety">Crop Variety </label>
-	<select id = "cropVarietySelectionThresholdAdd">
-		{{#each dataVariety}}
-			  {{> varietyItemAddThreshold}}
-		{{/each}}
-	</select> <br/>
-	<label for ="days">No. of Days </label>	
-	<select id = "days">
-		 <option value="20">20</option>
-		 <option value="30">30</option>
-	</select> <br/>
-	<label for = "rainfall">Amount of Rainfall </label>
-	<input id ="amountRainfall" type = "text"><br/>
-	<button id ="add-threshold">Save</button>
-	<button id ="cancel-threshold">Cancel</button> 
+	<div class="container">	
+		<h4>Add Thresholds</h4>
+			<div class="panel-heading">Thresholds</div>
+       			<div class="panel-body">
+					<label for ="Crop Type">Crop Type </label>
+					<select id = "cropSelectionThresholdAdd">
+						{{#each dataCrop}}
+							{{> cropItemAddThreshold}}
+						{{/each}}  
+					</select> <br/>
+					<label for ="Crop Variety">Crop Variety </label>
+					<select id = "cropVarietySelectionThresholdAdd">
+						{{#each dataVariety}}
+							{{> varietyItemAddThreshold}}
+						{{/each}}
+					</select> <br/>
+					<label for ="days">No. of Days </label>	
+					<select id = "days">
+						<option value="20">20</option>
+						<option value="30">30</option>
+					</select> <br/>
+					<label for = "rainfall">Amount of Rainfall </label>
+					<input id ="amountRainfall" type = "text"><br/>
+					<button id ="add-threshold">Save</button>
+					<button id ="cancel-threshold">Cancel</button>
+    
+	</div>
+	</div>
 </template>
 
 

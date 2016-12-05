@@ -1,4 +1,9 @@
 <template name ="EditThreshold">
+	<div class="container">
+	<h4>Edit Thresholds</h4>
+		<div class="panel-heading">Thresholds</div>
+       	<div class="panel-body">
+
 	<label for ="Crop Type">Crop Type </label>
 	<select id = "cropSelectionThreshold">
 		<option> sample </option>   
@@ -13,5 +18,7 @@
 	</select> <br/>
 	<label for = "rainfall">Amount of Rainfall </label>
 	<input id ="amountRainfall" type = "text" value="{{data.rainfall}}"><br/>
-	<button id ="edit-threshold">Save</button>	
+	<button id ="edit-threshold">Save</button>
+       	</div>
+	</div>
 </template>

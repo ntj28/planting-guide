@@ -1,5 +1,9 @@
 <template name = "Rainfall">
+	<div class="container">	
 	<h4> Amount of Rainfall Data </h4>
+				<div class="panel-heading">Rain Fall</div>
+       			<div class="panel-body">
+	
 		
 	
 	{{> upload}}
@@ -18,8 +22,10 @@
 		</tr>
 			{{/each}}
 	</table>
-
+       			</div>
+	</div>
 </template>
+
 
 <template name="upload">
   <h4 class="page-header">Upload a <code>csv</code></h4>

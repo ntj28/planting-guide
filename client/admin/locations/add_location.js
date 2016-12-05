@@ -2,6 +2,21 @@ import { location } from '../../../lib/collections/locations.js'
 import { province } from '../../../lib/collections/province.js'
 import { cityCollection } from '../../../lib/collections/city.js'
 
+Template.AddLocation.onCreated( () => {
+
+  var currentUser = Meteor.userId();
+        if(currentUser){
+            // logged-in
+             Meteor.subscribe('province')
+             Meteor.subscribe('cities')
+        } else {
+            // not logged-in
+            FlowRouter.go('/')
+
+        }
+});
+
+
 Template.AddLocation.helpers ({
     dataProvince: function() {
         const dataProvince  = province.find({}).fetch()         

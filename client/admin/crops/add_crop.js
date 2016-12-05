@@ -1,3 +1,15 @@
+Template.AddCrop.onCreated( () => {
+
+  var currentUser = Meteor.userId();
+        if(currentUser){
+            // logged-in
+        } else {
+            // not logged-in
+            FlowRouter.go('/')
+
+        }
+});
+
 Template.AddCrop.events ({
 	'click #SaveCrop ' : function (e) {
 		const cropField = $('#crop')

@@ -1,26 +1,40 @@
 <template name ="AddDurationYield">
 	 
-	<label for ="Province">Province</label>
-    <!--  <select id = "provinceSelection">
-	    {{#each dataProvince}}
-			  {{> provinceItemLocation}}
+	{{> uploadYield}}
+	<label for ="Crop Type">Crop Type </label>
+	<select id = "cropSelection">
+	    {{#each cropData}}
+			  {{> cropItemsDuration}}
 		{{/each}}
-		</select> <br/>
-   
-    <label for ="City">>City </label>
-    <select id = "citySelection">
-	    {{#each dataCity}}
-			  {{> cityItemLocation}}
+	</select> <br/>	
+	<select id = "cropVarietySelection">
+	    {{#each cropVarietyData}}
+			  {{> cropVarietyItemsDuration}}
 		{{/each}}
-	</select> <br/> -->
+	</select> <br/>
 	<label for ="Week No.">Week No.</label>
-	<input type="text" id="weekNo"><br/>
-	<label for ="Starting Date">Starting Date</label> 
-	<input type="text" id="startDate"><br/>
-	<label for ="Ending Date">Ending Date</label> 
-	<input type="text" id="endDate"><br/>
+	<input type="text" id="weekNo"><br/>	
 	<label for ="Yield">Yield </label>
 	<input type="text" id="yield"><br/>
 	<button id="add-yield-button">Save</button>
 	<button id ="Cancel">Cancel</button>
+</template>
+
+<template name="uploadYield">
+  <h4 class="page-header">Upload a <code>csv</code></h4>
+
+  {{#unless uploading}}
+    <input type="file" name="uploadCSV" id ="upload">
+  {{else}}
+    <p><i class="fa fa-spin fa-refresh"></i> Uploading files...</p>
+  {{/unless}}
+</template>
+
+ <template name="cropItemsDuration">
+	 <option value="{{_id}}">{{crop}}</option>
+</template>
+
+
+<template name="cropVarietyItemsDuration">
+	 <option value="{{variety}}">{{variety}}</option>
 </template>

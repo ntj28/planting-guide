@@ -4,9 +4,19 @@
 	    {{#each cropData}}
 			  {{> cropItems}}
 		{{/each}}
-	</select> <br/>	
+	</select> <br/>
+	<label for ="Crop Variety">Crop Variety </label>
+	<select id = "cropVarietySelection">
+	    {{#each cropVarietyData}}
+			  {{> cropVarietyItems}}
+		{{/each}}
+	</select> <br/>
 	<label for ="Crop Yield">Crop Yield </label>
 	<input type="text" id="cropYield"><br/>
 	<button id ="AddCropYieldButton">Save</button>
 	<button id ="Cancel">Cancel</button>
+</template>
+
+<template name="cropVarietyItems">
+	 <option value="{{variety}}">{{variety}}</option>
 </template>

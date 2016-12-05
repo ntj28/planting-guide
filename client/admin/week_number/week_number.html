@@ -1,0 +1,19 @@
+<template name = "weekNumber">
+	<h4>Week Number </h4>
+
+	{{> SetUpWeekNumber}}
+	
+	<table border ="1">
+		<tr>
+			<th> Date </th>
+			<th> Week Number </th>			
+			<th> Edit</th>		 		
+		</tr>
+			{{#each weekData}}
+		<tr>
+			{{> weekItem}}
+		</tr>
+			{{/each}}
+	</table>
+	
+</template>

@@ -1,5 +1,19 @@
 import { thresholdsCollection } from '../../../lib/collections/thresholds.js'
 
+Template.EditThreshold.onCreated( () => {
+
+  var currentUser = Meteor.userId();
+        if(currentUser){
+            // logged-in
+            Meteor.subscribe('thresholds')
+        } else {
+            // not logged-in
+            FlowRouter.go('/')
+
+        }
+});
+
+
 Template.EditThreshold.helpers({
 	data:()=> {
 		const _id = FlowRouter.getParam('threshold_id')

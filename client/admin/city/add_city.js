@@ -1,3 +1,15 @@
+Template.AddCity.onCreated( () => {
+
+  var currentUser = Meteor.userId();
+        if(currentUser){
+            // logged-in
+        } else {
+            // not logged-in
+            FlowRouter.go('/')
+
+        }
+});
+
 Template.AddCity.events ({
 	'click #SaveCity ' : function (e) {
 		const cityField = $('#city')

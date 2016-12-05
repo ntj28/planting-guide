@@ -1,5 +1,18 @@
 import { cropsCollection  } from '../../../lib/collections/crops.js'
 
+Template.Crops.onCreated( () => {
+
+  var currentUser = Meteor.userId();
+        if(currentUser){
+            // logged-in
+            Meteor.subscribe('crops')
+        } else {
+            // not logged-in
+            FlowRouter.go('/')
+
+        }
+});
+
 Template.Crops.helpers ({
 	cropData: function() {
 		const cropData = cropsCollection.find({}).fetch()

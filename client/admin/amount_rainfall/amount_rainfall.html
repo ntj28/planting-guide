@@ -1,6 +1,10 @@
 <template name = "Rainfall">
 	<h4> Amount of Rainfall Data </h4>
+		
 	
+	{{> upload}}
+	 
+		
 	<table border ="1">
 		<tr>
 			<th> Date  </th>
@@ -13,4 +17,18 @@
 		</tr>
 			{{/each}}
 	</table>
+
 </template>
+
+<template name="upload">
+  <h4 class="page-header">Upload a <code>csv</code></h4>
+
+  {{#unless uploading}}
+    <input type="file" name="uploadCSV" id ="upload">
+  {{else}}
+    <p><i class="fa fa-spin fa-refresh"></i> Uploading files...</p>
+  {{/unless}}
+</template>
+
+
+ 

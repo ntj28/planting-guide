@@ -1,10 +1,11 @@
 import { cropYields } from '../../lib/collections/crop_yield.js'
 
 Meteor.methods ({
-	'add-crop-yield' : function (locationID, cropType, cropYield) {
+	'add-crop-yield' : function (locationID, cropType,cropVariety,cropYield) {
 		cropYields.insert({
 			locationID : locationID,
 			cropType :  cropType,
+            cropVariety: cropVariety,
 			cropYield : cropYield
 		})
 	},
@@ -15,12 +16,13 @@ Meteor.methods ({
         })
     },
 
-    'update-crop-yield' : function(_id, cropType,cropYield) {
+    'update-crop-yield' : function(_id, cropType,cropVariety,cropYield) {
         cropYields.update (
             {_id},//filters to be updaated
             {
                 $set: {
                     cropType:cropType,
+                    cropVariety: cropVariety,
                     cropYield: cropYield                    
                 }
             },

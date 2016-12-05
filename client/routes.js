@@ -104,10 +104,17 @@ FlowRouter.route ('/edit_city/:city_id/:province_id', {
 	}
 })
 
+//enter date
+FlowRouter.route('/date/:awsID/:locationID', {
+	action: function(params,queryParams,queryParams2){
+		BlazeLayout.render("mainLayout", {main:"EnterDate"})
+	}
+})
+
 //chart
-FlowRouter.route ('/chart/:awsID', {
-	action: function(params, queryParams) {
-		BlazeLayout.render("mainLayout", {main: "DailyRainfall"})
+FlowRouter.route ('/chart/:awsID/:date/:locationID', {
+	action: function(params, queryParams,queryParams2,queryParams3) {
+		BlazeLayout.render("mainLayout", {main: "ChartRainfall"})
 	}
 })
 
@@ -171,7 +178,56 @@ FlowRouter.route('/editCrop/:crop_id',{
 	}
 })
 
+//set up week no.
+FlowRouter.route('/setUpWeek', {
+	action: function(params,queryParams){
+		BlazeLayout.render("mainLayout", {main:"weekNumber"})
+	}
+})
 
+//edit week no
+FlowRouter.route('/editWeek/:date_id', {
+	action: function(params,queryParams) {
+		BlazeLayout.render("mainLayout", {main: "editWeekNumber"})
+	}
+})
+
+
+//register user
+FlowRouter.route('/register', {
+	action: function(params,queryParams) {
+		BlazeLayout.render("mainLayout", {main : "register"})
+	}
+})
+
+//login user
+FlowRouter.route('/login', {
+	action: function(params,queryParams){
+		BlazeLayout.render("mainLayout", {main: "login"})
+	}
+})
+
+//crop varieties
+FlowRouter.route ('/cropVariety/:crop_id', {
+	action: function(params,queryParams) {
+		BlazeLayout.render("mainLayout", {main: "Varieties"})
+	}
+})
+
+
+//add crop varieties
+FlowRouter.route ('/addCropVariety/:crop_id', {
+	action: function(params,queryParams) {
+		BlazeLayout.render("mainLayout", {main: "AddVariety"})
+	}
+})
+
+//edit crop variety
+FlowRouter.route ('/editCropVariety/:variety_id/:crop_id', {
+	action: function(params,queryParams) {
+		BlazeLayout.render("mainLayout", {main: "EditCropVariety"})
+	}
+})
 
 
 

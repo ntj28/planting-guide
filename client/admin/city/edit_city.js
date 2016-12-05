@@ -1,5 +1,19 @@
 import { cityCollection } from '../../../lib/collections/city.js'
 
+Template.EditCity.onCreated( () => {
+
+  var currentUser = Meteor.userId();
+        if(currentUser){
+            // logged-in
+            Meteor.subscribe('cities')
+        } else {
+            // not logged-in
+            FlowRouter.go('/')
+
+        }
+});
+
+
 Template.EditCity.helpers({
 	data:()=> {
 		const _id = FlowRouter.getParam('city_id')

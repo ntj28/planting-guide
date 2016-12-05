@@ -1,3 +1,15 @@
+Template.AddProvince.onCreated( () => {
+
+  var currentUser = Meteor.userId();
+        if(currentUser){
+            // logged-in
+        } else {
+            // not logged-in
+            FlowRouter.go('/')
+
+        }
+});
+
 Template.AddProvince.events ({
 	'click #SaveProvince ' : function (e) {
 		const ProvinceField = $('#province')

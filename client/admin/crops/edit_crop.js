@@ -1,5 +1,18 @@
 import { cropsCollection } from '../../../lib/collections/crops.js'
 
+Template.EditCrop.onCreated( () => {
+
+  var currentUser = Meteor.userId();
+        if(currentUser){
+            // logged-in
+            Meteor.subscribe('crops')
+        } else {
+            // not logged-in
+            FlowRouter.go('/')
+
+        }
+});
+
 Template.EditCrop.helpers({
 	data:()=> {
 		const _id = FlowRouter.getParam('crop_id')

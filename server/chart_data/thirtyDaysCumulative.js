@@ -21,20 +21,14 @@ Meteor.methods ({
 			 
 			 
 			 let startSixtyMongo =startSixty.toISOString().slice(0,10).replace(/-/g,"-");
-			 let startThirtyMongo =startThirty.toISOString().slice(0,10).replace(/-/g,"-");
-			 //label.push(startThirtyMongo)
-
-			 //console.log ('sixty days' +startSixtyMongo)
-			 //console.log ('thirty days' +startThirtyMongo)
-
+			 let startThirtyMongo =startThirty.toISOString().slice(0,10).replace(/-/g,"-");			 
 			 let amountRainSixty  = amountRainfallCollection.find({
 			 	$and:[{
 			 		awsID:awsID
 			 	},{
-			 		date:{$gte:startSixtyMongo,$lte:startThirtyMongo}}]})//.sort( { '$date': 1 })//.fetch()
+			 		date:{$gte:startSixtyMongo,$lte:startThirtyMongo}}]})
 			 
-			 amountRainSixty.forEach((item)=>{
-			 //const date = `${item.date}`
+			 amountRainSixty.forEach((item)=>{			 
 			 var data = `${item.amount_rainfall}`
 			 var floatData = parseFloat(data)
 
@@ -46,24 +40,16 @@ Meteor.methods ({
 
 
 			 totalSixty = parseFloat(totalSixty) +  floatData
-
-			 
-	 		 
-			 //const city = `${item.city}`
-			 //cityNoSpace =city.replace(" ","_")
-			 //console.log(provinceNoSpace + " city" + cityNoSpace)
+			
 			})
 
 			totalSixty = totalSixty.toFixed(2);
 			thirtyDaysAccumulatedRainfall = parseFloat(thirtyDaysAccumulatedRainfall) + parseFloat(totalSixty)
-			thirtyDaysCumulative.push(totalSixty)
-			//console.log(totalSixty)
+			thirtyDaysCumulative.push(totalSixty)			
 			totalSixty = 0
 			startThirty.setDate(startThirty.getDate() + 1);
 		
 		}
-		console.log("total thirty " + thirtyDaysAccumulatedRainfall)
-
 		return {thirtyDaysCumulative: thirtyDaysCumulative,thirtyDaysAccumulatedRainfall:thirtyDaysAccumulatedRainfall};
 
 

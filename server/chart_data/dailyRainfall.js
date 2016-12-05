@@ -12,10 +12,7 @@ Meteor.methods ({
 		amountRain.forEach((item)=>{
 			//const date = `${item.date}`
 			label.push(`${item.date}`)
-			dataDaily.push(`${item.amount_rainfall}`)
-			//const city = `${item.city}`
-			//cityNoSpace =city.replace(" ","_")
-			//console.log(provinceNoSpace + " city" + cityNoSpace)
+			dataDaily.push(`${item.amount_rainfall}`)		
 		})
 
 		return {label: label,dataDaily: dataDaily};

@@ -15,8 +15,7 @@ Meteor.methods ({
 			tenDataRainfall.push(`${item.rainfall}`)
 			totalTenDaysForecast = parseFloat(totalTenDaysForecast) + parseFloat(`${item.rainfall}`)
 
-		})
-		console.log("total ten"+totalTenDaysForecast)
+		})	
 
 		return {dateLabel:dateLabel,tenDataRainfall: tenDataRainfall,totalTenDaysForecast:totalTenDaysForecast};
 

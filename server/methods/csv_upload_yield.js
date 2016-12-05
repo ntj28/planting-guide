@@ -8,14 +8,11 @@ Meteor.methods({
 
 	'parseUploadYield' : function(data,locationID,cropType,cropVariety){
 
-		//console.log(data)
-	     
-
-	     
+ 	     
 	    let week =[]
 		let rainfallArray =[]
 
-		//console.log("length " + data.length)
+	 
 
 
 	    for ( let i = 0; i < data.length; i++ ) {
@@ -24,16 +21,13 @@ Meteor.methods({
 
 	    	if (data[i].length == 52) {
 
-	    		//console.log(data[i])
+	    		 
 	    		weekNo = 1
 	    		data[i].forEach((yieldData) => {
 	    			Meteor.call('update-duration-yield',locationID,cropType,cropVariety,weekNo,yieldData)
 	    			weekNo ++
 	    		})
-	    		//let date  = new Date(data[i][0])
-				//let dateFormatted =date.toISOString().slice(0,10).replace(/-/g,"-");		    	 
-		    	//Meteor.call('update-rainfall-data',awsID,dateFormatted,data[i][19])
-			     
+	    		 
 			}    	
 			
 	    }

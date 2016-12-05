@@ -38,7 +38,7 @@ Meteor.startup(() => {
         });
     }
 
-    console.log(`Data Count: ${dataCount}`);
+   
 });
 
 

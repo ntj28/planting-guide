@@ -38,8 +38,11 @@ let initMap = () => {
             marker.on('click', () =>{
                 let province = item.province;
                 let provinceFirstChar = province.charAt(0).toUpperCase();
+                let capitalized = provinceFirstChar + item.province.substr(1);
 
-                modal.find('.modal-title').text(provinceFirstChar + item.province.substr(1));
+                modal.find('.modal-title').text(capitalized);
+
+                modal.find('#historical-yield .location').text(capitalized);
 
                 setTimeout(() => {
                     modal.modal('show');

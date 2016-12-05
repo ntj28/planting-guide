@@ -19,7 +19,7 @@ Meteor.methods({
         })
 
     },
-    
+
     'delete-location-city': function(city){
         location.remove({
             city:city
@@ -59,7 +59,7 @@ Meteor.methods({
             },
 
                 {upsert : true}
-            
+
         )
 
     },
@@ -69,14 +69,14 @@ Meteor.methods({
             {city},//filters to be updaated
             {
                 $set: {
-                         
+
                     city:cityNew,
-                                                            
+
                 }
             },
 
                 { multi: true}
-            
+
         )
 
     },
@@ -86,18 +86,26 @@ Meteor.methods({
             {province},//filters to be updaated
             {
                 $set: {
-                         
+
                     province:provinceNew,
-                                                            
+
                 }
             },
 
                 { multi: true}
-            
+
         )
 
     },
 
+    'get-all-location' : function() {
+        let resultArray = [];
 
+        location.find().forEach((item) => {
+            resultArray.push(item);
+        })
+
+        return resultArray;
+    }
 
 })

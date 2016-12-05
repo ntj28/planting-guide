@@ -16,68 +16,7 @@ import './map.html';
 
 let map;
 
-Template.map.onCreated( () => {
-
-   Meteor.subscribe('locations')
-});
-
-
-
-
-Template.map.rendered = () => {
-    // create the map
-    map = L.map('map', {});
-
-    // set the lat, long and zoom levels.
-    map.setView([13, 122], 6);
-
-    // create the basemap tile layer
-    var tileLayer = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: `Map data &copy; <a href="http://openstreetmap.org" target="_blank">
-            OpenStreetMap</a> contributors`
-    });
-
-    // add the layer to the map
-    tileLayer.addTo(map);
-
-
-    // //place the marker
-    // let markerData = location.find();
-
-
-    // console.log(markerData.count(), map)
-
-    // if (typeof map !== 'undefined' && markerData.count() > 0) {
-    //     // get location data from the mongo db and add it to the map
-    //     markerData.forEach((item) => {
-    //         let marker = L.marker(item.mapLocation.coords);
-
-    //         // let popup = marker.bindPopup(`Location Name: ${item.city}`)
-
-    //         //listen for cick events in the market and oepn the popup once clock is detect
-    //         marker.on('click', ( ) =>{
-    //             $('#myModal').modal('show');
-    //             // popup.openPopup();
-    //             // FlowRouter.go(`/date/${item.awsID}/${item._id}`)
-    //             //console.log(`location Id :${item._id}` )
-    //         })
-
-    //         marker.addTo(map);
-    //     });
-    // }
-
-
-
-};
-
-
-
-Meteor.autorun(() => {
-    let markerData = location.find();
-    //console.log("autorun called")
-
-    console.log(markerData.count(), map)
-
+let initMap = () => {
     let plantingCurrentDateBtnOnClick = function () {
         FlowRouter.go(`/date/${this.awsID}/${this._id}`);
     };
@@ -86,15 +25,15 @@ Meteor.autorun(() => {
         FlowRouter.go(`/date/${this.awsID}/${this._id}`);
     };
 
-    if (typeof map !== 'undefined' && markerData.count() > 0) {
+    Meteor.call('get-all-location', (err, result) => {
         // get location data from the mongo db and add it to the map
-        markerData.forEach((item) => {
+        result.forEach((item) => {
             let marker = L.marker(item.mapLocation.coords);
             let modal = $('#myModal');
 
 
             //listen for cick events in the market and oepn the popup once clock is detect
-            marker.on('click', ( ) =>{
+            marker.on('click', () =>{
                 let province = item.province;
                 let provinceFirstChar = province.charAt(0).toUpperCase();
 
@@ -117,37 +56,31 @@ Meteor.autorun(() => {
 
             marker.addTo(map);
         });
-    }
+    });
+};
 
-
+Template.map.onCreated(() => {
+   Meteor.subscribe('locations')
 });
 
 
-Template.map.helpers ({
+Template.map.rendered = () => {
+    // create the map
+    map = L.map('map', {});
 
-    map: function() {
+    // set the lat, long and zoom levels.
+    map.setView([13, 122], 6);
 
-   let markerData = location.find();
+    // create the basemap tile layer
+    var tileLayer = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: `Map data &copy; <a href="http://openstreetmap.org" target="_blank">
+            OpenStreetMap</a> contributors`
+    });
 
-    console.log(markerData.count(), map)
+    // add the layer to the map
+    tileLayer.addTo(map);
 
-    if (typeof map !== 'undefined' && markerData.count() > 0) {
-        // get location data from the mongo db and add it to the map
-        markerData.forEach((item) => {
-            let marker = L.marker(item.location.coords);
-
-            let popup = marker.bindPopup(`Location Name: ${item.city}`)
-
-            //listen for cick events in the market and oepn the popup once click is detect
-            marker.on('click', ( ) =>{
-                popup.openPopup();
-                FlowRouter.go(`/date/${item.awsID}/${item._id}`)
-            })
-
-            marker.addTo(map);
-        });
-    }
-}
+    initMap();
+};
 
 
-})

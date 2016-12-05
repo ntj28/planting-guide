@@ -14,6 +14,12 @@ Meteor.methods ({
         })
     },
 
+    'delete-variety-cropID': function(cropID){
+        cropVarietiesCollection.remove({
+            cropID:cropID
+        })
+    },
+
     'update-variety' : function(_id, variety ) {
         cropVarietiesCollection.update (
             {_id},//filters to be updaated

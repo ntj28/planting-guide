@@ -13,7 +13,6 @@ Template.editRainfall.onCreated( () => {
         }
 });
 
-
 Template.editRainfall.helpers({
 	data:()=> {
 		const _id = FlowRouter.getParam('rainfallID')

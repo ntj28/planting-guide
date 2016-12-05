@@ -106,6 +106,7 @@ templating-compiler@1.2.15
 templating-runtime@1.2.15
 templating-tools@1.0.5
 themeteorchef:bert@1.1.0
+themeteorchef:jquery-validation@1.14.0
 tracker@1.1.0
 twbs:bootstrap@3.3.6
 ui@1.0.12

@@ -34,6 +34,11 @@ Template.cropItem.events({
 		//delete from threshold collection
 		Meteor.call('delete-thresholds-cropType', this.crop)
 
+		//delete from crop variety
+		Meteor.call('delete-variety-cropID', this._id)
+
+
+
 		 
 	}
 

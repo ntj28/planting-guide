@@ -1,11 +1,5 @@
 /*jshint node:true, esnext: true, undef:true, unused: true*/
 
-/*!
- * Meteor Boilerplate Code
- *
- * Copyright(c) Exequiel Ceasar Navarrete <development.lkexi@gmail.com>
- * Licensed under MIT
- */
 'use strict';
 
 import { Meteor } from 'meteor/meteor';

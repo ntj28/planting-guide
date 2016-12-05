@@ -1,5 +1,9 @@
 <template name = "Crops">
+		<div class="container">
 	<h4>Crops</h4>
+	<div class="panel panel-default">
+			<div class="panel-heading">Crops</div>
+       			<div class="panel-body" align="center">
 	{{> AddCrop}}
 	<table border ="1">
 		<tr>
@@ -13,6 +17,11 @@
 			{{> cropItem}}
 		</tr>
 			{{/each}}
+			
 	</table>
-	<button id ="add-crop-button">Add Crop</button>
+	<!--<button id ="add-crop-button">Add Crop</button>-->
+       			</div>
+	</div>
+		</div>
+		
 </template>

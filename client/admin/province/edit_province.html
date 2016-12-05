@@ -1,12 +1,15 @@
 <template name = "EditProvince"> 
 	<div class="container">
-	
-	<h4>Edit Province</h4>
+		<h4>Edit Province</h4>
+		<div class="panel panel-default">
 		<div class="panel-heading">Province</div>
        	<div class="panel-body">
+<div class="form-group">
 	<label for ="Province">Province</label>
-	<input type = "text" id ="province" value="{{data.province}}">
+	<input type = "text" class="form-control" id ="province" value="{{data.province}}">
+</div>
 	<button id ="update-province-button"> Save </button>
        	</div>
+		</div>
 	</div>
 </template>

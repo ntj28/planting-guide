@@ -1,8 +1,13 @@
 <template name ="AddCropYield">
 	<div class="container">	
 		<h4>Add Crop Yield</h4>
+		<div class="panel panel-default">
 			<div class="panel-heading">Crop Yield</div>
        			<div class="panel-body">	
+<div class="form-group">
+	<label for ="Crop Yield">Crop Yield </label>
+	<input type="text" class="form-control" placeholder="CropYield" id="cropYield">
+</div>	
 	<label for ="Crop Type">Crop Type </label>
 	<select id = "cropSelectionCropYieldAdd">
 		{{#each dataCrop}}
@@ -15,11 +20,11 @@
 			  {{> varietyItemAddCrop}}
 		{{/each}}
 	</select> <br/>
-	<label for ="Crop Yield">Crop Yield </label>
-	<input type="text" id="cropYield"><br/>
+
 	<button id ="AddCropYieldButton">Save</button>
 	<button id ="Cancel">Cancel</button>
        			</div>
+	</div>
 	</div>
 </template>
 

@@ -1,32 +1,57 @@
 <template name="EditLocation">
 	<div class="container">	
 		<h4>Edit Location</h4>
+        <div class="panel panel-default">
 			<div class="panel-heading">Locations</div>
        			<div class="panel-body">
-	<label for ="Project Name">Project Name</label> 
-	<input type ="text" id ="projectName" value ="{{data.projectName}}"> <br/>
-    <label for ="Institution">Institution</label> 
-    <input type ="text" id ="insttitution" value ="{{data.institution}}"> <br/>
-    <label for ="Latitude">Latitude </label>
-    <input type="text" id ="latitude" value ="{{data.latitude}}"><br/>
+<form>
+    <div class="form-group">
+	    <label for ="Project Name">Project Name</label> 
+	    <input type ="text" class="form-control" placeholder="Project Name" id ="projectName" value ="{{data.projectName}}">
+    </div>     
+
+     <div class="form-group">    
+        <label for ="Institution">Institution</label> 
+        <input type ="text" class="form-control" placeholder="Institution" id ="insttitution" value ="{{data.institution}}">
+     </div>
+
+    <div class="form-group">  
+        <label for ="Latitude">Latitude </label>
+        <input type="text" class="form-control" placeholder="Latitude" id ="latitude" value ="{{data.latitude}}">
+    </div>
+
+   <div class="form-group"> 
     <label for ="Longitude">Longitude</label>
-    <input type ="text" id ="longitude" value ="{{data.longitude}}"><br/>
+    <input type ="text" class="form-control" placeholder="Longitude" id ="longitude" value ="{{data.longitude}}">
+   </div>
+
+   <div class="form-group"> 
+    <label for ="AWS ID" >AWS ID </label>
+    <input type ="text" class="form-control" placeholder="ASW ID" id ="awsID" value ="{{data.awsID}}"><br/>
+       </div>
+
+
+   <div class="form-group"> 
     <label for ="Province">Province </label>
     <select id = "provinceSelections">
         <option> sample </option>   
-    </select> <br/>
+    </select>
+   </div>
+
+   <div class="form-group"> 
     <label for ="City">City</label>
     <select id = "citySelections">
         <option> sample </option>
-    </select> <br/>
+    </select> 
+   </div>
     <!--<label for ="City">City </label>
     <input type ="text" id ="city" value ="{{data.city}}"><br/>
     <label for ="Province">Province</label>
     <input type ="text" id ="province" value ="{{data.province}}"><br/>-->
-    <label for ="AWS ID" >AWS ID </label>
-    <input type ="text" id ="awsID" value ="{{data.awsID}}"><br/>
-    <button id ="editLocationButton">Save</button>
-       			</div>
+<button id ="editLocationButton">Save</button>
+</form>
+</div>
 	</div>
+    </div>
 
 </template>

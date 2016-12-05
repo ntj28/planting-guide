@@ -1,13 +1,18 @@
 <template name="DurationYields">
-	<div class="container">	
-		<h4>Duration Yield</h4>
-			<div class="panel-heading">Duration Yield</div>
-       			<div class="panel-body">	
-		<table border ="1">
-		<tr>
-			<th> Crop Type</th>
-			<th> Crop Variety</th>				
-			<th> Week No.</th>			
+        <div class="container">
+			<h4> Duration Yields</h4>	
+				<div class="panel panel-default">
+            		<div class="panel-heading">Yields</div>
+					<div class="panel-body" align="center">
+               			 
+<button id ="add-duration-yield-button">Add Crop Yield Duration</button>
+		<button id ="exit-duration-yield-button">Done</button>
+	<table border ="1">
+		
+		<tr>			
+			<th> Week No.</th>
+			<th> Starting Date</th>
+			<th> Ending Date</th>
 			<th> Yield</th>			 
 			<th> Edit</th>
 			<th> Delete</th>			 
@@ -18,8 +23,9 @@
 		</tr>
 			{{/each}}
 	</table>
-	<button id ="add-duration-yield-button">Add Crop Yield Duration</button>
-	<button id ="exit-duration-yield-button">Done</button>
-       			</div>
+	
 	</div>
+            		
+				</div>
+        </div>
 </template>

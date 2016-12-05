@@ -1,12 +1,14 @@
 <template name = "Rainfall">
 	<div class="container">	
 	<h4> Amount of Rainfall Data </h4>
+				 <div class="panel panel-default">
 				<div class="panel-heading">Rain Fall</div>
-       			<div class="panel-body">
-	
+       			
+						 <div align="center" class="panel-body">
+	{{> upload}}<br>
 		
 	
-	{{> upload}}
+	
 	 
 		
 	<table border ="1">
@@ -24,12 +26,12 @@
 	</table>
        			</div>
 	</div>
+	</div>
 </template>
 
 
 <template name="upload">
   <h4 class="page-header">Upload a <code>csv</code></h4>
-
   {{#unless uploading}}
     <input type="file" name="uploadCSV" id ="upload">
   {{else}}

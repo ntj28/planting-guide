@@ -1,14 +1,21 @@
 <template name = "editWeekNumber">
 	<div class="container">	
 		<h4>Edit Week Numver</h4>
+		<div class="panel panel-default">
 			<div class="panel-heading">Week Number</div>
        			<div class="panel-body">	
+<div class="form-group">
 	<label for ="date" readOnly =true>Date</label>
-	<input id ="date" type ="text" value="{{data.date}}"> <br/>
+	<input id ="date" class="form-control" type ="text" value="{{data.date}}">
+</div>
+	
+<div class="form-group">
 	<label for ="weekNo">Week No.</label>
-	<input id ="weekNo" type ="text" value="{{data.weekNo}}"><br/>
+	<input id ="weekNo" class="form-control" type ="text" value="{{data.weekNo}}">
+</div>
 	<button id ="edit-week-button">Save</button>	
        			</div>
+		</div>
 	</div>
 	
 </template>

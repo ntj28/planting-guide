@@ -1,13 +1,20 @@
 <template name= "editRainfall">
 	<div class="container">	
 		<h4>Edit Rainfall</h4>
+		<div class="panel panel-default">
 			<div class="panel-heading">Rain Fall</div>
        			<div class="panel-body">
+<div class="form-group">	
 	<label for="date">Date</label>
-	<input id="date" value="{{data.date}}" readonly="true"><br/>
+	<input id="date" class="form-control" value="{{data.date}}" readonly="true"><br/>
+</div>
+	
+<div class="form-group">
 	<label for= "amountRainfall">Amount of Rainfall</label>
-	<input id ="amountRainfall" value="{{data.amount_rainfall}}"><br/>
+	<input id ="amountRainfall" class="form-control" value="{{data.amount_rainfall}}"><br/>
+</div>
 	<button id ="edit-rainfall-button">Save</button>
        			</div>
+	</div>
 	</div>
 </template>

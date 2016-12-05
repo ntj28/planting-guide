@@ -16,7 +16,6 @@ Template.weekNumber.onCreated( () => {
 Template.weekNumber.helpers ({
 	weekData: function() {
 		const weekData = weekNoCollection.find({}).fetch()
-
 		return weekData
 	}
 	 

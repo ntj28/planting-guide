@@ -54,11 +54,19 @@ let initMap = () => {
             // prevent the form from submitting automatically
             e.preventDefault();
 
-            let date = $(this).find('#date');
-            let type = $(this).find('#cropSelectionView');
-            let variety = $(this).find('#cropVarietySelectionView');
+            const awsID = FlowRouter.getParam('awsID')
+            //const locationID = FlowRouter.getParam('locationID')
+            const dateField = $('#date')
+            const date =  dateField.val()
+            const cropType = $('#cropSelectionView').find('option:selected').text()
+            const cropVariety = $('#cropVarietySelectionView').find('option:selected').text()
 
-            FlowRouter.go(`/chart/${activeLocation.awsID}/${date.val()}/${activeLocation._id}/${type.val()}/${variety.val()}`)
+            FlowRouter.go(`/chart/${activeLocation.awsID}/${date}/${activeLocation._id}/${cropType}/${cropVariety}`)
+
+            //let date = $(this).find('#date');
+            //let type = $(this).find('#cropSelectionView');
+            //let variety = $(this).find('#cropVarietySelectionView');
+            //FlowRouter.go(`/chart/${activeLocation.awsID}/${date.val()}/${activeLocation._id}/${type.val()}/${variety.val()}`)
         });
 
         let dataProcessing = new Promise((resolve, reject) => {

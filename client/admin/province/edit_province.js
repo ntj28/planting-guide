@@ -34,18 +34,17 @@ Template.EditProvince.events ({
         provinceOld = (data && data.province)
 
         //update the locations entries
-         Meteor.call('update-province-location',provinceOld,provinceEntry)
+        Meteor.call('update-province-location',provinceOld,provinceEntry)
 
 
          
         //calling the meteor method to save to province collections
         Meteor.call('update-province',provinceID, provinceEntry)
-            //log the  console to see if it has been saved
-        console.log('added')
-            //clearing the entries
+        
+        //clearing the entries
         provinceField.val = ''
          
-            //redirects to main page for 
+        //redirects to main page for 
         FlowRouter.go('/province')
 	}
 })

@@ -27,32 +27,6 @@ Template.AddThreshold.helpers ({
     }     
 })
 
-/*Meteor.autorun(() => {    
-    //populate the  cropType select
-    const cropData  = cropsCollection.find({}).fetch()
-    const cropField = $('#cropSelectionThresholdAdd')
-    cropField.empty()
-    cropData.forEach((item) => {        
-            cropField.append("<option value =" + item._id +">" + item.crop + "</option>");        
-    }); 
-
-    //populate the crop variety
-    const varietyField = $('#cropVarietySelectionThresholdAdd')
-    varietyField.empty()
-    const cropID =  cropField.val()
-    const dataVariety  = cropVarietiesCollection.find({cropID: cropID}).fetch()
-
-    //adds options to the select tag
-    
-    dataVariety.forEach((item) => {       
-            varietyField.append("<option value =" + item.variety +">" + item.variety + "</option>");     
-        
-    });
-
-    //  const cropVarietyData  = cropVarietiesCollection.find({}).fetch() 
-  //console.log("on rendered function"+cropVarietyData.length)
-    
-}); */
 
 
 Template.AddThreshold.events ({
@@ -82,9 +56,7 @@ Template.AddThreshold.events ({
         const amountRainfallField = $('#amountRainfall')
         const amountRainfall = amountRainfallField.val()
 		
-		Meteor.call ('add-thresholds',cropType,cropVariety,days,amountRainfall)
-		console.log ("added")		
-		
+		Meteor.call ('add-thresholds',cropType,cropVariety,days,amountRainfall)		
 		amountRainfallField.val = " "
 
 		FlowRouter.go ('/threshold')

@@ -64,12 +64,6 @@ Meteor.autorun(() => {
         daysField.append("<option value ='30' selected ='selected'>30</option>")
 
     }
-
-
-
-
-    //  const cropVarietyData  = cropVarietiesCollection.find({}).fetch() 
-  //console.log("on rendered function"+cropVarietyData.length)
     
 });
 
@@ -114,8 +108,7 @@ Template.EditThreshold.events ({
         const amountRainfallField = $('#amountRainfall')
         const amountRainfall = amountRainfallField.val()
         
-        Meteor.call ('update-thresholds',_id,cropType,cropVariety,days,amountRainfall)
-        console.log ("added")        
+        Meteor.call ('update-thresholds',_id,cropType,cropVariety,days,amountRainfall)          
         amountRainfallField.val = " "
 
         FlowRouter.go ('/threshold')        

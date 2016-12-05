@@ -27,13 +27,12 @@ Template.editWeekNumber.events ({
 
 		//getting the  fields as well as the data
                 const _id = FlowRouter.getParam('date_id')
-        	const dateField = $('#date')
+        	    const dateField = $('#date')
                 const date = dateField.val()
                 const weekField = $('#weekNo')
                 const week = parseInt(weekField.val())
                
-                Meteor.call ('update-week-no',_id,date,week)
-                console.log ("edited")
+                Meteor.call ('update-week-no',_id,date,week)                
                 dateField.val = " "
                 weekField.val = " "
                 

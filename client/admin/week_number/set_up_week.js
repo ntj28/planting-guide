@@ -47,8 +47,7 @@ Template.SetUpWeekNumber.events ({
 
 						for (let x = 1 ; x<=2 ; x++){						
 							dateFormatted  = dateStart.toISOString().slice(0,10).replace(/-/g,"-");
-							Meteor.call('add-week-no',dateFormatted, week)
-							console.log("week no " + week + "date " +dateFormatted)
+							Meteor.call('add-week-no',dateFormatted, week)							
 							dateStart.setDate(dateStart.getDate() + 1)
 
 						}	 

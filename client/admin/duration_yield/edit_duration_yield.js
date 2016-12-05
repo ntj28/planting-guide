@@ -101,18 +101,31 @@ Template.EditDurationYield.events ({
         const weekNo = parseInt(weekNoField.val())               
         const yieldField = $("#yield")
         const yields = yieldField.val()
-        const cropType = $('#cropSelection').find('option:selected').text()
-        const cropVarietyField = $('#cropVarietySelection')
-        const cropVariety = cropVarietyField.val()
-        
+        const cropType = $('#cropSelection').find('option:selected').text()        
+        const cropVariety = $('#cropVarietySelection').find('option:selected').text()
 
-        Meteor.call('update-duration-yield',locationID,cropType,cropVariety,weekNo,yields)           
-        
- 
-        
+        let exist = durationYields.findOne({ cropType : {
+                     $regex : new RegExp(cropType, "i") },
+                     cropVariety :cropVariety,
+                     weekNo: weekNo,
+                     locationID:locationID,
+                     yield: yields                     
+                      })
+
+
+        if (exist == null){     
+
+        Meteor.call('update-duration-yield',locationID,cropType,cropVariety,weekNo,yields) 
         weekNoField.val = " "        
         yieldField.val = " "
 
         FlowRouter.go(`/duration_yield/${locationID}`)
+        } else {
+            alert("Weekly crop yield is already in the collection");         
+        }          
+        
+ 
+        
+        
 	}
 })

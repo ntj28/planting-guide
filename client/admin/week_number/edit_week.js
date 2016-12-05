@@ -31,12 +31,23 @@ Template.editWeekNumber.events ({
                 const date = dateField.val()
                 const weekField = $('#weekNo')
                 const week = parseInt(weekField.val())
+
+                let exist = thresholdsCollection.findOne({ 
+                     date:date,
+                     weekNo:week
+
+                 })
+
+                if (exist == null){
                
                 Meteor.call ('update-week-no',_id,date,week)                
                 dateField.val = " "
                 weekField.val = " "
                 
 
-                FlowRouter.go ('/setUpWeek')        
+                FlowRouter.go ('/setUpWeek') 
+                } else {
+                    alert("Threshold is already in the collection");         
+                }       
 	}
 })

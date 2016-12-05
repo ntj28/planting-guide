@@ -108,13 +108,25 @@ Template.EditCropYield.events ({
         const cropYieldField = $('#cropYield')
         const cropYield =  cropYieldField.val()
         const _id = FlowRouter.getParam('location_id')
-		
 
-        //calling the meteor method to save
-        Meteor.call('update-crop-yield',cropYieldID, cropType,cropVariety,cropYield)
-         
+        let exist = cropYields.findOne({ cropType : {
+                     $regex : new RegExp(cropType, "i") },
+                     cropVariety : cropVariety,                     
+                     locationID:_id,
+                     cropYield: cropYield                     
+                      })
+
+        if (exist == null){	
+
+            //calling the meteor method to save
+            Meteor.call('update-crop-yield',cropYieldID, cropType,cropVariety,cropYield)
              
-        //redirects to main page for 
-        FlowRouter.go(`/crop_yield/${_id}`)
+                 
+            //redirects to main page for 
+            FlowRouter.go(`/crop_yield/${_id}`)
+
+        } else {
+            alert("Historical crop yield is already in the collection");         
+        }
 	}
 })

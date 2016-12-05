@@ -107,10 +107,24 @@ Template.EditThreshold.events ({
         const days =  $('#daysEdit').find('option:selected').text()
         const amountRainfallField = $('#amountRainfall')
         const amountRainfall = amountRainfallField.val()
+
+        let exist = thresholdsCollection.findOne({ cropType : {
+                     $regex : new RegExp(cropType, "i") } ,
+                     cropVariety : cropVariety  ,
+                     days:days,
+                     rainfall:amountRainfall
+
+                 })
+
+        if (exist == null){
         
         Meteor.call ('update-thresholds',_id,cropType,cropVariety,days,amountRainfall)          
         amountRainfallField.val = " "
 
-        FlowRouter.go ('/threshold')        
+        FlowRouter.go ('/threshold')  
+
+        } else {
+            alert("Threshold is already in the collection");         
+        }      
 	}
 })

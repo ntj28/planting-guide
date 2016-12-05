@@ -1,6 +1,7 @@
 import { location } from '../../../lib/collections/locations.js'
 import { province } from '../../../lib/collections/province.js'
 import { cityCollection } from '../../../lib/collections/city.js'
+ 
 
 Template.AddLocation.onCreated( () => {
 
@@ -9,6 +10,7 @@ Template.AddLocation.onCreated( () => {
             // logged-in
              Meteor.subscribe('province')
              Meteor.subscribe('cities')
+             Meteor.subscribe('locations')
         } else {
             // not logged-in
             FlowRouter.go('/')
@@ -64,18 +66,32 @@ Template.AddLocation.events({
         const awsID  = awsField.val()               
         const province = $('#provinceSelection').find('option:selected').text() 
 
-        //calling the meteor method to save
-        Meteor.call('add-location', projectName, insttitution, latitude, longitude, city, province,awsID)
-           
-        
-        //clearing the entries
-        projectNameField.val = ''
-        institutionField.val = ''
-        latitudeField.val = ''
-        longitudeField.val = ''
-        
+        let exist = location.findOne({ city : {
+                     $regex : new RegExp(city, "i") },
+                     province : {
+                     $regex : new RegExp(province, "i") },
+                     latitude: latitude,
+                     longitude:longitude 
+                      })
+
+         if (exist == null){ 
+
+            //calling the meteor method to save
+            Meteor.call('add-location', projectName, insttitution, latitude, longitude, city, province,awsID)
+               
+            
+            //clearing the entries
+            projectNameField.val = ''
+            institutionField.val = ''
+            latitudeField.val = ''
+            longitudeField.val = ''
+            
             //redirects to main page for 
-        FlowRouter.go('/location')
+            FlowRouter.go('/location')
+        } else {
+            alert("Location is already in the collection");         
+        }
+        
     },
     'click #Cancel ' : function (e) {
         

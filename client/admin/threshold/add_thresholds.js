@@ -1,5 +1,6 @@
 import { cropsCollection } from '../../../lib/collections/crops.js'
 import { cropVarietiesCollection  } from '../../../lib/collections/crop_varieties.js'
+import { thresholdsCollection  } from '../../../lib/collections/thresholds.js'
 
 Template.AddThreshold.onCreated( () => {
 
@@ -8,6 +9,7 @@ Template.AddThreshold.onCreated( () => {
             // logged-in
             Meteor.subscribe('crops')
             Meteor.subscribe('cropVarieties')
+            Meteor.subscribe('thresholds')
         } else {
             // not logged-in
             FlowRouter.go('/')
@@ -55,11 +57,26 @@ Template.AddThreshold.events ({
         const days = $('#days').find('option:selected').text()
         const amountRainfallField = $('#amountRainfall')
         const amountRainfall = amountRainfallField.val()
+
+       
+
+        let exist = thresholdsCollection.findOne({ cropVariety : cropVariety,cropType : {
+                     $regex : new RegExp(cropType, "i") }})
+
+
+        
+
+        if (exist == null){
+
 		
 		Meteor.call ('add-thresholds',cropType,cropVariety,days,amountRainfall)		
 		amountRainfallField.val = " "
 
 		FlowRouter.go ('/threshold')
+
+        } else {
+            alert("Threshold is already in the collection");         
+        }
 
 	},
 	'click #cancel-threshold ' : function (e) {

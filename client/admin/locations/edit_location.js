@@ -93,10 +93,7 @@ Template.EditLocation.events ({
         const awsID  = awsField.val() 
 
         
-        //update the old AWSID of amount of rainfall to ensure data integrity
-        AWSIDold = (data && data.awsID)
         
-        Meteor.call('update-awsID',AWSIDold,awsID)
 
 
         //update the locations collection
@@ -111,17 +108,33 @@ Template.EditLocation.events ({
         const province = $('#provinceSelections').find('option:selected').text()        
         const city = $('#citySelections').find('option:selected').text()
        
-        
+         let exist = location.findOne({ city : {
+                     $regex : new RegExp(city, "i") },
+                     province : {
+                     $regex : new RegExp(province, "i") },
+                     latitude: latitude,
+                     longitude:longitude 
+                      })
+         if (exist == null){ 
+            
+            //calling the meteor method to save
+            Meteor.call('update-location',locationId, projectName, insttitution, latitude, longitude, city, province,awsID)
 
-        //calling the meteor method to save
-        Meteor.call('update-location',locationId, projectName, insttitution, latitude, longitude, city, province,awsID)
-             
-        //clearing the entries
-        projectNameField.val = ''
-        institutionField.val = ''
-        latitudeField.val = ''
-        longitudeField.val = ''
-        //redirects to main page for 
-        FlowRouter.go('/location')
+            //update the old AWSID of amount of rainfall to ensure data integrity
+            AWSIDold = (data && data.awsID)
+            
+            Meteor.call('update-awsID',AWSIDold,awsID)
+                 
+            //clearing the entries
+            projectNameField.val = ''
+            institutionField.val = ''
+            latitudeField.val = ''
+            longitudeField.val = ''
+            //redirects to main page for 
+            FlowRouter.go('/location')
+
+        } else {
+            alert("Location is already in the collection");         
+        }
 	}
 })

@@ -1,5 +1,6 @@
 import { cropsCollection } from '../../../lib/collections/crops.js'
 import { cropVarietiesCollection  } from '../../../lib/collections/crop_varieties.js'
+import { cropYields } from '../../../lib/collections/crop_yield.js'
 
 Template.AddCropYield.onCreated( () => {
 
@@ -8,6 +9,7 @@ Template.AddCropYield.onCreated( () => {
             // logged-in
             Meteor.subscribe('crops')
             Meteor.subscribe('cropVarieties')
+            Meteor.subscribe('cropYields')
         } else {
             // not logged-in
             FlowRouter.go('/')
@@ -57,12 +59,22 @@ Template.AddCropYield.events({
         const cropYield = cropYieldField.val()        
         const cropVariety = $('#cropVarietySelectionCropYieldAdd').find('option:selected').text()
         
-         
-        //saving the  data
-		Meteor.call ('add-crop-yield',locationID,cropType,cropVariety,cropYield)		
-		FlowRouter.go(`/crop_yield/${locationID}`)
-		//clearing the  fields
-		cropYieldField.val =' '
+        let exist = cropYields.findOne({ cropType : {
+                     $regex : new RegExp(cropType, "i") },
+                     cropVariety : cropVariety,                     
+                     locationID:locationID,                      
+                      })
+
+        if (exist == null){
+            //saving the  data
+    		Meteor.call ('add-crop-yield',locationID,cropType,cropVariety,cropYield)		
+    		FlowRouter.go(`/crop_yield/${locationID}`)
+    		//clearing the  fields
+    		cropYieldField.val =' '
+
+        } else {
+            alert("Historical crop yield is already in the collection");         
+        }
 	},
 
 	'click #Cancel ' : function (e) {

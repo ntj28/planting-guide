@@ -3,6 +3,8 @@ import { province } from '../../../lib/collections/province.js'
 import { cityCollection } from '../../../lib/collections/city.js'
 import { cropsCollection } from '../../../lib/collections/crops.js'
 import { cropVarietiesCollection  } from '../../../lib/collections/crop_varieties.js'
+import { durationYields } from '../../../lib/collections/duration_yield.js'
+
 
 Template.AddDurationYield.onCreated( () => {
 
@@ -11,6 +13,7 @@ Template.AddDurationYield.onCreated( () => {
             // logged-in
             Meteor.subscribe('crops')
             Meteor.subscribe('cropVarieties')
+            Meteor.subscribe('durationYield')
         } else {
             // not logged-in
             FlowRouter.go('/')
@@ -57,18 +60,29 @@ Template.AddDurationYield.events({
 		const weekNo = weekNoField.val()		
 		const yieldField = $("#yield")
 		const yields = yieldField.val()    
-        const cropType = $('#cropSelectionDurationYieldAdd').find('option:selected').text()
-        const cropVariety = $('#cropVarietySelectionDurationYieldAdd').find('option:selected').text()
+    const cropType = $('#cropSelectionDurationYieldAdd').find('option:selected').text()
+    const cropVariety = $('#cropVarietySelectionDurationYieldAdd').find('option:selected').text()
      
-		
+		let exist = durationYields.findOne({ cropType : {
+                     $regex : new RegExp(cropType, "i") },
+                     cropVariety :cropVariety,
+                     weekNo: weekNo,
+                     locationID:locationID                      
+                      })
 
-		Meteor.call('add-duration-yields',locationID,cropType,cropVariety,weekNo,yields)
-		
-		 
-		weekNoField.val = " "		
-		yieldField.val = " "
+    if (exist == null){
 
-		FlowRouter.go(`/duration_yield/${locationID}`)
+  		Meteor.call('add-duration-yields',locationID,cropType,cropVariety,weekNo,yields)
+  		
+  		 
+  		weekNoField.val = " "		
+  		yieldField.val = " "
+
+  		FlowRouter.go(`/duration_yield/${locationID}`)
+
+    } else {
+            alert("Weekly crop yield is already in the collection");         
+    }
 
 	},
 

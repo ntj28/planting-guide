@@ -34,19 +34,28 @@ Template.EditCrop.events ({
 		const cropField = $('#crop')
         const crop = cropField.val()
 
-        //update the historical crop yield entries
-        Meteor.call ('update-crop-type',cropOld,crop)
+        let exist = cropsCollection.findOne({ crop : {
+                     $regex : new RegExp(crop, "i") } })
 
-        //update the weekly yield entries
-        Meteor.call ('update-crop-name',cropOld,crop)
+        if (exist == null){
 
-        //update the thresholds entries
-        Meteor.call ('update-crop-type-threshold',cropOld,crop)
+            //update the historical crop yield entries
+            Meteor.call ('update-crop-type',cropOld,crop)
+
+            //update the weekly yield entries
+            Meteor.call ('update-crop-name',cropOld,crop)
+
+            //update the thresholds entries
+            Meteor.call ('update-crop-type-threshold',cropOld,crop)
 
 
-        //update the  crops collection
-        Meteor.call ('update-crop',cropID,crop)        
-        FlowRouter.go ('/crop')
+            //update the  crops collection
+            Meteor.call ('update-crop',cropID,crop)        
+            FlowRouter.go ('/crop')
+
+        } else {
+            alert("Crop is already in the collection");         
+        }
          
          
 	}

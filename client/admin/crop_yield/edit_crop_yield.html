@@ -1,18 +1,31 @@
 <template name = "EditCropYield">
-		<div class="container">	
+	<div class="container">	
 		<h4>Edit Crop Yield</h4>
-			       			<div class="panel-body">
-	<label for ="Crop Type">Crop Type </label>
-	<select id = "cropSelections">
-		<option> sample </option>   
-	</select> <br/>
-	<label for ="Crop Variety">Crop Variety </label>
-	<select id = "cropVarietySelections">
-		<option> sample </option>
-	</select> <br/>
-	<label for ="Crop Yield">Crop Yield</label> 
-	<input type="text" id="cropYield" value="{{data.cropYield}}"><br/>
+ 			<div class="panel panel-default">
+	 			<div class="panel-heading">Crop Yield</div>
+				 <div class="panel-body">
+
+	<div class="from-group">
+		<label for ="Crop Yield">Crop Yield</label> 
+			<input type="text" class="form-control" id="cropYield" value="{{data.cropYield}}">
+	</div>
+		
+			<label for ="Crop Type">Crop Type </label>
+				<select id = "cropSelections">
+					<option> sample </option>   
+				</select>
+	
+	<div class="from-group">	
+		<label for ="Crop Variety">Crop Variety </label>
+			<select id = "cropVarietySelections">
+				<option> sample </option>
+			</select>
+	</div>	 
+<br>
+
+
 	<button id ="EditCropYieldButton">Save</button>
 			       			</div>
+		</div>
 		</div>
 </template>

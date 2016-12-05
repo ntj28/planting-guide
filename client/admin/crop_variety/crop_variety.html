@@ -1,6 +1,11 @@
 <template name = "Varieties">
+	<div class="container">
 	<h4>Crop Varieties</h4>
-	{{> AddVariety}}
+	
+	<div class="panel panel-default">
+			<div class="panel-heading">Varieties</div>
+       			<div class="panel-body" align="center">
+					   {{> AddVariety}}
 	<table border ="1">
 		<tr>
 			<th> Variety </th>
@@ -13,6 +18,10 @@
 		</tr>
 			{{/each}}
 	</table>
-	<button id ="add-variety-button">Add Variety</button>
+	<!--<button id ="add-variety-button">Add Variety</button>-->
 	<button id ="done-button">Done</button>
+
+       			</div>
+	</div>
+	</div>
 </template>

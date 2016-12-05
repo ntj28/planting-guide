@@ -17,9 +17,3 @@ Template.login.events({
 
 /*
  */
-
-
-
-
-
-

@@ -1,8 +1,15 @@
 <template name ="AddThreshold">
 	<div class="container">	
 		<h4>Add Thresholds</h4>
+		<div class="panel panel-default">
 			<div class="panel-heading">Thresholds</div>
        			<div class="panel-body">
+					
+<div class="form-group">
+					<label for = "rainfall">Amount of Rainfall </label>
+					<input id ="amountRainfall" class="form-control" type = "text">
+</div>
+
 					<label for ="Crop Type">Crop Type </label>
 					<select id = "cropSelectionThresholdAdd">
 						{{#each dataCrop}}
@@ -20,13 +27,13 @@
 						<option value="20">20</option>
 						<option value="30">30</option>
 					</select> <br/>
-					<label for = "rainfall">Amount of Rainfall </label>
-					<input id ="amountRainfall" type = "text"><br/>
+
 					<button id ="add-threshold">Save</button>
 					<button id ="cancel-threshold">Cancel</button>
     
-	</div>
-	</div>
+	
+       			</div>
+	</div>	</div>
 </template>
 
 

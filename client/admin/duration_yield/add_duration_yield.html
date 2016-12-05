@@ -1,32 +1,41 @@
 <template name ="AddDurationYield">
 	<div class="container">	
 		<h4>AddDurationYield</h4>
-			<div class="panel-heading">Duration Yield</div>
-       			<div class="panel-body">
-	<label for ="Crop Type">Crop Type </label>
-	<select id = "cropSelectionDurationYieldAdd">
-		{{#each dataCrop}}
-			  {{> cropItemAddDuration}}
-		{{/each}} 
-	</select> <br/>
-	<label for ="Crop Variety">Crop Variety </label>
-	<select id = "cropVarietySelectionDurationYieldAdd">
-		{{#each dataVariety}}
-			  {{> varietyItemAddDuration}}
-		{{/each}}
-	</select> <br/>
-	{{> uploadYield}}
-	<label for ="Week No.">Week No.</label>
-	<input type="text" id="weekNo"><br/>	
-	<label for ="Yield">Yield </label>
-	<input type="text" id="yield"><br/>
-	<button id="add-yield-button">Save</button>
-	<button id ="Cancel">Cancel</button>
+			<div class="panel panel-default">
+				<div class="panel-heading">Duration Yield</div>
+      		<div class="panel-body">
+							<label for ="Crop Type">Crop Type </label>
+							<select id = "cropSelectionDurationYieldAdd">
+								{{#each dataCrop}}
+										{{> cropItemAddDuration}}
+								{{/each}} 
+							</select> <br/>
+							<label for ="Crop Variety">Crop Variety </label>
+							<select id = "cropVarietySelectionDurationYieldAdd">
+								{{#each dataVariety}}
+										{{> varietyItemAddDuration}}
+								{{/each}}
+							</select> <br/>
+							{{> uploadYield}}
+	
+	<div class="form-group">
+		<label for ="Week No.">Week No.</label>
+			<input type="text" placeholder="Week Number" class="form-control" id="weekNo"><br/>
 	</div>
+
+	<div class="form-group">	
+							<label for ="Yield">Yield </label>
+							<input type="text" placeholder="YieldNumber" class="form-control" id="yield"><br/>
 	</div>
+							<button id="add-yield-button">Save</button>
+							<button id ="Cancel">Cancel</button>
+					</div>
+				</div>
+		</div>
 </template>
 
 <template name="uploadYield">
+	
   <h4 class="page-header">Upload a <code>csv</code></h4>
 
   {{#unless uploading}}

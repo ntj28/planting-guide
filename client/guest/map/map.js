@@ -21,9 +21,9 @@ let activeLocation;
 let initMap = () => {
     let modal = $('#myModal');
 
-    let plantingCurrentDateBtnOnClick = function () {
-        FlowRouter.go(`/date/${this.awsID}/${this._id}`);
-    };
+    // let plantingCurrentDateBtnOnClick = function () {
+    //     FlowRouter.go(`/date/${this.awsID}/${this._id}`);
+    // };
 
     let plantingEnteredDateBtnOnClick = function () {
         FlowRouter.go(`/date/${this.awsID}/${this._id}`);
@@ -57,14 +57,43 @@ let initMap = () => {
     });
 
      modal.on('show.bs.modal', () => {
-        modal
-            .find('.planting-current-date-btn')
-            .on('click.plantingCurrentDate', $.proxy(plantingCurrentDateBtnOnClick, activeLocation))
-            ;
+        // modal
+        //     // .find('.planting-current-date-btn')
+        //     // .on('click.plantingCurrentDate', $.proxy(plantingCurrentDateBtnOnClick, activeLocation))
+        //     // ;
 
         modal
             .find('.planting-date-btn')
             .on('click.plantingEnteredDate', $.proxy(plantingEnteredDateBtnOnClick, activeLocation))
+            ;
+
+        let dataProcessing = new Promise((resolve, reject) => {
+            Meteor.call('get-crop-yields-by-location', activeLocation._id, (err, cropYields) => {
+                resolve(cropYields);
+            });
+        });
+
+        dataProcessing
+            .then((cropYields) => {
+                let html = '';
+
+                cropYields.forEach((cropYield) => {
+                    let cropType = cropYield.cropType;
+                    let cropTypeFirstChar = cropType.charAt(0).toUpperCase();
+                    let capitalized = cropTypeFirstChar + cropType.substr(1);
+
+                    html += '<li>';
+                    html += `<span>${capitalized}: </span>`;
+                    html += `<span>${cropYield.cropYield} M.T./Ha</span>`;
+                    html += '</li>';
+                });
+
+                modal
+                    .find('.crop-yields')
+                    .empty()
+                    .html(html)
+                    ;
+            })
             ;
     });
 
@@ -77,10 +106,10 @@ let initMap = () => {
     });
 
     modal.on('hide.bs.modal', () => {
-        modal
-            .find('.planting-current-date-btn')
-            .off('click.plantingCurrentDate')
-            ;
+        // modal
+        //     .find('.planting-current-date-btn')
+        //     .off('click.plantingCurrentDate')
+        //     ;
 
         modal
             .find('.planting-date-btn')

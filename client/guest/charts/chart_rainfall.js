@@ -30,7 +30,7 @@ Template.ChartRainfall.rendered = () =>{
 	const crops = FlowRouter.getParam('cropTypes')
 	const variety = FlowRouter.getParam('cropVariety')	
 
-	console.log('crop'+crops)
+	console.log('dateEntered'+dateEntered)
 	//date fro simulation 
 	let dateEntry = new Date(dateEntered)
 	let dateEnteredOriginal = dateEntry.toISOString().slice(0,10).replace(/-/g,"-");
@@ -174,9 +174,11 @@ Template.ChartRainfall.rendered = () =>{
 					var comment
 					if (durationYieldData.yield > 0) {
 						comment = durationYieldData.yield + "% higher than the average."
+						komento = durationYieldData.yield + "% mas mataas kaysa pangkaraniwan."
 
 					} else {
 						comment = Math.abs(durationYieldData.yield) + "% lower than the average."
+						komento =  Math.abs(durationYieldData.yield)+ "% mas mababa kaysa pangkaraniwan."
 
 					}
 
@@ -188,21 +190,25 @@ Template.ChartRainfall.rendered = () =>{
 
 						if (thirtyDaysCumulative[lengthDailyData-1]==thresholdsData.rainfall){
 							var recommendation = "<p class= 'recommendation'></p>Your location is ready for planting of " + crops + " - " + variety +" (total rainfall for the past 30 days is  "+thirtyDaysCumulative[lengthDailyData-1] + "  mm).There is enough soil moisture.The  expected yield is " + comment ;
+							var rekomendasyon ="<p class= 'recommendation'></p>Sapat na ang tubig sa lupa sa lokasyong napili para sa " + crops + " - " + variety +" (total sa 30 araw ay  "+thirtyDaysCumulative[lengthDailyData-1] + "  mm).Mayroon ng sapat na kahalugmigmigan.Kung magtatanim ngayon, ang inaasahang ani ay " + komento ;
 						}
 
 						else {
 							var recommendation = "<p class= 'recommendation'></p>Your location is not yet ready for planting of " + crops + " - " + variety +" due to lack of soil moisture (total rainfall for the past 30 days is  "+thirtyDaysCumulative[lengthDailyData-1] + "  mm).The  expected yield is " + comment ;
+							var rekomendasyon ="<p class= 'recommendation'></p>Hindi pa sapat ang tubig sa lupa sa lokasyong napili para sa " + crops + " - " + variety +" dahil sa kakulangan ng kahalugmigmigan (total sa 30 araw ay  "+thirtyDaysCumulative[lengthDailyData-1] + "  mm).Kung magtatanim ngayon, ang inaasahang ani ay " + komento ;
 						}
 
 
 					}else {
 						//twenty days cumulative						
 						if (twentyDaysCumulative[lengthDailyData-1]==thresholdsData.rainfall){
-							var recommendation = "<p class= 'recommendation'></p>Your location is ready for planting of " + crops + " - " + variety +"(total rainfall for the past 30 days is  "+twentyDaysCumulative[lengthDailyData-1] + "  mm).There is enough soil moisture.The  expected yield is " + comment ;
+							var recommendation = "<p class= 'recommendation'></p>Your location is ready for planting of " + crops + " - " + variety +"(total rainfall for the past 20 days is  "+twentyDaysCumulative[lengthDailyData-1] + "  mm).There is enough soil moisture.The  expected yield is " + comment ;
+							var rekomendasyon ="<p class= 'recommendation'></p>Sapat na ang tubig sa lupa sa lokasyong napili para sa " + crops + " - " + variety +" (total sa 20 araw ay  "+twentyDaysCumulative[lengthDailyData-1] + "  mm).Mayroon ng sapat na kahalugmigmigan.Kung magtatanim ngayon, ang inaasahang ani ay " + komento ;
 						}
 
 						else {
-							var recommendation = "<p class= 'recommendation'></p>Your location is not yet ready for planting of " + crops + " - " + variety +" due to lack of soil moisture (total rainfall for the past 30 days is  "+twentyDaysCumulative[lengthDailyData-1] + "  mm).The  expected yield is " + comment ;
+							var recommendation = "<p class= 'recommendation'></p>Your location is not yet ready for planting of " + crops + " - " + variety +" due to lack of soil moisture (total rainfall for the past 20 days is  "+twentyDaysCumulative[lengthDailyData-1] + "  mm).The  expected yield is " + comment ;
+							var rekomendasyon ="<p class= 'recommendation'></p>Hindi pa sapat ang tubig sa lupa sa lokasyong napili para sa " + crops + " - " + variety +" dahil sa kakulangan ng kahalugmigmigan (total sa 20 araw ay  "+twentyDaysCumulative[lengthDailyData-1] + "  mm).Kung magtatanim ngayon, ang inaasahang ani ay " + komento ;
 						}
 
 
@@ -212,6 +218,7 @@ Template.ChartRainfall.rendered = () =>{
 					document.getElementById("crops").insertAdjacentHTML('beforebegin', crop);					
 					$('.cropName').text(crops.toUpperCase() +' - ' + variety);
 					document.getElementById("crops").insertAdjacentHTML('beforebegin', recommendation);
+					document.getElementById("crops").insertAdjacentHTML('beforebegin', rekomendasyon);
 
 
 				} else {
@@ -323,6 +330,7 @@ Template.ChartRainfall.rendered = () =>{
 				console.log("data daily" +dailyRainfall)
 				console.log("data thirty" +thirtyDaysCumulative)
 				console.log("data twenty" +twentyDaysCumulative)
+				console.log("data ten" +tenDaysData)
 
 				//high charts
 

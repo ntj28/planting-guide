@@ -1,28 +1,42 @@
 <template name = "Locations">
- 
-	<h4>Locations</h4>
-	<table border ="1">
-		<tr>
-			<th> Project Name </th>
-			<th> Institution</th>
-			<th> Latitude </th>
-			<th> Longitude </th>
-			<th> City </th>
-			<th> Province </th>
-			<th> AWS ID </th>
-			<th> Edit</th>
-			<th> Delete</th>
-			<th> Historical Crop Yield </th>
-			<th> Weekly Yield </th>
-			<th> Amount of Rainfall </th>
-		</tr>
-			{{#each locations}}
-		<tr>
-			{{> Location}}
-		</tr>
-			{{/each}}
-	</table>
-	<button id ="add-location-button">Add Location</button>
+        <div class="container">
+			<h4> Locations</h4>	
+				<div class="panel panel-default">
+            		<div class="panel-body">
+               			 <div class="panel-heading">Locations</div>
+	<!--<div class="row">-->
+		<div class="text-center" align="center" style="background-color:lavender;">
+	 
+	
 
-
+			<table align ="center">
+				<table border ="1">
+					<tr>
+						<th> Project Name </th>
+						<th> Institution</th>
+						<th> Latitude </th>
+						<th> Longitude </th>
+						<th> City </th>
+						<th> Province </th>
+						<th> AWS ID </th>
+						<th> Edit</th>
+						<th> Delete</th>
+						<th> Historical Crop Yield </th>
+						<th> Weekly Yield </th>
+						<th> Amount of Rainfall </th>
+					</tr>
+						{{#each locations}}
+					<tr>
+						{{> Location}}
+					</tr>
+						{{/each}}
+				</table>
+				</table>
+				<button id ="add-location-button">Add Location</button>
+</div>
+</div>
+            </div>
+        </div>
+        
+	
 </template>

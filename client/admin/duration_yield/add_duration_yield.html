@@ -1,5 +1,8 @@
 <template name ="AddDurationYield">
-	 
+	<div class="container">	
+		<h4>AddDurationYield</h4>
+			<div class="panel-heading">Duration Yield</div>
+       			<div class="panel-body">
 	<label for ="Crop Type">Crop Type </label>
 	<select id = "cropSelectionDurationYieldAdd">
 		{{#each dataCrop}}
@@ -19,6 +22,8 @@
 	<input type="text" id="yield"><br/>
 	<button id="add-yield-button">Save</button>
 	<button id ="Cancel">Cancel</button>
+	</div>
+	</div>
 </template>
 
 <template name="uploadYield">
@@ -29,6 +34,7 @@
   {{else}}
     <p><i class="fa fa-spin fa-refresh"></i> Uploading files...</p>
   {{/unless}}
+
 </template>
 
 

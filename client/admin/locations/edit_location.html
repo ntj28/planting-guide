@@ -1,4 +1,8 @@
 <template name="EditLocation">
+	<div class="container">	
+		<h4>Edit Location</h4>
+			<div class="panel-heading">Locations</div>
+       			<div class="panel-body">
 	<label for ="Project Name">Project Name</label> 
 	<input type ="text" id ="projectName" value ="{{data.projectName}}"> <br/>
     <label for ="Institution">Institution</label> 
@@ -22,4 +26,7 @@
     <label for ="AWS ID" >AWS ID </label>
     <input type ="text" id ="awsID" value ="{{data.awsID}}"><br/>
     <button id ="editLocationButton">Save</button>
+       			</div>
+	</div>
+
 </template>

@@ -35,12 +35,12 @@ Meteor.methods ({
                 $set: {
                     cropType:cropType,
                     cropVariety: cropVariety,
-                    cropYield: cropYield                    
+                    cropYield: cropYield
                 }
             },
 
                 {upsert : true}
-            
+
         )
 
     },
@@ -50,14 +50,14 @@ Meteor.methods ({
             {cropType},//filters to be updaated
             {
                 $set: {
-                         
+
                     cropType:cropTypeNew,
-                                                            
+
                 }
             },
 
                 { multi: true}
-            
+
         )
 
     },
@@ -67,15 +67,30 @@ Meteor.methods ({
             {cropVariety},//filters to be updaated
             {
                 $set: {
-                         
+
                     cropVariety:cropVarietyNew,
-                                                            
+
                 }
             },
 
                 { multi: true}
-            
+
         )
 
     },
+
+    'get-crop-yields-by-location': function(locationId) {
+        let resultArray = [];
+
+        cropYields
+            .find({
+                locationID: locationId
+            })
+            .forEach((item) => {
+                resultArray.push(item);
+            })
+            ;
+
+        return resultArray;
+    }
 })

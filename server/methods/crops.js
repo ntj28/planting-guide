@@ -3,7 +3,7 @@ import { cropsCollection } from '../../lib/collections/crops.js'
 Meteor.methods ({
 	'add-crop' : function (crop) {
 		cropsCollection.insert({
-			crop : crop			 
+			crop : crop
 		})
 	},
 
@@ -19,16 +19,29 @@ Meteor.methods ({
             {
                 $set: {
                     crop:crop,
-                                        
+
                 }
             },
 
                 {upsert : true}
-            
+
         )
 
     },
 
+    'get-all-crops': function() {
+        let resultArray = [];
 
-    
+        cropsCollection
+            .find()
+            .forEach((item) => {
+                resultArray.push(item);
+            })
+            ;
+
+        return resultArray;
+    }
+
+
+
 })

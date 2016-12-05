@@ -77,15 +77,14 @@ Template.AddThreshold.events ({
 	'click #add-threshold ' : function (e) {
 		
 		const cropType = $('#cropSelectionThresholdAdd').find('option:selected').text()
-        const cropVariety = $('#cropVarietySelectionThresholdAdd').find('option:selected').text()
-        const daysField = $('#days')
-        const days = daysField.val()
+        const cropVariety = $('#cropVarietySelectionThresholdAdd').find('option:selected').text()        
+        const days = $('#days').find('option:selected').text()
         const amountRainfallField = $('#amountRainfall')
         const amountRainfall = amountRainfallField.val()
 		
 		Meteor.call ('add-thresholds',cropType,cropVariety,days,amountRainfall)
 		console.log ("added")		
-		daysField.val = " "
+		
 		amountRainfallField.val = " "
 
 		FlowRouter.go ('/threshold')

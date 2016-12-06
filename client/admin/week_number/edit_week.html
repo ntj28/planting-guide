@@ -6,14 +6,15 @@
        			<div class="panel-body">	
 <div class="form-group">
 	<label for ="date" readOnly =true>Date</label>
-	<input id ="date" class="form-control" type ="text" value="{{data.date}}">
+	<input id ="date" class="form-control"   value="{{data.date}}" type="date">
 </div>
 	
 <div class="form-group">
 	<label for ="weekNo">Week No.</label>
-	<input id ="weekNo" class="form-control" type ="text" value="{{data.weekNo}}">
+	<input id ="weekNo" class="form-control"  value="{{data.weekNo}}" type="number" required="true">
 </div>
-	<button id ="edit-week-button">Save</button>	
+	<button id ="edit-week-button">Save</button>
+	<button id = "Cancel">Cancel</button>	
        			</div>
 		</div>
 	</div>

@@ -7,27 +7,27 @@
 <form>
     <div class="form-group">
 	    <label for ="Project Name">Project Name</label> 
-	    <input type ="text" class="form-control" placeholder="Project Name" id ="projectName" value ="{{data.projectName}}">
+	    <input type ="text" class="form-control" placeholder="Project Name" id ="projectName" value ="{{data.projectName}}" maxlength="20">
     </div>     
 
      <div class="form-group">    
         <label for ="Institution">Institution</label> 
-        <input type ="text" class="form-control" placeholder="Institution" id ="insttitution" value ="{{data.institution}}">
+        <input type ="text" class="form-control" placeholder="Institution" id ="insttitution" value ="{{data.institution}}" maxlength="20">
      </div>
 
     <div class="form-group">  
         <label for ="Latitude">Latitude </label>
-        <input type="text" class="form-control" placeholder="Latitude" id ="latitude" value ="{{data.latitude}}">
+        <input   class="form-control" placeholder="Latitude" id ="latitude" value ="{{data.latitude}}" type="number" required>>
     </div>
 
    <div class="form-group"> 
     <label for ="Longitude">Longitude</label>
-    <input type ="text" class="form-control" placeholder="Longitude" id ="longitude" value ="{{data.longitude}}">
+    <input  class="form-control" placeholder="Longitude" id ="longitude" value ="{{data.longitude}}" type="number" required>>
    </div>
 
    <div class="form-group"> 
     <label for ="AWS ID" >AWS ID </label>
-    <input type ="text" class="form-control" placeholder="ASW ID" id ="awsID" value ="{{data.awsID}}"><br/>
+    <input type ="text" class="form-control" placeholder="ASW ID" id ="awsID" value ="{{data.awsID}}" maxlength="15"><br/>
        </div>
 
 
@@ -43,12 +43,9 @@
     <select id = "citySelections">
         <option> sample </option>
     </select> 
-   </div>
-    <!--<label for ="City">City </label>
-    <input type ="text" id ="city" value ="{{data.city}}"><br/>
-    <label for ="Province">Province</label>
-    <input type ="text" id ="province" value ="{{data.province}}"><br/>-->
+   </div>     
 <button id ="editLocationButton">Save</button>
+<button id ="Cancel">Cancel</button>
 </form>
 </div>
 	</div>

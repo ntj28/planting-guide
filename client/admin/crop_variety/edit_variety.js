@@ -64,5 +64,11 @@ Template.EditCropVariety.events ({
             alert("Variety is already in the collection");         
         }
 
-	}
+	},
+    
+    'click #Cancel ' : function (e) {
+        const cropID = FlowRouter.getParam('crop_id')
+        FlowRouter.go(`/cropVariety/${cropID}`)
+
+    }
 })

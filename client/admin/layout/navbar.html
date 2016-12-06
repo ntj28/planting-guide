@@ -14,15 +14,25 @@
         <a class="navbar-brand" href="#"><img src="http://sarai.ph/upload/main//head-logo-bC7msh65H2iFCPvJT.jpg"></a>
       </div>
       <div class="collapse navbar-collapse">
-        <ul class="nav navbar-nav">
-          <li class="active"><a href="#">Home</a></li>
+        <ul class="nav navbar-nav" id ="navigation">
+
+        {{#each link in links}}
+           <li><a href="{{link.link}}">{{link.LinkText}}</a></li>
+           <!--<a class="mdl-navigation__link" href="{{link.link}}">{{link.LinkText}}</a>-->
+        {{/each}}
+
+        {{#if currentUser}}
+          <li><a href="/login" class="logout">Logout</a></li>
+        {{/if}}
+
+          <!--<li class="active"><a href="#">Home</a></li>
           <li><a href="#about">About</a></li>
-          <li><a href="#contact">Contact</a></li>
+          <li><a href="#contact">Contact</a></li> -->
           
         </ul>
         <ul class="nav navbar-nav navbar-right" id="loginBtn">
             <!--<li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>-->
-           <li><a href="login"><span class="glyphicon glyphicon-login"></span> Login</a></li>
+           <!--<li><a href="login"><span class="glyphicon glyphicon-login"></span> Login</a></li> -->
             
           </ul>
 
@@ -34,9 +44,7 @@
   <div class="container">
     <div class="page-header">
       <h1>Planting Guide</h1>
-    </div>
-    <p class="lead">Description</p>
-    <p>......</p>
+    </div>    
   </div>
 </div>
 

@@ -23,7 +23,7 @@ Template.register.events({
 		    password: password
 		}, function(error){
 		    if(error){
-		        console.log(error.reason); // Output error if registration fails
+		        alert(error.reason); 
 		    } else {
 		        Router.go("Locations"); // Redirect user if registration succeeds
 		    }

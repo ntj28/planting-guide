@@ -126,5 +126,10 @@ Template.EditThreshold.events ({
         } else {
             alert("Threshold is already in the collection");         
         }      
-	}
+	},
+    'click #cancel-threshold ' : function (e) {
+        
+        FlowRouter.go('/threshold')
+
+    }
 })

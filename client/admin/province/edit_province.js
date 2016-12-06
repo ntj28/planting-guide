@@ -53,5 +53,10 @@ Template.EditProvince.events ({
          } else {
             alert("Province is already in the collection");         
         }
-	}
+	},
+    'click #Cancel ' : function (e) {
+        
+        FlowRouter.go('/province')
+
+    }
 })

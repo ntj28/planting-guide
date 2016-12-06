@@ -136,5 +136,10 @@ Template.EditLocation.events ({
         } else {
             alert("Location is already in the collection");         
         }
-	}
+	},
+    'click #Cancel ' : function (e) {
+        
+        FlowRouter.go('/location')
+
+    }
 })

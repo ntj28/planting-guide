@@ -49,5 +49,10 @@ Template.editWeekNumber.events ({
                 } else {
                     alert("Threshold is already in the collection");         
                 }       
-	}
+	},
+    'click #Cancel ' : function (e) {
+        
+        FlowRouter.go ('/setUpWeek') 
+
+    }
 })

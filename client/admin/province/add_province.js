@@ -32,7 +32,7 @@ Template.AddProvince.events ({
         }
 
 	},
-	'click #cancel-threshold ' : function (e) {
+	'click #Cancel ' : function (e) {
         
         FlowRouter.go('/province')
 

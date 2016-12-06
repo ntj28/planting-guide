@@ -58,5 +58,10 @@ Template.EditCrop.events ({
         }
          
          
-	}
+	},
+    'click #Cancel ' : function (e) {
+        
+        FlowRouter.go('/crop')
+
+    }
 })

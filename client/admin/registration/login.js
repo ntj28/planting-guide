@@ -1,3 +1,5 @@
+
+
 Template.login.events({
     'submit form': function(event){
         event.preventDefault();
@@ -6,7 +8,8 @@ Template.login.events({
         username = username.replace(/\s/g, "");
         Meteor.loginWithPassword(username, password, function(error){
 		   if(error){
-		        console.log(error.reason);
+                alert(error.reason); 	        
+
 		    } else {
 		        FlowRouter.go('/location')
 		    }

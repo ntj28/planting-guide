@@ -127,5 +127,10 @@ Template.EditDurationYield.events ({
  
         
         
-	}
+	},
+    'click #Cancel ' : function (e) {
+        const locationID = FlowRouter.getParam('location_id')
+        FlowRouter.go(`/duration_yield/${locationID}`)
+
+    }
 })

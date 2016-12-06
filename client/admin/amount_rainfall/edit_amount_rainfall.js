@@ -40,5 +40,10 @@ Template.editRainfall.events ({
                      
         //redirects to main page for 
         FlowRouter.go(`/rainfall/${awsID}`)
-	}
+	},
+    'click #Cancel ' : function (e) {
+        const awsID = FlowRouter.getParam('awsID')  
+        FlowRouter.go(`/rainfall/${awsID}`)
+
+    }
 })

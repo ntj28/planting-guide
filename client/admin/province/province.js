@@ -8,6 +8,7 @@ Template.Province.onCreated( () => {
             Meteor.subscribe('province')
         } else {
             // not logged-in
+            
             FlowRouter.go('/')
 
         }

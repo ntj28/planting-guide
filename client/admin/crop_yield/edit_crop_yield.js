@@ -128,5 +128,11 @@ Template.EditCropYield.events ({
         } else {
             alert("Historical crop yield is already in the collection");         
         }
-	}
+	},
+
+    'click #Cancel ' : function (e) {
+        const _id = FlowRouter.getParam('location_id')
+        FlowRouter.go(`/crop_yield/${_id}`)
+
+    }
 })

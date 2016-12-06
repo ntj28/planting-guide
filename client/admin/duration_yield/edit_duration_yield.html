@@ -23,13 +23,14 @@
 	
 	<div class="form-group">    	
 		<label for ="Week No.">Week No. </label> 
-		<input type="text" class="form-control" id="weekNo" value ="{{data.weekNo}}"><br/>
+		<input  class="form-control" id="weekNo" value ="{{data.weekNo}}" type="number" required><br/>
 	</div>	
 
 	<div class="form-group">
 		<label for ="Yield">Yield </label>
-		<input type="text" class="form-control" id="yield" value ="{{data.yield}}"><br/>
+		<input  class="form-control" id="yield" value ="{{data.yield}}" type="number" required><br/>
 		<button id="update-duration-yield-button">Save</button>
+		<button id ="Cancel">Cancel</button>
 	</div>
 
     </div>

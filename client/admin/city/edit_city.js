@@ -49,5 +49,11 @@ Template.EditCity.events ({
         }
 
 
-	}
+	},
+
+    'click #Cancel ' : function (e) {
+        const provinceID = FlowRouter.getParam('province_id')
+        FlowRouter.go(`/city/${_id}`)
+
+    }
 })
